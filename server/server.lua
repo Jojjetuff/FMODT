@@ -1,4 +1,5 @@
 local Username, IsUsingSteam
+local CurrentVersion = "3.0.0"
 local banHours = 1.0 --Ban Duration
 
 --[[
@@ -134,18 +135,18 @@ AddEventHandler("KickPlayer", function(Player, KickReason) --Used To Kick A Play
 	DropPlayer(Player, "Kick Reason: " ..  KickReason)
 end)
 
-AddEventHandler("BanPlayer", function(Player, BanReason) --Used To Ban A Player
+AddEventHandler("BanPlayer", function(Player, BanReason, BanDuration) --Used To Ban A Player
 	local now = os.date("*t")
 	local nowutc = os.time(now)
 	local IDLicense = GetIdFromSource("license", Player)
 	local IDSteam = GetIdFromSource("steam", Player)
 	
 	if IDLicense ~= nil then
-		local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'bannedplayer' .. GetOSSep() .. IDLicense .. '.txt', tostring(nowutc) .. "\n" .. BanReason, -1)
+		local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'bannedplayer' .. GetOSSep() .. IDLicense .. '.txt', tostring(nowutc) .. "\n" .. BanReason .. "\n" .. BanDuration, -1)
 	end
 	
 	if IDSteam ~= nil then
-		local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'bannedplayer' .. GetOSSep() .. IDSteam .. '.txt', tostring(nowutc) .. "\n" .. BanReason, -1)
+		local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'bannedplayer' .. GetOSSep() .. IDSteam .. '.txt', tostring(nowutc) .. "\n" .. BanReason .. "\n" .. BanDuration, -1)
 	end
 
 	DropPlayer(Player, "Ban Reason: " .. BanReason)
@@ -155,12 +156,17 @@ AddEventHandler("playerConnecting", function(playerName, setKickReason) --Checks
 	local alreadyKicked = false
 	local now = os.date("*t")
 	local nowutc = os.time(now)
-	local banTime = banHours * 3600
+	local banTime
 	local IDLicense = GetIdFromSource("license", source)
 
 	local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'bannedplayer' .. GetOSSep() .. IDLicense .. '.txt')
 	if fileContent ~= nil and fileContent ~= "" then
 		local Splitted = stringsplit(fileContent, '\n')
+		if not Splitted[3] == nil then
+			banTime = Splitted[3] * 3600
+		else
+			banTime = banHours * 3600
+		end
 		if ((nowutc - tonumber(Splitted[1])) < banTime) then
 			local remainingSeconds = math.floor(banTime - (nowutc - tonumber(Splitted[1])))
 			print("(" .. IDLicense .. ") tried to enter but is still banned. Join prevented!")
@@ -185,6 +191,11 @@ AddEventHandler("playerConnecting", function(playerName, setKickReason) --Checks
 				local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'bannedplayer' .. GetOSSep() .. IDSteam .. '.txt')
 				if fileContent ~= nil and fileContent ~= "" then
 					local Splitted = stringsplit(fileContent, '\n')
+					if not Splitted[3] == nil then
+						banTime = Splitted[3] * 3600
+					else
+						banTime = banHours * 3600
+					end
 					if ((nowutc - tonumber(Splitted[1])) < banTime) then
 						local remainingSeconds = math.floor(banTime - (nowutc - Splitted[1]))
 						print("(" .. SteamID .. ") tried to enter but is still banned. Join prevented!")
@@ -611,6 +622,15 @@ RegisterServerEvent("ChangePassword") --Just Don't Edit!
 RegisterServerEvent("ResetPassword") --Just Don't Edit!
 RegisterServerEvent("GetUsername") --Just Don't Edit!
 RegisterServerEvent("GotUsername") --Just Don't Edit!
+
+PerformHttpRequest("https://raw.githubusercontent.com/Flatracer/FMODT/master/VERSION", function(Error, Body, Header)
+	
+	if CurrentVersion ~= Body then
+		print("Chemical Toxin is outdated, please check the Topic for the newest version!\n-->Current Version: " .. CurrentVersion .. "\n-->New Version: " .. Body)
+	else
+		print("Chemical Toxin is up to date!")
+	end
+end)
 
 --Error Message in Case the Resource Folder got renamed
 --if GetCurrentResourceName() ~= "FMODT" then

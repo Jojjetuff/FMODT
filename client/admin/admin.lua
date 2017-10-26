@@ -1,6 +1,6 @@
 local prevCoordx, prevCoordy, prevCoordz
 local player = nil; playerPing = "N/A"; playerIP = "N/A"; FirstIDOutput = {}; SecondIDOutput = {}; PlayerUsername = nil;
-	  LicenseID = {"N/A", ""}; SteamID = "N/A"; HostID = "N/A"; HostClientID = "N/A"; HostName = "N/A"
+	  LicenseID = {"N/A", ""}; SteamID = "N/A"; HostID = "N/A"; HostClientID = "N/A"; HostName = "N/A"; BanDuration = 1
 
 Citizen.CreateThread(function() --Admin Menu
 	local VoiceChatChannel = 0
@@ -31,6 +31,10 @@ Citizen.CreateThread(function() --Admin Menu
 				end
 			end)
 
+			TriggerEvent("FMODT:Int", BanDurationTitle, BanDuration, 1, 99999, function(cb)
+				BanDuration = cb
+			end)
+			
 			TriggerEvent("FMODT:Option", "~y~>> ~s~ " .. BanPlayerTitle, function(cb)
 				if (cb) then
 					adminMenu = false
@@ -386,7 +390,7 @@ Citizen.CreateThread(function() --Player Actions
 							if Reason == "" then
 								Reason = AdminsDecisionMessage
 							end
-							TriggerServerEvent("BanPlayer", GetPlayerServerId(player), Reason)
+							TriggerServerEvent("BanPlayer", GetPlayerServerId(player), Reason, BanDuration)
 							drawNotification("~y~" .. GetPlayerName(player) .. "~s~ - " .. BannedMessage .. "!")
 							Citizen.Wait(500)
 						else
