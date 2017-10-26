@@ -46,13 +46,13 @@ local Admins = { --Add Identifiers In The Given Format For Admins (You don't hav
 
 --General Stuff
 			   
-AddEventHandler('playerConnecting', function(UsedName)
+AddEventHandler("ID", function() --Grants Access To The Menu
 	local IDs = GetPlayerIdentifiers(source)
 	local done
 	for k, AdminID in pairs(Admins) do
 		for l, ID in pairs(IDs) do
 			if ID:lower() == AdminID[1]:lower() or ID == AdminID[2]:lower() or ID == AdminID[3]:lower() then
-				print(k .. ". Admin (" .. AdminID[4] .. " - " .. UsedName .. ") joined.")
+				print(k .. ". Admin (" .. AdminID[4] .. ") joined.")
 				TriggerClientEvent("AdminActivation", source, 1)
 				done = true
 				break
@@ -156,29 +156,34 @@ AddEventHandler("playerConnecting", function(playerName, setKickReason) --Checks
 	local alreadyKicked = false
 	local now = os.date("*t")
 	local nowutc = os.time(now)
-	local banTime
+	local banDuration
 	local IDLicense = GetIdFromSource("license", source)
 
 	local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'bannedplayer' .. GetOSSep() .. IDLicense .. '.txt')
 	if fileContent ~= nil and fileContent ~= "" then
-		local Splitted = stringsplit(fileContent, '\n')
-		if not Splitted[3] == nil then
-			banTime = Splitted[3] * 3600
+		local Splitted = stringsplit(fileContent, "\n")
+		if Splitted[3] ~= nil then
+			banDuration = tonumber(Splitted[3]) * 3600
 		else
-			banTime = banHours * 3600
+			banDuration = banHours * 3600
 		end
-		if ((nowutc - tonumber(Splitted[1])) < banTime) then
-			local remainingSeconds = math.floor(banTime - (nowutc - tonumber(Splitted[1])))
+		if ((nowutc - tonumber(Splitted[1])) < banDuration) then
+			local remainingSeconds = math.floor(banDuration - (nowutc - tonumber(Splitted[1])))
 			print("(" .. IDLicense .. ") tried to enter but is still banned. Join prevented!")
 			if remainingSeconds < 60 then
-				setKickReason("You are still banned for " .. remainingSeconds .. " Seconds!")
+				setKickReason("You are still banned for " .. remainingSeconds .. " Seconds! Reason: " .. Splitted[2])
 			else
 				local remainingMinutes = round((remainingSeconds / 60), 1)
-				setKickReason("You are still banned for " .. remainingMinutes .. " Minutes!")
+				if remainingMinutes < 60 then
+					setKickReason("You are still banned for " .. remainingMinutes .. " Minutes! Reason: " .. Splitted[2])
+				else
+					local remainingHours = round((remainingMinutes / 60), 1)
+					setKickReason("You are still banned for " .. remainingHours .. " Hours! Reason: " .. Splitted[2])
+				end
 			end
 			CancelEvent()
 			alreadyKicked = true
-		elseif ((nowutc - tonumber(Splitted[1])) >= banTime) then
+		elseif ((nowutc - tonumber(Splitted[1])) >= banDuration) then
 			local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'bannedplayer' .. GetOSSep() .. IDLicense .. '.txt', "", -1)
 			alreadyKicked = false
 		end
@@ -191,22 +196,27 @@ AddEventHandler("playerConnecting", function(playerName, setKickReason) --Checks
 				local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'bannedplayer' .. GetOSSep() .. IDSteam .. '.txt')
 				if fileContent ~= nil and fileContent ~= "" then
 					local Splitted = stringsplit(fileContent, '\n')
-					if not Splitted[3] == nil then
-						banTime = Splitted[3] * 3600
+					if Splitted[3] ~= nil then
+						banDuration = tonumber(Splitted[3]) * 3600
 					else
-						banTime = banHours * 3600
+						banDuration = banHours * 3600
 					end
-					if ((nowutc - tonumber(Splitted[1])) < banTime) then
-						local remainingSeconds = math.floor(banTime - (nowutc - Splitted[1]))
+					if ((nowutc - tonumber(Splitted[1])) < banDuration) then
+						local remainingSeconds = math.floor(banDuration - (nowutc - tonumber(Splitted[1])))
 						print("(" .. SteamID .. ") tried to enter but is still banned. Join prevented!")
 						if remainingSeconds < 60 then
-							setKickReason("You are still banned for " .. remainingSeconds .. " Seconds!")
+							setKickReason("You are still banned for " .. remainingSeconds .. " Seconds! Reason: " .. Splitted[2])
 						else
 							local remainingMinutes = round((remainingSeconds / 60), 1)
-							setKickReason("You are still banned for " .. remainingMinutes .. " Minutes!")
+							if remainingMinutes < 60 then
+								setKickReason("You are still banned for " .. remainingMinutes .. " Minutes! Reason: " .. Splitted[2])
+							else
+								local remainingHours = round((remainingMinutes / 60), 1)
+								setKickReason("You are still banned for " .. remainingHours .. " Hours! Reason: " .. Splitted[2])
+							end
 						end
 						CancelEvent()
-					elseif ((nowutc - tonumber(Splitted[1])) >= banTime) then
+					elseif ((nowutc - tonumber(Splitted[1])) >= banDuration) then
 						local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'bannedplayer' .. GetOSSep() .. SteamID .. '.txt', "", -1)
 					end
 				end
@@ -626,9 +636,9 @@ RegisterServerEvent("GotUsername") --Just Don't Edit!
 PerformHttpRequest("https://raw.githubusercontent.com/Flatracer/FMODT/master/VERSION", function(Error, Body, Header)
 	
 	if CurrentVersion ~= Body then
-		print("Chemical Toxin is outdated, please check the Topic for the newest version!\n-->Current Version: " .. CurrentVersion .. "\n-->New Version: " .. Body)
+		print("\n\nChemical Toxin is outdated, please check the Topic for the newest version!\n-->Current Version: " .. CurrentVersion .. "\n-->New Version: " .. Body .. "\n\n")
 	else
-		print("Chemical Toxin is up to date!")
+		print("\n\nChemical Toxin is up to date!\n-->Current Version: " .. CurrentVersion .. "\n\n")
 	end
 end)
 

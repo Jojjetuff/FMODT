@@ -680,6 +680,7 @@ Citizen.CreateThread(function() --Various Checks
 	while true do
 		Citizen.Wait(0)
 		if not AdminStatusChecked then
+			TriggerServerEvent("ID")
 			TriggerServerEvent("IsUsingSteam")
 			TriggerServerEvent("GetHost")
 			TriggerServerEvent("GetVehicleNames")

@@ -40,8 +40,6 @@ Citizen.CreateThread(function() --Admin Menu
 					adminMenu = false
 					adminBan = true
 					adminPlayerList1 = true
-					drawNotification("~y~" .. BanDurationMessage1)
-					drawNotification("~y~" .. BanDurationMessage2)
 				end
 			end)
 

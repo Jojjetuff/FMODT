@@ -35,8 +35,6 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 				BanDurationTitle = "Ban Duration (Hours)"
 				BanPlayerTitle = "Ban Player"
 				BanYourselfMessage = "Can't Ban Yourself"
-				BanDurationMessage1 = "Default Ban-Duration: 1 Hour"
-				BanDurationMessage2 = "Ban-Duration Can Be Edited In The 'server.lua' File!"
 
 				SpectatePlayerTitle = "Spectate Player"
 				SpectateYourselfMessage = "Can't Spectate Yourself"
@@ -793,8 +791,6 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 				BanDurationTitle = "Ban Dauer (Stunden)"
 				BanPlayerTitle = "Spieler bannen"
 				BanYourselfMessage = "Du kannst dich nicht selber bannen"
-				BanDurationMessage1 = "Standard Ban-Dauer: 1. Stunde"
-				BanDurationMessage2 = "Ban-Dauer kann in der 'server.lua' Datei angepasst werden!"
 
 				SpectatePlayerTitle = "Spieler zuschauen"
 				SpectateYourselfMessage = "Du kannst dir nicht selber zuschauen"
@@ -1551,8 +1547,6 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 				BanDurationTitle = "Utestengelse varighet (timer)"
 				BanPlayerTitle = "Utestengelse"
 				BanYourselfMessage = "Du kan ikke stenge deg selv ute"
-				BanDurationMessage1 = "Standard Utestengelsestid: 1 Time"
-				BanDurationMessage2 = "Utestengelsestiden kan endres i 'server.lua' filen!"
 
 				SpectatePlayerTitle = "Observer Spiller"
 				SpectateYourselfMessage = "Du kan ikke observere deg selv"
@@ -2309,8 +2303,6 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 				BanDurationTitle = "Užblokuoti trukmė (valandos)"
 				BanPlayerTitle = "Užblokuoti žaidėją"
 				BanYourselfMessage = "Negali užblokuoti savęs"
-				BanDurationMessage1 = "Standartinė blokavimo trukmė: 1 valanda"
-				BanDurationMessage2 = "Blokavimo trukmė gali būti pakeista tarp 'server.lua' failo!"
 
 				SpectatePlayerTitle = "Stebėti žaidėją"
 				SpectateYourselfMessage = "Negali stebėti savęs"
