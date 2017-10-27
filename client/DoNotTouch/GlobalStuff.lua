@@ -635,6 +635,30 @@
 		end
 	end
 	
+	function KeyboardInput(TextEntry, ExampleText, StringLenght, NoSpaces)
+		AddTextEntry('FMMC_KEY_TIP1', TextEntry .. ':')
+		DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", ExampleText, "", "", "", StringLenght)
+		blockinput = true
+
+		while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
+			if NoSpaces == true then
+				drawNotification("~y~" .. NoSpacesMessage)
+			end
+			Citizen.Wait(0)
+		end
+		
+		if UpdateOnscreenKeyboard() ~= 2 then
+			local result = GetOnscreenKeyboardResult()
+			Citizen.Wait(500)
+			blockinput = false
+			return result
+		else
+			Citizen.Wait(500)
+			blockinput = false
+			return nil
+		end
+	end
+	
 	function SaveSettings()
 		SettingsTable = {xPos * 100, outfitSpawn, OutfitIndex, keepWeapons, godmode, godmodeCount, playerVisible, playerVisibleCount,
 						 nowantedlevel, nowantedlevelCount, superjump,  stamina, supermanmode, maxWantedLevel, Run * 10, Swim * 10, vehgodmode, 

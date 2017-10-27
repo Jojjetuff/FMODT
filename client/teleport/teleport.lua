@@ -2,10 +2,10 @@ local SetCoords, location, EffectPlayer, PlayerX, PlayerY, PlayerZ
 local nv, wp, WaypointCoords, scale; RequestPTFX = true, entity
 local player = -1; CustomX = 0.0; CustomY = 0.0; CustomZ = 0.0
 	  
-Citizen.CreateThread(function() --Teleport Menu
+Citizen.CreateThread(function() --Teleport Menu							[Multiple Pages]
 	while true do
-
-		if (teleportMenu) then
+		local X, Y, Z
+		if teleportMenu then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionteleportMenu
@@ -71,17 +71,8 @@ Citizen.CreateThread(function() --Teleport Menu
 			end)
 
 			TriggerEvent("FMODT:Update")
-		end
-
-		Citizen.Wait(0)
-	end
-end)
-
-Citizen.CreateThread(function() --Entity - Relative Menu
-	while true do
-		local entity
-
-		if (teleportMenuEntityRelative) then
+			
+		elseif teleportMenuEntityRelative then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionteleportMenuEntityRelative
@@ -130,14 +121,8 @@ Citizen.CreateThread(function() --Entity - Relative Menu
 			end)
 
 			TriggerEvent("FMODT:Update")
-		end
-		Citizen.Wait(0)
-	end
-end)
-
-Citizen.CreateThread(function() --Interior Locations Menu
-	while true do
-		if (interiorLocation) then
+			
+		elseif interiorLocation then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectioninteriorLocation
@@ -149,224 +134,119 @@ Citizen.CreateThread(function() --Interior Locations Menu
 
 			TriggerEvent("FMODT:Option", "Cluckin Bell Factory", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-150.0,6147.0,35.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -150.0,6147.0,35.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -150.0, 6147.0, 35.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -150.0
+					Y = 6147.0
+					Z = 35.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "FIB Building", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(135.5,-749.0,260.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 135.5,-749.0,260.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 135.5,-749.0,260.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 135.0
+					Y = -749.0
+					Z = 260.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Fort Zancudo Tower", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-2356.0,3248.6,101.5)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -2356.0,3248.6,101.5)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -2356.0,3248.6,101.5)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -2356.0
+					Y = 3248.6
+					Z = 101.5
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "IAA Building", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(113.9,-618.5,206.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 113.9,-618.5,206.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 113.9,-618.5,206.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 113.9
+					Y = -618.5
+					Z = 206.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Destroyed Hospital", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(356.9,-590.5,43.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 356.9,-590.5,43.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 356.9,-590.5,43.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 356.9
+					Y = -590.5
+					Z = 43.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Jewelry Store", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-630.4,-236.7,37.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -630.4,-236.7,37.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -630.4,-236.7,37.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -630.4
+					Y = -236.7
+					Z = 37.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Lester's Factory", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(716.8,-962.0,31.5)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 716.8,-962.0,31.5)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 716.8,-962.0,31.5)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 716.8
+					Y = -962.0
+					Z = 31.5
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Lifeinvader", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-1047.9,-233.0,39.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1047.9,-233.0,39.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -1047.9,-233.0,39.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -1047.9
+					Y = -233.0
+					Z = 39.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Maze Bank Arena", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-248.6,-2010.6,30.1)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -248.6,-2010.6,30.1)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -248.6,-2010.6,30.1)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -248.6
+					Y = -2010.6
+					Z = 30.1
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Prison Tower", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(1541.6,2470.1,62.8)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 1541.6,2470.1,62.8)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 1541.6,2470.1,62.8)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 1541.6
+					Y = 2470.1
+					Z = 62.8
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Simeon's Showroom", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-30.8,-1088.3,25.4)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -30.8,-1088.3,25.4)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -30.8,-1088.3,25.4)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -30.8
+					Y = -1088.3
+					Z = 25.4
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Strip Club", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(97.2,-1290.9,29.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 97.2,-1290.9,29.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 97.2,-1290.9,29.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 97.2
+					Y = -1290.9
+					Z = 29.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "The Morgue", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(244.9,-1374.7,39.5)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 244.9,-1374.7,39.5)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 244.9,-1374.7,39.5)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 244.9
+					Y = -1374.7
+					Z = 39.5
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Union Deposity", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(2.6,-667.0,16.1)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 2.6,-667.0,16.1)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 2.6,-667.0,16.1)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 2.6
+					Y = -667.0
+					Z = 16.1
 				end
 			end)
 
 			TriggerEvent("FMODT:Update")
-		end
-
-		Citizen.Wait(0)
-	end
-end)
-
-Citizen.CreateThread(function() --Exterior Locations Menu
-	while true do
-		if (exteriorLocation) then
+			
+		elseif exteriorLocation then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionexteriorLocation
@@ -378,181 +258,97 @@ Citizen.CreateThread(function() --Exterior Locations Menu
 
 			TriggerEvent("FMODT:Option", "Airport", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-1102.2,-2894.5,13.9)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1102.2,-2894.5,13.9)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -1102.2,-2894.5,13.9)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -1102.2
+					Y = -2894.5
+					Z = 13.9
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Cannibal Camp", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-1170.1,4926.1,224.3)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1170.1,4926.1,224.3)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -1170.1,4926.1,224.3)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -1170.1
+					Y = 4926.1
+					Z = 224.3
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Del Perro Pier", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-1600.0,-1041.8,13.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1600.0,-1041.8,13.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -1600.0,-1041.8,13.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -1600.0
+					Y = -1041.8
+					Z = 13.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "FIB", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(135.5,-749.0,266.6)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 135.5,-749.0,266.6)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 135.5,-749.0,266.6)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 135.5
+					Y = -749.0
+					Z = 266.6
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Fort Zancudo", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-2012.8,2956.5,32.8)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -2012.8,2956.5,32.8)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -2012.8,2956.5,32.8)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -2012.8
+					Y = 2956.5
+					Z = 32.8
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Heist Carrier", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(3069.9,-4632.4,16.2)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 3069.9,-4632.4,16.2)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 3069.9,-4632.4,16.2)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 3069.9
+					Y = -4632.4
+					Z = 16.2
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Heist Yacht", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-2045.8,-1031.2,11.9)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -2045.8,-1031.2,11.9)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -2045.8,-1031.2,11.9)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -2045.8
+					Y = -1031.2
+					Z = 11.9
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "IAA", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(130.6,-634.9,262.8)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 130.6,-634.9,262.8)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 130.6,-634.9,262.8)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 130.6
+					Y = -634.9
+					Z = 262.8
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "In The Sky (Over City)", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(0.0,0.0,1000.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 0.0,0.0,1000.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 0.0,0.0,1000.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 0.0
+					Y = 0.0
+					Z = 1500.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Maze Bank", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-74.9,-818.6,326.1)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -74.9,-818.6,326.1)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -74.9,-818.6,326.1)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -74.9
+					Y = -818.6
+					Z = 326.1
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Mount Chiliad", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(449.3,5568.5,796.1)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 449.3,5568.5,796.1)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 449.3,5568.5,796.1)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 449.3
+					Y = 5568.5
+					Z = 796.1
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "North Yankton", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(3360.1,-4849.6,111.8)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 3360.1,-4849.6,111.8)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 3360.1,-4849.6,111.8)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 3360.1
+					Y = -4849.6
+					Z = 111.8
 				end
 			end)
 
@@ -570,16 +366,9 @@ Citizen.CreateThread(function() --Exterior Locations Menu
 					RequestIpl("des_farmhs_startimap")
 					RequestIpl("farm_props")
 
-					RequestCollisionAtCoord(2452.2,4954.5,45.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 2452.2,4954.5,45.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 2452.2,4954.5,45.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 2452.2
+					Y = 4954.5
+					Z = 45.0
 				end
 			end)
 
@@ -597,16 +386,9 @@ Citizen.CreateThread(function() --Exterior Locations Menu
 					RequestIpl("farm_burnt_lod")
 					RequestIpl("farm_burnt_props")
 					
-					RequestCollisionAtCoord(2452.2,4954.5,45.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 2452.2,4954.5,45.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 2452.2,4954.5,45.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 2452.2
+					Y = 4954.5
+					Z = 45.0
 				end
 			end)
 
@@ -621,104 +403,55 @@ Citizen.CreateThread(function() --Exterior Locations Menu
 						FreezeEntityPosition(plane, true)
 					end
 					
-					RequestCollisionAtCoord(2814.2,4758.5,47.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 2814.2,4758.5,47.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 2814.2,4758.5,47.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 2814.2
+					Y = 4758.5
+					Z = 47.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Prison", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(1679.0,2513.7,45.5)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 1679.0,2513.7,45.5)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 1679.0,2513.7,45.5)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 1679.0
+					Y = 2513.7
+					Z = 45.5
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "Trevor's Airfield", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(1741.4,3269.2,41.6)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 1741.4,3269.2,41.6)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 1741.4,3269.2,41.6)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 1741.4
+					Y = 3269.2
+					Z = 41.6
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "UFO (Alien Camp)", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(2490.4,3774.8,2414.0)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 2490.4,3774.8,2414.0)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 2490.4,3774.8,2414.0)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 2490.4
+					Y = 3774.8
+					Z = 2414.0
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "UFO (Fort Zancudo)", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(-2051.9,3237.0,1456.9)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -2051.9,3237.0,1456.9)
-					else
-						SetEntityCoords(GetPlayerPed(-1), -2051.9,3237.0,1456.9)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = -2051.9
+					Y = 3237.0
+					Z = 1456.9
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "UFO (Mount Chiliad)", function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(501.5,5593.8,796.2)
-
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 501.5,5593.8,796.2)
-					else
-						SetEntityCoords(GetPlayerPed(-1), 501.5,5593.8,796.2)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = 501.5
+					Y = 5593.8
+					Z = 796.2
 				end
 			end)
 
 			TriggerEvent("FMODT:Update")
-		end
-
-		Citizen.Wait(0)
-	end
-end)
-
-Citizen.CreateThread(function() --Custom Locations Menu
-	while true do
-		if (customLocation) then
+			
+		elseif customLocation then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectioncustomLocation
@@ -736,28 +469,15 @@ Citizen.CreateThread(function() --Custom Locations Menu
 			
 			TriggerEvent("FMODT:Option", TeleportToCoordsTitle, function(cb)
 				if (cb) then
-					RequestCollisionAtCoord(CustomX, CustomY, CustomZ)
-					if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
-						SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), CustomX, CustomY, CustomZ)
-					else
-						SetEntityCoords(GetPlayerPed(-1), CustomX, CustomY, CustomZ)
-					end
-					entity = GetPlayerPed(-1)
-
-					TriggerServerEvent("EffectForAll", PlayerId())
+					X = CustomX
+					Y = CustomY
+					Z = CustomZ
 				end
 			end)
 
 			TriggerEvent("FMODT:Update")
-		end
-
-		Citizen.Wait(0)
-	end
-end)
-
-Citizen.CreateThread(function() --Teleport To Online Player Menu		[Multiple Pages]
-	while true do
-		if (OnlinePlayer1) then
+			
+		elseif OnlinePlayer1 then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionOnlinePlayer1
@@ -829,6 +549,24 @@ Citizen.CreateThread(function() --Teleport To Online Player Menu		[Multiple Page
 
 			TriggerEvent("FMODT:Update")
 		end
+
+		if X ~= nil and Y ~= nil and Z ~= nil then
+			RequestCollisionAtCoord(X, Y, Z)
+
+			if IsPedInAnyVehicle(GetPlayerPed(-1), 0) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), 0), -1) == GetPlayerPed(-1)) then
+				SetEntityCoords(GetVehiclePedIsIn(GetPlayerPed(-1), 0), X, Y, Z)
+			else
+				SetEntityCoords(GetPlayerPed(-1), X, Y, Z)
+			end
+			entity = GetPlayerPed(-1)
+
+			TriggerServerEvent("EffectForAll", PlayerId())
+			
+			X = nil
+			Y = nil
+			Z = nil
+		end
+			
 		Citizen.Wait(0)
 	end
 end)
