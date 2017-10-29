@@ -1,9 +1,16 @@
 Citizen.CreateThread(function()
 	local fontId
-	RegisterFontFile('Calibri')
-	fontId = RegisterFontId('Calibri')
-	GUI.titleText[5] = fontId
-	GUI.optionText[5] = fontId
+	RegisterFontFile('ArialNarrow')
+	fontId = RegisterFontId('Arial Narrow')
+	while true do
+		Citizen.Wait(0)
+		GUI.titleText[5] = fontId
+		GUI.optionText[5] = fontId
+		GUI.titleTextSize[1] = 0.65
+		GUI.titleTextSize[2] = 0.65
+		GUI.optionTextSize[1] = 0.375
+		GUI.optionTextSize[2] = 0.375
+	end
 end)
 
 GUI = {}
@@ -16,6 +23,8 @@ GUI.titleRect = {0, 51, 0, 255}
 GUI.optionText = {255, 255, 255, 255}
 GUI.optionRect = {40, 40, 40, 190}
 GUI.scroller = {127, 140, 140, 240}
+GUI.titleTextSize = {0.8, 0.8}
+GUI.optionTextSize = {0.5, 0.5 }
 
 menuX = 0.85
 local selectPressed = false
@@ -41,7 +50,7 @@ function GUI.Rect(color, position, size)
 end
 
 function Menu.Title(title)
-	GUI.Text(title, GUI.titleText, {menuX, 0.095}, {0.6, 0.6}, true)
+	GUI.Text(title, GUI.titleText, {menuX, 0.095}, GUI.titleTextSize, true)
 	GUI.Rect(GUI.titleRect, {menuX, 0.1175}, {0.23, 0.085})
 end
 
@@ -57,13 +66,13 @@ function Menu.Option(option)
 	end
 
 	if(currentOption <= GUI.maxVisOptions and optionCount <= GUI.maxVisOptions) then
-		GUI.Text(option, GUI.optionText, {menuX - 0.1, optionCount * 0.035 + 0.125},  {0.45, 0.45 }, false)
+		GUI.Text(option, GUI.optionText, {menuX - 0.1, optionCount * 0.035 + 0.125}, GUI.optionTextSize, false)
 		GUI.Rect(GUI.optionRect, { menuX, optionCount * 0.035 + 0.1415 }, { 0.23, 0.035 })
 		if(thisOption) then
 			GUI.Rect(GUI.scroller, { menuX, optionCount * 0.035 + 0.1415 }, { 0.23, 0.035 })
 		end
 	elseif (optionCount > currentOption - GUI.maxVisOptions and optionCount <= currentOption) then
-		GUI.Text(option, GUI.optionText, { menuX - 0.1, optionCount - (currentOption - GUI.maxVisOptions) * 0.035 + 0.125 }, {0.45, 0.45 }, false);
+		GUI.Text(option, GUI.optionText, { menuX - 0.1, optionCount - (currentOption - GUI.maxVisOptions) * 0.035 + 0.125 }, GUI.optionTextSize, false);
 		GUI.Rect(GUI.optionRect, { menuX, optionCount - (currentOption - GUI.maxVisOptions) * 0.035+0.1415 }, { 0.23, 0.035 });
 		if(thisOption) then
 			GUI.Rect(GUI.scroller, { menuX, optionCount - (currentOption - maxVisOptions) * 0.035 + 0.1415 }, { 0.23, 0.035 })
@@ -82,15 +91,15 @@ function Menu.Bool(option, bool, cb)
 
 	if(currentOption <= GUI.maxVisOptions and optionCount <= GUI.maxVisOptions) then
 		if (bool) then
-			GUI.Text("~g~ON", GUI.optionText, { menuX + 0.088, optionCount * 0.035 + 0.125 }, {0.45, 0.45 }, true)
+			GUI.Text("~g~ON", GUI.optionText, { menuX + 0.078, optionCount * 0.035 + 0.125 }, GUI.optionTextSize, true)
 		else
-			GUI.Text("~r~OFF", GUI.optionText, { menuX + 0.088, optionCount * 0.035 + 0.125 }, {0.45, 0.45 }, true)
+			GUI.Text("~r~OFF", GUI.optionText, { menuX + 0.078, optionCount * 0.035 + 0.125 }, GUI.optionTextSize, true)
 		end
 	elseif(optionCount > currentOption - GUI.maxVisOptions and optionCount <= currentOption) then
 		if (bool) then
-			GUI.Text("~g~ON", GUI.optionText, { menuX + 0.088, optionCount - (currentOption - GUI.maxVisOptions) * 0.035 + 0.125 }, {0.45, 0.45 }, true)
+			GUI.Text("~g~ON", GUI.optionText, { menuX + 0.078, optionCount - (currentOption - GUI.maxVisOptions) * 0.035 + 0.125 }, GUI.optionTextSize, true)
 		else
-			GUI.Text("~r~OFF", GUI.optionText, { menuX + 0.088, optionCount - (currentOption - GUI.maxVisOptions) * 0.035 + 0.125 }, {0.45, 0.45 }, true)
+			GUI.Text("~r~OFF", GUI.optionText, { menuX + 0.078, optionCount - (currentOption - GUI.maxVisOptions) * 0.035 + 0.125 }, GUI.optionTextSize, true)
 		end
 	end
 
@@ -124,9 +133,9 @@ function Menu.Int(option, int, min, max, cb)
 	end
 
 	if (currentOption <= GUI.maxVisOptions and optionCount <= GUI.maxVisOptions) then
-		GUI.Text("< " .. tostring(int) .. " >", GUI.optionText, { menuX + 0.088, optionCount * 0.035 + 0.125 }, {0.45, 0.45 }, true)
+		GUI.Text("< " .. tostring(int) .. " >", GUI.optionText, { menuX + 0.078, optionCount * 0.035 + 0.125 }, GUI.optionTextSize, true)
 	elseif (optionCount > currentOption - GUI.maxVisOptions and optionCount <= currentOption) then
-		GUI.Text("< " .. tostring(int) .. " >", GUI.optionText, { menuX + 0.088, optionCount - (currentOption - maxVisOptions) * 0.035 + 0.125 }, {0.45, 0.45 }, true)
+		GUI.Text("< " .. tostring(int) .. " >", GUI.optionText, { menuX + 0.078, optionCount - (currentOption - maxVisOptions) * 0.035 + 0.125 }, GUI.optionTextSize, true)
 	end
 
 	if (optionCount == currentOption and selectPressed) then
@@ -175,9 +184,9 @@ function Menu.Float(option, float, min, max, step, count, cb)
 	end
 
 	if (currentOption <= GUI.maxVisOptions and optionCount <= GUI.maxVisOptions) then
-		GUI.Text("< " .. tostring(float) .. " >", GUI.optionText, { menuX + 0.088, optionCount * 0.035 + 0.125 }, {0.45, 0.45 }, true)
+		GUI.Text("< " .. tostring(float) .. " >", GUI.optionText, { menuX + 0.078, optionCount * 0.035 + 0.125 }, GUI.optionTextSize, true)
 	elseif (optionCount > currentOption - GUI.maxVisOptions and optionCount <= currentOption) then
-		GUI.Text("< " .. tostring(float) .. " >", GUI.optionText, { menuX + 0.088, optionCount - (currentOption - maxVisOptions) * 0.035 + 0.125 }, {0.45, 0.45 }, true)
+		GUI.Text("< " .. tostring(float) .. " >", GUI.optionText, { menuX + 0.078, optionCount - (currentOption - maxVisOptions) * 0.035 + 0.125 }, GUI.optionTextSize, true)
 	end
 
 	if (optionCount == currentOption and selectPressed) then
@@ -210,9 +219,9 @@ function Menu.StringArray(option, array, position, cb)
 	end
 
 	if (currentOption <= GUI.maxVisOptions and optionCount <= GUI.maxVisOptions) then
-		GUI.Text("< " .. array[position] .. " >", GUI.optionText, { menuX + 0.068, optionCount * 0.035 + 0.125 }, {0.45, 0.45 }, true)
+		GUI.Text("< " .. array[position] .. " >", GUI.optionText, { menuX + 0.078, optionCount * 0.035 + 0.125 }, GUI.optionTextSize, true)
 	elseif (optionCount > currentOption - GUI.maxVisOptions and optionCount <= currentOption) then
-		GUI.Text("< " .. array[position] .. " >", GUI.optionText, { menuX + 0.068, optionCount - (currentOption - GUI.maxVisOptions) * 0.035 + 0.125 }, {0.45, 0.45 }, true)
+		GUI.Text("< " .. array[position] .. " >", GUI.optionText, { menuX + 0.078, optionCount - (currentOption - GUI.maxVisOptions) * 0.035 + 0.125 }, GUI.optionTextSize, true)
 	end
 
 	if (optionCount == currentOption and selectPressed) then

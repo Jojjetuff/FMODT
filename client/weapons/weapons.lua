@@ -182,23 +182,23 @@ end)
 
 Citizen.CreateThread(function() --Explosive Bullet Menu
 	local array = {
-				   "Grenade", "Grenadelauncher",
+				   "Grenade", "G. Launcher",
 				   "Stickybomb", "Molotov",
 				   "Rocket", "Tankshell",
 				   "Octane", "Car",
 				   "Plane", "Petrol Pump",
-				   "Bike", "Dir Steam",
-				   "Dir Flame", "Dir Water",
-				   "Dir Gas Canister", "Boat",
+				   "Bike", "Steam",
+				   "Flame", "Water",
+				   "Gas Canister", "Boat",
 				   "Ship", "Truck",
 				   "Bullet", "Smoke GL",
-				   "Smoke Grenade", "BZ Gas",
+				   "Smoke G.", "BZ Gas",
 				   "Flare", "Gas Canister",
-				   "Extinguisher", "Programmable AR",
+				   "Extinguisher", "Prog. AR",
 				   "Train", "Barrel",
 				   "Propane", "Atomic Blip",
-				   "Dir Flame Explode", "Tanker",
-				   "Plane Rocket", "Vehicle Bullet",
+				   "Flame", "Tanker",
+				   "Planerocket", "Vehiclebullet",
 				   "Gas Tank", "Xero Blimp",
 				   "Firework"
 				  }
@@ -258,9 +258,9 @@ end)
 
 Citizen.CreateThread(function() --Vehicle Weapons Menu
 	local array = {
-				   "Air Defence Gun", "Assault Rifle",
-				   "Assault Shotgun", "Fireworks",
-				   "Grenadelauncher", "Molotov",
+				   "Air Defence", "Assault Rifle",
+				   "Shotgun", "Fireworks",
+				   "G. Launcher", "Molotov",
 				   "Railgun", "RPG",
 				   "Snowballs", "Stungun"
 				  }

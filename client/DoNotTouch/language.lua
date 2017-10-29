@@ -2,7 +2,7 @@ SelectedLanguage = 1
 Languages = {"English", "German", "Norwegian", "Lithuanian"}
 	
 
-Citizen.CreateThread(function() --Language Changing In Real Time
+Citizen.CreateThread(function() --Language Changing
 	while true do
 		Citizen.Wait(0)
 		if SelectedLanguage == 1 then --English
@@ -1469,7 +1469,7 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 			-- Register / Login Menu
 				LoginMenuTitle = "Anmelden" --NEW
 				RegisterMenuTitle = "Registrieren" --NEW
-				NameTitle = "Name" --NEW
+				UsernameTitle = "Name" --NEW
 				PasswordTitle = "Passwort" --NEW
 				LoginRegisterErrorMessage = "Fülle jedes Feld aus" --NEW
 				RegisterSuccessMessage = "Erfolgreich registriert" --NEW
@@ -2321,13 +2321,13 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 				ExtendableMapEnableMessage = "Padidinamas žemėlapis įjungtas visiems klientams"
 				ExtendableMapDisableMessage = "Padidinamas žemėlapis išjungtas visiems klientams"
 
-				BlipsAndNamesTitle = "Žemėlapio ikonos ir pavadinimai"
-				BlipsAndNamesEnableMessage = "Žemėlapio ikonos ir pavadinimai įjungti visiems klientams"
-				BlipsAndNamesDisableMessage = "Žemėlapio ikonos ir pavadinimai išjungti visiems klientams"
+				BlipsAndNamesTitle = "Blips ir vardai"
+				BlipsAndNamesEnableMessage = "Blips ir vardai įjungti visiems klientams"
+				BlipsAndNamesDisableMessage = "Blips ir vardai išjungti visiems klientams"
 
-				BlipsAndNamesNonAdminsTitle = "Žemėlapio ikonos ir pavadinimai (paprastiems žaidėjams)"
-				BlipsAndNamesNonAdminsEnableMessage = "Žemėlapio ikonos ir pavadinimai paprastiems žaidėjams įjungti"
-				BlipsAndNamesNonAdminsDisableMessage = "Žemėlapio ikonos ir pavadinimai paprastiems žaidėjams išjungti"
+				BlipsAndNamesNonAdminsTitle = "Blips ir vardai (Ne administratoriai)"
+				BlipsAndNamesNonAdminsEnableMessage = "Blips ir vardai (Ne administratoriai) įjungtas visiems klientams"
+				BlipsAndNamesNonAdminsDisableMessage = "Blips ir vardai (Ne administratoriai) išjungtas visiems klientams"
 
 				PvPTitle = "Vienas prieš vieną"
 				PvPEnableMessage = "Vienas prieš vieną įjungta visiems klientams"
@@ -2817,28 +2817,28 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 
 
 			-- Teleport Menu
-				TeleportToWaypointTitle = "Teleportuotis į žemėlapio žymeklį"
+				TeleportToWaypointTitle = "Į žemėlapio žymeklį"
 				TeleportedToWaypointMessage = "Nusiteleportuota į žymeklį"
 				NoWaypointMessage = "Žymeklis nėra nustatytas"
-				TeleportIntoNearestVehicleTitle = "Teleportuotis į arčiausią transportą"
+				TeleportIntoNearestVehicleTitle = "Į arčiausią transportą"
 				TeleportedIntoNearestVehicleMessage = "Nusiteleportuota į arčiausią transportą"
 				NoVehicleFoundMessage = "Jokio transporto nerasta"
-				TeleportEntityRelativeTitle = "Teleportuoti subjektą - reliatyvus"
-				TeleportForwardTitle = "Teleportuoti pirmyn"
+				TeleportEntityRelativeTitle = "Subjektą - reliatyvus"
+				TeleportForwardTitle = "Pirmyn"
 				TeleportedForwardMessage = "Nuteleportuota pirmyn"
-				TeleportBackwardTitle = "Teleportuoti atgal"
+				TeleportBackwardTitle = "Atgal"
 				TeleportedBackwardMessage = "Nuteleportuota atgal"
-				TeleportToTheLeftTitle = "Teleportuoti į kairę"
+				TeleportToTheLeftTitle = "Į kairę"
 				TeleportedToTheLeftMessage = "Nuteleportuota į kairę"
-				TeleportToTheRightTitle = "Teleportuoti į dešinę"
+				TeleportToTheRightTitle = "Į dešinę"
 				TeleportedToTheRightMessage = "Nuteleportuota į dešinę"
-				TeleportToOnlinePlayerTitle = "Teleportuoti į prisijungusį žaidėją"
+				TeleportToOnlinePlayerTitle = "Į prisijungusį žaidėją"
 				CantTeleportToYourselfMessage = "Negali teleportuoti savęs"
 				InteriorLocationsTitle = "Interjerų vietos"
 				ExteriorLocationsTitle = "Eksterjerų vietos"
 				CustomLocationTitle = "Pasirinktina vieta"
 				SetCoordsTitle = "Nustatyti koordinates"
-				TeleportToCoordsTitle = "Teleportuotis į koordinates"
+				TeleportToCoordsTitle = "Į koordinates"
 				NoSpacesMessage = "BE TARPŲ"
 				CoordsSetMessage = "Koordinatės nustatytos"
 				CoordsSettingAbortedMessage = "Koordinačių nustatymas atšauktas"

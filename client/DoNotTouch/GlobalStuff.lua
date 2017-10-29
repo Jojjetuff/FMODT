@@ -545,14 +545,6 @@
 		DrawNotification(false, false)
 	end
 
-	function DisplayHelpMessage(text)
-		if allowed then
-			SetTextComponentFormat("STRING")
-			AddTextComponentString(text)
-			DisplayHelpTextFromStringLabel(0, 0, 1, -1)
-		end
-	end
-
 	function FirstToUpper(input)
 		return (input:gsub("^%l", string.upper))
 	end
@@ -722,7 +714,4 @@
 	RegisterNetEvent("ChangingPasswordClient")
 	RegisterNetEvent("GetUsernameClient")
 	RegisterNetEvent("GotUsernameClient")
-	
-	
-
 	

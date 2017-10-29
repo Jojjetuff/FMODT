@@ -85,29 +85,31 @@ end)
 AddEventHandler("RecoverOldSaves", function() --Used To Recovery Old Saves (Outfits, Vehicles, Settings & Weapons)
 	if Username and IsUsingSteam then
 		local SteamID = GetIdFromSource("steam", source)
-		for i = 1, 20 do
-			local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'outfits' .. GetOSSep() .. SteamID .. '_' .. i .. '.txt')
-			if fileContent ~= nil and fileContent ~= "" then
-				local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'outfits' .. GetOSSep() .. Username .. '_' .. i .. '.txt', fileContent, -1)
-				local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'outfits' .. GetOSSep() .. SteamID .. '_' .. i .. '.txt', "", -1)
+		if SteamID then
+			for i = 1, 20 do
+				local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'outfits' .. GetOSSep() .. SteamID .. '_' .. i .. '.txt')
+				if fileContent ~= nil and fileContent ~= "" then
+					local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'outfits' .. GetOSSep() .. Username .. '_' .. i .. '.txt', fileContent, -1)
+					local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'outfits' .. GetOSSep() .. SteamID .. '_' .. i .. '.txt', "", -1)
+				end
 			end
-		end
-		for i = 1, 20 do
-			local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'vehicles' .. GetOSSep() .. SteamID .. '_' .. i .. '.txt')
-			if fileContent ~= nil and fileContent ~= "" then
-				local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'vehicles' .. GetOSSep() .. Username .. '_' .. i .. '.txt', fileContent, -1)
-				local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'vehicles' .. GetOSSep() .. SteamID .. '_' .. i .. '.txt', "", -1)
+			for i = 1, 20 do
+				local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'vehicles' .. GetOSSep() .. SteamID .. '_' .. i .. '.txt')
+				if fileContent ~= nil and fileContent ~= "" then
+					local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'vehicles' .. GetOSSep() .. Username .. '_' .. i .. '.txt', fileContent, -1)
+					local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'vehicles' .. GetOSSep() .. SteamID .. '_' .. i .. '.txt', "", -1)
+				end
 			end
-		end
-		local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'settings' .. GetOSSep() .. SteamID .. '.txt')
-		if fileContent ~= nil and fileContent ~= "" then
-			local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'settings' .. GetOSSep() .. Username .. '.txt', fileContent, -1)
-			local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'settings' .. GetOSSep() .. SteamID .. '.txt', "", -1)
-		end
-		local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'weapons' .. GetOSSep() .. SteamID .. '.txt')
-		if fileContent ~= nil and fileContent ~= "" then
-			local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'weapons' .. GetOSSep() .. Username .. '.txt', fileContent, -1)
-			local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'weapons' .. GetOSSep() .. SteamID .. '.txt', "", -1)
+			local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'settings' .. GetOSSep() .. SteamID .. '.txt')
+			if fileContent ~= nil and fileContent ~= "" then
+				local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'settings' .. GetOSSep() .. Username .. '.txt', fileContent, -1)
+				local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'settings' .. GetOSSep() .. SteamID .. '.txt', "", -1)
+			end
+			local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'weapons' .. GetOSSep() .. SteamID .. '.txt')
+			if fileContent ~= nil and fileContent ~= "" then
+				local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'weapons' .. GetOSSep() .. Username .. '.txt', fileContent, -1)
+				local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'weapons' .. GetOSSep() .. SteamID .. '.txt', "", -1)
+			end
 		end
 	end
 end)

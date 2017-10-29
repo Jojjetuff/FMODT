@@ -1,4 +1,4 @@
-local AdminStatusChecked = false; InstructionsDraw = false; drawWelcomeMessage = false; firstOpen = true -- JUST DON'T EDIT
+local InstructionsDraw = false; drawWelcomeMessage = false; firstOpen = true -- JUST DON'T EDIT
 
 AddEventHandler("FMODT:Title", function(title)
 	Menu.Title(title)
@@ -679,16 +679,10 @@ Citizen.CreateThread(function() --Controls
 end)
 
 Citizen.CreateThread(function() --Various Checks
-	while true do
-		Citizen.Wait(0)
-		if not AdminStatusChecked then
-			TriggerServerEvent("ID")
-			TriggerServerEvent("IsUsingSteam")
-			TriggerServerEvent("GetHost")
-			TriggerServerEvent("GetVehicleNames")
-			AdminStatusChecked = true
-		end
-	end
+	TriggerServerEvent("ID")
+	TriggerServerEvent("IsUsingSteam")
+	TriggerServerEvent("GetHost")
+	TriggerServerEvent("GetVehicleNames")
 end)
 
 Citizen.CreateThread(function() --Enabling Menu Use
@@ -730,7 +724,54 @@ Citizen.CreateThread(function() --Disables Controls Used In The Trainer, When Tr
 			DisableControlAction(1, 178, true)
 			DisableControlAction(1, 179, true)
 			if InstructionsDraw then --Draws Instructions Messages When Trainer Is On
-				DisplayHelpMessage("~INPUTGROUP_FRONTEND_DPAD_ALL~ Browse ~INPUT_FRONTEND_ACCEPT~ Select ~INPUT_CELLPHONE_CANCEL~ Back")
+				if GetLastInputMethod(2) then
+					Browse = 47
+				else
+					Browse = 9
+				end
+				Select = GetControlInstructionalButton(1, 176, true):gsub("b_", "")
+				Back = GetControlInstructionalButton(1, 177, true):gsub("b_", "")
+		
+				local Movie = RequestScaleformMovie("instructional_buttons")
+				DrawScaleformMovieFullscreen(Movie, 255, 255, 255, 0)
+				PushScaleformMovieFunction(Movie, "CLEAR_ALL")
+				PopScaleformMovieFunctionVoid()
+				PushScaleformMovieFunction(Movie, "SET_CLEAR_SPACE")
+				PushScaleformMovieFunctionParameterInt(200)
+				PopScaleformMovieFunctionVoid()
+				
+				PushScaleformMovieFunction(Movie, "SET_DATA_SLOT")
+				PushScaleformMovieFunctionParameterInt(0)
+				PushScaleformMovieFunctionParameterInt(Browse)
+				BeginTextCommandScaleformString("STRING")
+				AddTextComponentScaleform("Browse")
+				EndTextCommandScaleformString()	
+				PopScaleformMovieFunctionVoid()
+
+				PushScaleformMovieFunction(Movie, "SET_DATA_SLOT")
+				PushScaleformMovieFunctionParameterInt(1)
+				PushScaleformMovieFunctionParameterInt(tonumber(Select))
+				BeginTextCommandScaleformString("STRING")
+				AddTextComponentScaleform("Select")
+				EndTextCommandScaleformString()	
+				PopScaleformMovieFunctionVoid()
+
+				PushScaleformMovieFunction(Movie, "SET_DATA_SLOT")
+				PushScaleformMovieFunctionParameterInt(2)
+				PushScaleformMovieFunctionParameterInt(tonumber(Back))
+				BeginTextCommandScaleformString("STRING")
+				AddTextComponentScaleform("Back")
+				EndTextCommandScaleformString()	
+				PopScaleformMovieFunctionVoid()
+
+				PushScaleformMovieFunction(Movie, "DRAW_INSTRUCTIONAL_BUTTONS")
+				PopScaleformMovieFunctionVoid()
+				PushScaleformMovieFunction(Movie, "SET_BACKGROUND_COLOUR")
+				PushScaleformMovieFunctionParameterInt(0)
+				PushScaleformMovieFunctionParameterInt(0)
+				PushScaleformMovieFunctionParameterInt(0)
+				PushScaleformMovieFunctionParameterInt(80)
+				PopScaleformMovieFunctionVoid()
 			end
 		end
 	end

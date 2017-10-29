@@ -244,15 +244,15 @@ end)
 
 Citizen.CreateThread(function() --Radio Menu
 	local RadioUINameArray = {"Unfreeze",
-				   "LS Rock Radio", "Non-Stop-Pop",
+				   "LS Rock", "Non-Stop",
 				   "Radio LS", "Channel X",
-				   "WC Talk Radio", "Rebel Radio",
-				   "Soulwax FM", "East Los FM",
+				   "WC Talk ", "Rebel Radio",
+				   "SoulwaxFM", "East-LosFM",
 				   "WC Classics", "Blue Ark",
-				   "Worldwide FM", "FlyLo FM",
+				   "WorldwideFM", "FlyLoFM",
 				   "The Lowdown", "The Lab",
 				   "Mirror Park", "Space",
-				   "Vw Boulevard", "Self Radio"
+				   "Vinewood B.", "Self Radio"
 				  }
 	local RadioNameArray = {"UNFREEZE",
 				    "RADIO_01_CLASS_ROCK", "RADIO_02_POP",
