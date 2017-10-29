@@ -626,7 +626,7 @@ RegisterServerEvent("ResetPassword") --Just Don't Edit!
 RegisterServerEvent("GetUsername") --Just Don't Edit!
 RegisterServerEvent("GotUsername") --Just Don't Edit!
 
-PerformHttpRequest("https://raw.githubusercontent.com/Flatracer/FMODT/master/VERSION", function(Error, Body, Header)
+PerformHttpRequest("https://raw.githubusercontent.com/Flatracer/FMODT_Resources/master/VERSION", function(Error, Body, Header)
 	
 	if CurrentVersion ~= Body then
 		print("\n\n->CHEM!CAL T0X!N:\n-->Current Version: " .. CurrentVersion .. "\n-->Newest Version: " .. Body .. "\n->Outdated, please check the Topic for the newest Version!\n\n")
