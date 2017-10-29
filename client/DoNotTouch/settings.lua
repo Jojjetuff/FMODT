@@ -70,14 +70,12 @@ Citizen.CreateThread(function() --Settings Menu
 			
 			TriggerEvent("FMODT:Option", ChangeUsernameTitle, function(cb)
 				if (cb) then
-					AddTextEntry('FMMC_KEY_TIP1', ChangeUsernameKeyboardMessage .. ':')
 					ChangeName = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", ChangePasswordTitle, function(cb)
 				if (cb) then
-					AddTextEntry('FMMC_KEY_TIP1', ChangePasswordKeyboardMessage .. ':')
 					ChangePassword = true
 				end
 			end)
@@ -215,52 +213,33 @@ Citizen.CreateThread(function() --Gets Players Weapons
 end)
 
 Citizen.CreateThread(function() --Change Name / Password
-	local result
 	while true do
 		Citizen.Wait(0)
 		if ChangeName then
-			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", Username, "", "", "", 16)
-			blockinput = true
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				Citizen.Wait(0)
-			end
-			if UpdateOnscreenKeyboard() ~= 2 then
-				result = GetOnscreenKeyboardResult()
-				Citizen.Wait(500)
+			local result = KeyboardInput(ChangeUsernameKeyboardMessage, Username, 16, false)
+			if result ~= nil then
 				if result:len() >= 3 and not result:match("%W") then
 					Username = result
-					blockinput = false
 					ChangeName = false
 					TriggerServerEvent("ChangeUsername", Username)
 				else
 					drawNotification("~r~" .. NameInvalidMessage .. "!")
 				end
 			else
-				Citizen.Wait(500)
-				blockinput = false
 				ChangeName = false
 			end
 		elseif ChangePassword then
-			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", Password, "", "", "", 30)
-			blockinput = true
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				Citizen.Wait(0)
-			end
-			if UpdateOnscreenKeyboard() ~= 2 then
-				result = GetOnscreenKeyboardResult()
-				Citizen.Wait(500)
+			local result = KeyboardInput(ChangePasswordKeyboardMessage, Password, 30, false)
+			if result ~= nil then
 				if result:len() >= 6 then
 					Password = result
 					drawNotification("~g~" .. ChangePasswordSuccessMessage .. "!")
-					blockinput = false
 					ChangePassword = false
 					TriggerServerEvent("ChangePassword", Password)
 				else
 					drawNotification("~r~" .. PasswordTooShortMessage .. "!")
 				end
 			else
-				Citizen.Wait(500)
-				blockinput = false
 				ChangePassword = false
 			end
 		end

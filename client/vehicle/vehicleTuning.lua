@@ -1,6 +1,6 @@
 neoncolor = {}; vehiclecol = {}; extracol = {}
 local neonleft, neonright, neonfront, neonrear, setPlateText, CustomColor; Power = 1.0; Torque = 1.0
-local CustomColorNeon, modColor, colorIndex, setColor, vehicle, ModPart, ModName
+local CustomColorNeon, modColor, colorIndex, setColor, vehicle, ModPart, ModName, CustomTireSmoke
 local rainbowneons = false; rainbowvehicle = false; rainbowtire = false; rainbowneonsTrailer = false
 local rainbowtrailer = false; rainbowtireTrailer = false; tireproof = false; customtire = false
 local turbo = false; xenon = false; tireproof = false; plateText = "PLACEHOLDER"; R = 0; G = 0; B = 0
@@ -3248,7 +3248,7 @@ Citizen.CreateThread(function() --LSC Wheels Menu						[Multiple Pages]
 			TriggerEvent("FMODT:Option", CustomTireSmokeTitle, function(cb)
 				if (cb) then
 					CustomColor = true
-					TireSmoke = true
+					CustomTireSmoke = true
 				end
 			end)
 			
@@ -4919,16 +4919,9 @@ Citizen.CreateThread(function() --Setting Custom Color
 		end
 	
 		if CustomColor then
-			AddTextEntry('FMMC_KEY_TIP1', ColorValuesKeyboardMessage .. ':')
-			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", R .. "," .. G .. "," .. B, "", "", "", 11)
-			blockinput = true
+			local result = KeyboardInput(ColorValuesKeyboardMessage .. ':', R .. "," .. G .. "," .. B, 11, true)
 
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				drawNotification("~y~" .. NoSpacesMessage)
-				Citizen.Wait(0)
-			end
-			if UpdateOnscreenKeyboard() ~= 2 then
-				local result = GetOnscreenKeyboardResult()
+			if result ~= nil then
 				local color = stringsplit(result, ",")
 				if tonumber(color[1]) == nil then
 					R = 0
@@ -4948,7 +4941,7 @@ Citizen.CreateThread(function() --Setting Custom Color
 				if CustomColorNeon then
 					SetVehicleNeonLightsColour(vehicle, R, G, B)
 					CustomColorNeon = false
-				elseif TireSmoke then
+				elseif CustomTireSmoke then
 					ToggleVehicleMod(vehicle, 20, true)
 					SetVehicleTyreSmokeColor(vehicle, R, G, B)
 				elseif PrimaryColor then
@@ -4960,14 +4953,11 @@ Citizen.CreateThread(function() --Setting Custom Color
 					SetVehicleCustomSecondaryColour(vehicle, R, G, B)
 					SetVehicleExtraColours(vehicle, extracol[1], extracol[2])
 				end
-				Citizen.Wait(500)
 			else
 				drawNotification("~r~" .. CustomColorSettingAborted .. "!")
-				Citizen.Wait(500)
 			end
-			blockinput = false
 			CustomColor = false
-			TireSmoke = false
+			CustomTireSmoke = false
 		end
 	end
 end)
@@ -4986,22 +4976,12 @@ Citizen.CreateThread(function() --Setting Plate Text
 	
 		if setPlateText then
 			plateText = GetVehicleNumberPlateText(vehicle)
-			AddTextEntry('FMMC_KEY_TIP1', PlateTextKeyboardMessage .. ':')
-			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", plateText, "", "", "", 8)
-			blockinput = true
+			local plateTextNew = KeyboardInput(PlateTextKeyboardMessage .. ':', plateText, 8, false)
 
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				Citizen.Wait(0)
+			if plateTextNew ~= nil then
+				plateText = plateTextNew
+				SetVehicleNumberPlateText(vehicle, plateText)
 			end
-			if UpdateOnscreenKeyboard() ~= 2 then
-				plateText = GetOnscreenKeyboardResult()
-				Citizen.Wait(500)
-				blockinput = false
-			else
-				Citizen.Wait(500)
-				blockinput = false
-			end
-			SetVehicleNumberPlateText(vehicle, plateText)
 			setPlateText = false
 		end
 	end

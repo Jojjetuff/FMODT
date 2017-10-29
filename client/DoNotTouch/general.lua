@@ -58,6 +58,7 @@ Citizen.CreateThread(function() --Menu Closing
 		if not MenuOpen then
 			blockinput = false
 			loginMenu = false
+			registerMenu = false
 			mainMenu = false
 			adminMenu = false
 			playerMenu = false
@@ -222,6 +223,7 @@ Citizen.CreateThread(function() --Menu Closing
 		end
 		if not MenuOpen then 
 			lastSelectionloginMenu = 1
+			lastSelectionregisterMenu = 1
 			lastSelectionmainMenu = 1
 			lastSelectionadminMenu = 1
 			lastSelectionadminSpectateMenu = 1
@@ -394,7 +396,7 @@ Citizen.CreateThread(function() --Controls
 						InstructionsDraw = true
 					end
 				else
-					if loginMenu then
+					if loginMenu or registerMenu then
 						MenuOpen = false
 					else
 						if firstOpen then
@@ -410,7 +412,7 @@ Citizen.CreateThread(function() --Controls
 				drawNotification("~r~You Are Not Allowed To Use This Menu!")
 			end
 		elseif IsDisabledControlJustReleased(1, 177) and not blockinput then -- Backspace, Right Click or B/O (Controller)
-			if loginMenu or mainMenu then
+			if loginMenu or registerMenu or mainMenu then
 				MenuOpen = false
 				SaveSettings()
 			elseif adminMenu or playerMenu or vehicleMenu or teleportMenu or weaponMenu or worldMenu or miscMenu or settingsMenu or aboutMenu then
@@ -692,7 +694,7 @@ end)
 Citizen.CreateThread(function() --Enabling Menu Use
 	while true do
 		Citizen.Wait(0)
-		if OnlyForAdmins then --
+		if OnlyForAdmins then
 			if IsAdmin then
 				allowed = true
 			else
@@ -737,7 +739,7 @@ end)
 Citizen.CreateThread(function() --Disables Trainer When In Pausemenu
 	while true do
 		Citizen.Wait(0)
-		if (Citizen.InvokeNative(0x2309595AD6145265) == -1171018317) then
+		if IsPauseMenuActive() then
 			SaveSettings()
 			MenuOpen = false
 		end	

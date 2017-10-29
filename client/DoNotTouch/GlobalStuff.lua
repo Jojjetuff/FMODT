@@ -635,9 +635,9 @@
 		end
 	end
 	
-	function KeyboardInput(TextEntry, ExampleText, StringLenght, NoSpaces)
+	function KeyboardInput(TextEntry, ExampleText, MaxStringLenght, NoSpaces)
 		AddTextEntry('FMMC_KEY_TIP1', TextEntry .. ':')
-		DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", ExampleText, "", "", "", StringLenght)
+		DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", ExampleText, "", "", "", MaxStringLenght)
 		blockinput = true
 
 		while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do

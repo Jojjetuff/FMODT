@@ -1397,22 +1397,13 @@ Citizen.CreateThread(function() --Change Ped By Name
 	while true do
 		Citizen.Wait(0)
 		if changePedByName then
-			AddTextEntry('FMMC_KEY_TIP1', PedModelKeyboardMessage .. ':')
-			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", "", "", "", "", 25)
-			blockinput = true
-
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				Citizen.Wait(0)
-			end
-			if UpdateOnscreenKeyboard() ~= 2 then
-				local result = GetOnscreenKeyboardResult()
+			local result = KeyboardInput(PedModelKeyboardMessage .. ":", "", 25, false)
+			
+			if result ~= nil then
 				skin = GetHashKey(string.upper(result))
-				Citizen.Wait(500)
 			else
 				drawNotification("~r~" .. ChangingByNameAbortedMessage .. "!")
-				Citizen.Wait(500)
 			end
-			blockinput = false
 			changePedByName = false
 		end
 	end

@@ -1817,22 +1817,13 @@ Citizen.CreateThread(function() --Spawn Vehicle By Name
 	while true do
 		Citizen.Wait(0)
 		if spawnVehicleByName then
-			AddTextEntry('FMMC_KEY_TIP1', VehicleModelKeyboardMessage .. ':')
-			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", "", "", "", "", 25)
-			blockinput = true
+			local result = KeyboardInput(VehicleModelKeyboardMessage .. ':', "", 25, false)
 
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				Citizen.Wait(0)
-			end
-			if UpdateOnscreenKeyboard() ~= 2 then
-				local result = GetOnscreenKeyboardResult()
+			if result ~= nil then
 				SpawnModel = GetHashKey(string.upper(result))
-				Citizen.Wait(500)
 			else
 				drawNotification("~r~" .. SpawningByNameAborted .. "!")
-				Citizen.Wait(500)
 			end
-			blockinput = false
 			spawnVehicleByName = false
 		end
 	end

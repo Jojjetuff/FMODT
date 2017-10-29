@@ -2,9 +2,9 @@ local EnterName, EnterPassword, EnterSecurityQuestionAnswer
 
 Citizen.CreateThread(function() --Login Menu
 	local SelectedSecurityQuestion = 1
-	local SecurityQuestions = {SecurityQuestion1, SecurityQuestion2, SecurityQuestion3, SecurityQuestion4}
 	while true do
-
+		local SecurityQuestions = {SecurityQuestion1, SecurityQuestion2, SecurityQuestion3, SecurityQuestion4}
+		
 		if loginMenu then
 		
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
@@ -17,14 +17,12 @@ Citizen.CreateThread(function() --Login Menu
 			
 			TriggerEvent("FMODT:Option", "~y~" .. UsernameTitle .. ": ~s~" .. Username, function(cb)
 				if (cb) then
-					AddTextEntry('FMMC_KEY_TIP1', NameKeyboardMessage .. ':')
 					EnterName = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "~y~" .. PasswordTitle .. ": ~s~" .. Password, function(cb)
 				if (cb) then
-					AddTextEntry('FMMC_KEY_TIP1', PasswordKeyboardMessage .. ':')
 					EnterPassword = true
 				end
 			end)
@@ -58,6 +56,10 @@ Citizen.CreateThread(function() --Login Menu
 				end
 			end)
 			
+			TriggerEvent("FMODT:StringArray", LanguageTitle .. ": ", Languages, SelectedLanguage, function(cb)
+				SelectedLanguage = cb
+			end)
+			
 			TriggerEvent("FMODT:Update")
 			
 		elseif registerMenu then
@@ -72,14 +74,12 @@ Citizen.CreateThread(function() --Login Menu
 			
 			TriggerEvent("FMODT:Option", "~y~" .. UsernameTitle .. ": ~s~" .. Username, function(cb)
 				if (cb) then
-					AddTextEntry('FMMC_KEY_TIP1', NameKeyboardMessage .. ':')
 					EnterName = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "~y~" .. PasswordTitle .. ": ~s~" .. Password, function(cb)
 				if (cb) then
-					AddTextEntry('FMMC_KEY_TIP1', PasswordKeyboardMessage .. ':')
 					EnterPassword = true
 				end
 			end)
@@ -90,7 +90,6 @@ Citizen.CreateThread(function() --Login Menu
 				
 			TriggerEvent("FMODT:Option", "~y~" .. SecurityQuestionAnswerTitle .. ": ~s~" .. SecurityQuestionAnswer, function(cb)
 				if (cb) then
-					AddTextEntry('FMMC_KEY_TIP1', SecurityQuestionAnswerKeyboardMessage .. ':')
 					EnterSecurityQuestionAnswer = true
 				end
 			end)
@@ -114,6 +113,10 @@ Citizen.CreateThread(function() --Login Menu
 				end
 			end)
 			
+			TriggerEvent("FMODT:StringArray", LanguageTitle .. ": ", Languages, SelectedLanguage, function(cb)
+				SelectedLanguage = cb
+			end)
+			
 			TriggerEvent("FMODT:Update")
 			
 		end
@@ -127,64 +130,37 @@ Citizen.CreateThread(function() --Enter Name / Password
 	while true do
 		Citizen.Wait(0)
 		if EnterName then
-			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", Username, "", "", "", 16)
-			blockinput = true
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				Citizen.Wait(0)
-			end
-			if UpdateOnscreenKeyboard() ~= 2 then
-				result = GetOnscreenKeyboardResult()
-				Citizen.Wait(500)
+			local result = KeyboardInput(NameKeyboardMessage, Username, 16, false)
+			if result ~= nil then
 				if result:len() >= 3 and not result:match("%W") then
 					Username = result
-					blockinput = false
 					EnterName = false
 				else
 					drawNotification("~r~" .. NameInvalidMessage .. "!")
 				end
 			else
-				Citizen.Wait(500)
-				blockinput = false
 				EnterName = false
 			end
 		elseif EnterPassword then
-			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", Password, "", "", "", 30)
-			blockinput = true
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				Citizen.Wait(0)
-			end
-			if UpdateOnscreenKeyboard() ~= 2 then
-				result = GetOnscreenKeyboardResult()
-				Citizen.Wait(500)
+			local result = KeyboardInput(PasswordKeyboardMessage, Password, 30, false)
+			if result ~= nil then
 				if result:len() >= 6 then 
 					Password = result
-					blockinput = false
 					EnterPassword = false
 				else
 					drawNotification("~r~" .. PasswordTooShortMessage .. "!")
 				end
 			else
-				Citizen.Wait(500)
-				blockinput = false
 				EnterPassword = false
 			end
 		elseif EnterSecurityQuestionAnswer then
-			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", SecurityQuestionAnswer, "", "", "", 16)
-			blockinput = true
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				Citizen.Wait(0)
-			end
-			if UpdateOnscreenKeyboard() ~= 2 then
-				result = GetOnscreenKeyboardResult()
-				Citizen.Wait(500)
-				if not result:match("%W") then
+			local result = KeyboardInput(SecurityQuestionAnswerKeyboardMessage, SecurityQuestionAnswer, 16, false)
+			if result ~= nil then
+				if result:len() >= 3 then
 					SecurityQuestionAnswer = result
-					blockinput = false
 					EnterSecurityQuestionAnswer = false
 				end
 			else
-				Citizen.Wait(500)
-				blockinput = false
 				EnterSecurityQuestionAnswer = false
 			end
 		end
@@ -218,24 +194,14 @@ end)
 
 AddEventHandler("GotSecurityQuestion", function(SecurityQuestion)
 	local SecurityQuestionAnswer = ""
-	AddTextEntry('FMMC_KEY_TIP1', SecurityQuestion)
-	DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", SecurityQuestionAnswer, "", "", "", 16)
-	blockinput = true
-	while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-		Citizen.Wait(0)
-	end
-	if UpdateOnscreenKeyboard() ~= 2 then
-		result = GetOnscreenKeyboardResult()
-		Citizen.Wait(500)
+	local result = KeyboardInput(SecurityQuestion, SecurityQuestionAnswer, 16, false)
+	if result ~= nil then
 		if not result:match("%W") then
 			SecurityQuestionAnswer = result
 			TriggerServerEvent("ResetPassword", true, Username, SecurityQuestionAnswer)
-			blockinput = false
 			EnterSecurityQuestionAnswer = false
 		end
 	else
-		Citizen.Wait(500)
-		blockinput = false
 		EnterSecurityQuestionAnswer = false
 	end
 end)
@@ -243,27 +209,17 @@ end)
 AddEventHandler("ChangingPasswordClient", function(State)
 	if State then
 		local Password = ""
-		AddTextEntry('FMMC_KEY_TIP1', ChangePasswordKeyboardMessage .. ':')
-		DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", Password, "", "", "", 30)
-		blockinput = true
-		while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-			Citizen.Wait(0)
-		end
-		if UpdateOnscreenKeyboard() ~= 2 then
-			result = GetOnscreenKeyboardResult()
-			Citizen.Wait(500)
+		local result = KeyboardInput(ChangePasswordKeyboardMessage, Password, 30, false)
+		if result ~= nil then
 			if result:len() >= 6 then
 				Password = result
 				drawNotification("~g~" .. ChangePasswordSuccessMessage .. "!")
-				blockinput = false
 				ChangePassword = false
 				TriggerServerEvent("ChangePassword", Password)
 			else
 				drawNotification("~r~" .. PasswordTooShortMessage .. "!")
 			end
 		else
-			Citizen.Wait(500)
-			blockinput = false
 			ChangePassword = false
 		end
 	else

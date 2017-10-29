@@ -219,21 +219,13 @@ CreateThread(function() --Vehicle Saving
 			
 
 		if SaveVehicle then
-			AddTextEntry('FMMC_KEY_TIP1', VehicleNameKeyboardMessage .. ':')
 			if (VehicleNames[currentOption] ~= NoSavedVehiclesName) then
-				DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", VehicleNames[currentOption], "", "", "", 25)
+				VehicleName = KeyboardInput(VehicleNameKeyboardMessage, VehicleNames[currentOption], 25, false)
 			else
-				DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", VehicleName, "", "", "", 25)
-			end
-			blockinput = true
-
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				Citizen.Wait(0)
+				VehicleName = KeyboardInput(VehicleNameKeyboardMessage, VehicleName, 25, false)
 			end
 
-			if UpdateOnscreenKeyboard() ~= 2 then
-				VehicleName = GetOnscreenKeyboardResult()
-				Citizen.Wait(500)
+			if VehicleName ~= nil then
 				if VehicleName == NoSavedVehiclesName then
 					drawNotification("~r~" .. VehicleSavingAbortion .. "!")
 				else
@@ -257,11 +249,9 @@ CreateThread(function() --Vehicle Saving
 					TriggerServerEvent("VehicleSave", currentOption, VehicleTable)
 					drawNotification("~y~" .. VehicleName .. " - ~g~" .. VehicleSavedMessage .. "!")
 				end
-				Citizen.Wait(500)
 			else
 				drawNotification("~r~" .. VehicleSavingAbortion .. "!")
 				Aborted = true
-				Citizen.Wait(500)
 			end
 			
 			if not Aborted then
@@ -279,8 +269,6 @@ CreateThread(function() --Vehicle Saving
 				end
 			end
 			Aborted = false
-
-			blockinput = false
 			SaveVehicle = false
 		end
 	end
@@ -291,29 +279,18 @@ CreateThread(function() --Vehicle Unsaving
 		Citizen.Wait(0)
 		if UnsaveVehicle then
 			if VehicleNames[currentOption] ~= NoSavedVehiclesName then
-				AddTextEntry('FMMC_KEY_TIP1', VehicleUnsaveConfirmation)
-				DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", "", "", "", "", 36)
-				blockinput = true
+				local result = KeyboardInput(VehicleUnsaveConfirmation, "", 40, false)
 
-				while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-					Citizen.Wait(0)
-				end
-
-				if UpdateOnscreenKeyboard() ~= 2 then
-					result = GetOnscreenKeyboardResult()
-					Citizen.Wait(500)
+				if result ~= nil then
 					if result:lower() == (VehicleUnsaveWord or "'" .. VehicleUnsaveWord .. "'") then
 						drawNotification("~y~" .. VehicleNames[currentOption] .. " ~g~" .. VehicleUnsavedMessage .. "!")
 						TriggerServerEvent("VehicleUnsave", currentOption)
 					else
 						drawNotification("~r~" .. VehicleUnsavingAbortion .. "!")
-						Citizen.Wait(500)
 					end
 				else
 					drawNotification("~r~" .. VehicleUnsavingAbortion .. "!")
-					Citizen.Wait(500)
 				end
-				blockinput = false
 			else
 				drawNotification("~r~" .. VehicleMessage .. " " .. currentOption .. " - " .. NotExisting .. "!")
 			end
@@ -449,6 +426,14 @@ AddEventHandler("SpawnSavedVehicle", function(VehicleModel, primaryType, primary
 				SetVehicleOnGroundProperly(CurrentLoadedVehicle)
 			end
 		end
+		
+		local CorrectionX = 10.0
+		local coords = GetOffsetFromEntityInWorldCoords(CurrentLoadedVehicle, CorrectionX, 0.0, 0.0)
+		while not IsPointOnRoad(coords.x, coords.y, coords.z, CurrentLoadedVehicle) do
+			CorrectionX = CorrectionX - 0.5
+			coords = GetOffsetFromEntityInWorldCoords(CurrentLoadedVehicle, CorrectionX, 0.0, 0.0)
+		end
+		SetEntityCoords(CurrentLoadedVehicle, coords.x, coords.y, coords.z, false, false, false, true)
 		
 		SetVehicleModKit(CurrentLoadedVehicle, 0) --Making Tuning Possible
 		

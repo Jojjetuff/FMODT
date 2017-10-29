@@ -962,16 +962,9 @@ Citizen.CreateThread(function() --Setting Custom Coords
 	while true do
 		Citizen.Wait(0)
 		if SetCoords then
-			AddTextEntry('FMMC_KEY_TIP1', CoordsKeyboardMessage .. ':')
-			DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", CustomX .. "," .. CustomY .. "," .. CustomZ, "", "", "", 25)
-			blockinput = true
-
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				drawNotification("~y~" .. NoSpacesMessage)
-				Citizen.Wait(0)
-			end
-			if UpdateOnscreenKeyboard() ~= 2 then
-				local result = GetOnscreenKeyboardResult()
+			local result = KeyboardInput(CoordsKeyboardMessage .. ':', CustomX .. "," .. CustomY .. "," .. CustomZ, 30, true)
+			
+			if result ~= nil then
 				local coords = stringsplit(result, ",")
 				if tonumber(coords[1]) == nil then
 					CustomX = 0.0
@@ -989,12 +982,9 @@ Citizen.CreateThread(function() --Setting Custom Coords
 					CustomZ = 0.0 + tonumber(coords[3])
 				end
 				drawNotification("~g~" .. CoordsSetMessage .. "!")
-				Citizen.Wait(500)
 			else
 				drawNotification("~r~" .. CoordsSettingAbortedMessage .. "!")
-				Citizen.Wait(500)
 			end
-			blockinput = false
 			SetCoords = false
 		end
 	end

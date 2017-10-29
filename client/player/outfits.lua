@@ -175,24 +175,15 @@ CreateThread(function() --Outfit Saving
 		local AddBodyBlemishes = GetPedHeadOverlayValue(playerPed, 12)
 		
 		if SaveOutfit then
-			AddTextEntry('FMMC_KEY_TIP1', OutfitNameKeyboardMessage .. ':')
 			if (OutfitNames[currentOption] ~= NoOutfitName) then
-				DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", OutfitNames[currentOption], "", "", "", 25)
+				OutfitName = KeyboardInput(OutfitNameKeyboardMessage, OutfitNames[currentOption], 25, false)
 			else
-				DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", NewOutfitDefaultName .. " " .. currentOption, "", "", "", 25)
-			end
-			blockinput = true
-
-			while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-				Citizen.Wait(0)
+				OutfitName = KeyboardInput(OutfitNameKeyboardMessage, NewOutfitDefaultName .. " " .. currentOption, 25, false)
 			end
 
-			if UpdateOnscreenKeyboard() ~= 2 then
-				OutfitName = GetOnscreenKeyboardResult()
-				Citizen.Wait(500)
+			if OutfitName ~= nil then
 				if OutfitName == NoOutfitName then
 					drawNotification("~r~" .. OutfitSavingAbortion .. "!")
-					Citizen.Wait(500)
 				else
 					if OutfitName == "" then
 						OutfitName = NewOutfitDefaultName .. " " .. currentOption
@@ -211,9 +202,7 @@ CreateThread(function() --Outfit Saving
 				end
 			else
 				drawNotification("~r~" .. OutfitSavingAbortion .. "!")
-				Citizen.Wait(500)
 			end
-			blockinput = false
 			SaveOutfit = false
 		end
 	end
@@ -224,28 +213,16 @@ CreateThread(function() --Outfit Deleting
 		Citizen.Wait(0)
 		if DeleteOutfit then
 			if OutfitNames[currentOption] ~= NoOutfitName then
-				AddTextEntry('FMMC_KEY_TIP1', OutfitDeletingConfirmation)
-				DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", "", "", "", "", 35)
-				blockinput = true
-
-				while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-					Citizen.Wait(0)
-				end
-
-				if UpdateOnscreenKeyboard() ~= 2 then
-					result = GetOnscreenKeyboardResult()
-					Citizen.Wait(500)
+				local result = KeyboardInput(OutfitDeletingConfirmation, "", 40, false)
+				if result ~= nil then
 					if result:lower() == (OutfitDeletingWord or "'" .. OutfitDeletingWord .. "'") then
 						TriggerServerEvent("DeleteOutfit", currentOption)
 					else
 						drawNotification("~r~" .. OutfitDeletingAbortion .. "!")
-						Citizen.Wait(500)
 					end
 				else
 					drawNotification("~r~" .. OutfitDeletingAbortion .. "!")
-					Citizen.Wait(500)
 				end
-				blockinput = false
 			else
 				drawNotification("~r~Outfit " .. currentOption .. " - " .. NotExisting .. "!")
 			end

@@ -5,7 +5,7 @@ Languages = {"English", "German", "Norwegian", "Lithuanian"}
 Citizen.CreateThread(function() --Language Changing In Real Time
 	while true do
 		Citizen.Wait(0)
-		if SelectedLanguage == 1 then
+		if SelectedLanguage == 1 then --English
 			-- Welcome Message
 				WelcomeMessage = "Welcome To CHEM!CAL T0Ж!N"
 
@@ -698,7 +698,7 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 
 
 			-- Settings Menu
-				RestoreAppearanceBySpawnTitle = "Restore Appearance By Spawn"
+				RestoreAppearanceBySpawnTitle = "Restore Appearance"
 				SelectOutfitTitle = "Select Outfit"
 				KeepWeaponsTitle = "Keep Weapons"
 				MenuPositionHorizontalTitle = "Menu Position - Horizontal"
@@ -724,10 +724,10 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 				ChangeUsernameSuccessMessage = "Changed Username Successfully" --NEW
 				ChangeUsernameFailMessage = "Changing Username Failed" --NEW
 				ChangePasswordSuccessMessage = "Changed Password Successfully" --NEW
-				SecurityQuestion1 = "What was your childhood nick?" --NEW
+				SecurityQuestion1 = "What was your childhood nickname?" --NEW
 				SecurityQuestion2 = "Who was your childhood hero?" --NEW
 				SecurityQuestion3 = "Where were you New Year's 2000?" --NEW
-				SecurityQuestion4 = "When were you born?" --NEW
+				SecurityQuestion4 = "Where were you born?" --NEW
 				SecurityQuestionAnswerTitle = "Answer" --NEW
 				ResetPasswordTitle = "Reset Password" --NEW
 				ResetPasswordErrorMessage = "Please enter a Name" --NEW
@@ -761,7 +761,8 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 			-- Language Credits
 				LanguageCredits = "FlatracerMOD"
 				LanguageCreditsLink = "forum.fivem.net/u/Flatracer"
-		elseif SelectedLanguage == 2 then
+		end
+		if SelectedLanguage == 2 then --German
 			-- Welcome Message
 				WelcomeMessage = "Willkommen zu CHEM!CAL T0Ж!N"
 
@@ -1480,10 +1481,10 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 				ChangeUsernameSuccessMessage = "Name erfolgreich geändert" --NEW
 				ChangeUsernameFailMessage = "Namens Änderung fehlgeschlagen" --NEW
 				ChangePasswordSuccessMessage = "Passwort erfolgreich geändert" --NEW
-				SecurityQuestion1 = "Dein Kindheits Spitzname?" --NEW
-				SecurityQuestion2 = "Dein Kindheits Held?" --NEW
+				SecurityQuestion1 = "Was war dein Spitzname als Kind?" --NEW
+				SecurityQuestion2 = "Wer war dein Held als Kind?" --NEW
 				SecurityQuestion3 = "Wo warst du Neujahr 2000?" --NEW
-				SecurityQuestion4 = "Wann wurdest du geboren?" --NEW
+				SecurityQuestion4 = "Wo wurdest du geboren?" --NEW
 				SecurityQuestionAnswerTitle = "Antwort" --NEW
 				ResetPasswordTitle = "Password zurücksetzen" --NEW
 				ResetPasswordErrorMessage = "Bitte einen Namen eingeben" --NEW
@@ -1517,7 +1518,8 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 			-- Language Credits
 				LanguageCredits = "FlatracerMOD"
 				LanguageCreditsLink = "forum.fivem.net/u/Flatracer"
-		elseif SelectedLanguage == 3 then
+		end
+		if SelectedLanguage == 3 then --Norwegian
 			-- Welcome Message
 				WelcomeMessage = "Velkommen til CHEM!CAL T0Ж!N"
 
@@ -2239,7 +2241,7 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 				SecurityQuestion1 = "Hva var ditt barndoms-kallenavn?" --NEW
 				SecurityQuestion2 = "Hvem var din barndomshelt?" --NEW
 				SecurityQuestion3 = "Hvor var du på nyttårsaften i 2000?" --NEW
-				SecurityQuestion4 = "Når ble du født?" --NEW
+				SecurityQuestion4 = "Hvor ble du født?" --NEW
 				SecurityQuestionAnswerTitle = "Svar" --NEW
 				ResetPasswordTitle = "Nullstill Passord" --NEW
 				ResetPasswordErrorMessage = "Oppgi Et Navn" --NEW
@@ -2273,7 +2275,8 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 			-- Language Credits
 				LanguageCredits = "GlitchDetector"
 				LanguageCreditsLink = "forum.fivem.net/u/GlitchDetector"
-		elseif SelectedLanguage == 4 then
+		end
+		if SelectedLanguage == 4 then --Lithuanian
 			-- Welcome Message
 				WelcomeMessage = "Sveiki atvykę į CHEM!CAL T0Ж!N"
 
@@ -2995,7 +2998,7 @@ Citizen.CreateThread(function() --Language Changing In Real Time
 				SecurityQuestion1 = "Kokia buvo vaikystės pravardė?" --NEW
 				SecurityQuestion2 = "Kas buvo vaikystės herojus?" --NEW
 				SecurityQuestion3 = "Kur buvai per Naujuosius 2000 metais?" --NEW
-				SecurityQuestion4 = "Kada gimei?" --NEW
+				SecurityQuestion4 = "Kur tu gimė?" --NEW
 				SecurityQuestionAnswerTitle = "Atsakyti" --NEW
 				ResetPasswordTitle = "Atstatyti slaptažodį" --NEW
 				ResetPasswordErrorMessage = "Prašome įvesti tekstą" --NEW

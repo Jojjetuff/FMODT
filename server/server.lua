@@ -450,8 +450,8 @@ end)
 
 AddEventHandler("Register", function(Name, Password, SecurityQuestion, SecurityQuestionAnswer) --Registers a new User
 	local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Name:lower() .. '.txt')
-	if fileContent == nil and fileContent == "" then
-		local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Name:lower() .. '.txt', GetPasswordHash(Password) .. ";" .. SecurityQuestion .. ";" .. GetPasswordHash(SecurityQuestionAnswer:lower()), -1)
+	if fileContent == nil or fileContent == "" then
+		local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Name:lower() .. '.txt', GetPasswordHash(Password) .. "\n" .. SecurityQuestion .. "\n" .. GetPasswordHash(SecurityQuestionAnswer:lower()), -1)
 		TriggerClientEvent("RegisterClient", source, true)
 	else
 		TriggerClientEvent("RegisterClient", source, false)
@@ -461,7 +461,7 @@ end)
 AddEventHandler("ResetPassword", function(State, Name, SecurityQuestionAnswer) --Resets a Password
 	Username = Name
 	local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Username:lower() .. '.txt')
-	local Splitted = stringsplit(fileContent, ';')
+	local Splitted = stringsplit(fileContent, '\n')
 	if not State then
 		TriggerClientEvent("GotSecurityQuestion", source, Splitted[2])
 	elseif State then
@@ -475,10 +475,10 @@ end)
 
 AddEventHandler("Login", function(Name, Password) --Logs a User in
 	local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Name:lower() .. '.txt')
-	if fileContent == nil and fileContent == "" then
+	if fileContent == nil or fileContent == "" then
 		TriggerClientEvent("LoginClient", source, false)
 	else
-		local Splitted = stringsplit(fileContent, ';')
+		local Splitted = stringsplit(fileContent, '\n')
 		if VerifyPasswordHash(Password, Splitted[1]) then
 			Username = Name:lower()
 			TriggerClientEvent("LoginClient", source, true)
@@ -490,7 +490,7 @@ end)
 
 AddEventHandler("ChangeUsername", function(NewName) --Changes the Username
 	local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. NewName:lower() .. '.txt')
-	if fileContent == nil and fileContent == "" then
+	if fileContent == nil or fileContent == "" then
 		local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Username .. '.txt')
 		local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. NewName:lower() .. '.txt', fileContent, -1)
 		local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Username .. '.txt', "", -1)
@@ -527,8 +527,8 @@ end)
 
 AddEventHandler("ChangePassword", function(NewPassword) --Changes the Password
 	local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Username .. '.txt')
-	local Splitted = stringsplit(fileContent, ';')
-	local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Username .. '.txt', GetPasswordHash(NewPassword) .. ";" .. Splitted[2] .. ";" .. Splitted[3], -1)
+	local Splitted = stringsplit(fileContent, '\n')
+	local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Username .. '.txt', GetPasswordHash(NewPassword) .. "\n" .. Splitted[2] .. "\n" .. Splitted[3], -1)
 end)
 
 --Some Functions
@@ -627,22 +627,9 @@ RegisterServerEvent("GotUsername") --Just Don't Edit!
 PerformHttpRequest("https://raw.githubusercontent.com/Flatracer/FMODT/master/VERSION", function(Error, Body, Header)
 	
 	if CurrentVersion ~= Body then
-		print("\n\nChemical Toxin is outdated, please check the Topic for the newest version!\n-->Current Version: " .. CurrentVersion .. "\n-->New Version: " .. Body .. "\n\n")
+		print("\n\n->CHEM!CAL T0X!N:\n-->Current Version: " .. CurrentVersion .. "\n-->Newest Version: " .. Body .. "\n->Outdated, please check the Topic for the newest Version!\n\n")
 	else
-		print("\n\nChemical Toxin is up to date!\n-->Current Version: " .. CurrentVersion .. "\n\n")
+		print("\n\n->CHEM!CAL T0X!N:\n-->Current Version: " .. CurrentVersion .. "\n-->Newest Version: " .. Body .. "\n->Up to date!\n\n")
 	end
 end)
-
---Error Message in Case the Resource Folder got renamed
---if GetCurrentResourceName() ~= "FMODT" then
---	print("                                             #")
---	print("                                             ###")
---	print("###### ###### ###### ###### ######  ##############")
---	print("#      #    # #    # #    # #    #  ################    Rename '" .. GetCurrentResourceName() .. "' back to 'FMODT'")
---	print("###    ###### ###### #    # ######  ##################  otherwise")
---	print("#      # ##   # ##   #    # # ##    ################    the Menu won't work properly!")
---	print("###### #   ## #   ## ###### #   ##  ##############")
---	print("                                             ###")
---	print("                                             #")
---end
 

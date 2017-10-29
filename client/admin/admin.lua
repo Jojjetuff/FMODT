@@ -356,46 +356,28 @@ Citizen.CreateThread(function() --Player Actions
 				end
 				if player ~= PlayerId() then
 					if adminKick then
-						AddTextEntry('FMMC_KEY_TIP1', KickReasonKeyboardMessage .. ':')
-						DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", AdminsDecisionMessage, "", "", "", 100)
-						blockinput = true
-						while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-							Citizen.Wait(0)
-						end
-						if UpdateOnscreenKeyboard() ~= 2 then
-							Reason = GetOnscreenKeyboardResult()
+						local Reason = KeyboardInput(KickReasonKeyboardMessage, AdminsDecisionMessage, 100, false)
+						if Reason ~= nil then
 							if Reason == "" then
 								Reason = AdminsDecisionMessage
 							end
 							TriggerServerEvent("KickPlayer", GetPlayerServerId(player), Reason)
 							drawNotification("~y~" .. GetPlayerName(player) .. "~s~ - " .. KickedMessage .. "!")
-							Citizen.Wait(500)
 						else
 							drawNotification("~r~" .. PlayerKickAbortedMessage .. "!")
-							Citizen.Wait(500)
 						end
-						blockinput = false
 						player = nil
 					elseif adminBan then
-						AddTextEntry('FMMC_KEY_TIP1', BanReasonKeyboardMessage .. ':')
-						DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", AdminsDecisionMessage, "", "", "", 100)
-						blockinput = true
-						while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-							Citizen.Wait(0)
-						end
-						if UpdateOnscreenKeyboard() ~= 2 then
-							Reason = GetOnscreenKeyboardResult()
+						local Reason = KeyboardInput(BanReasonKeyboardMessage, AdminsDecisionMessage, 100, false)
+						if Reason ~= nil then
 							if Reason == "" then
 								Reason = AdminsDecisionMessage
 							end
 							TriggerServerEvent("BanPlayer", GetPlayerServerId(player), Reason, BanDuration)
 							drawNotification("~y~" .. GetPlayerName(player) .. "~s~ - " .. BannedMessage .. "!")
-							Citizen.Wait(500)
 						else
 							drawNotification("~r~" .. PlayerBanAbortedMessage .. "!")
-							Citizen.Wait(500)
 						end
-						blockinput = false
 						player = nil
 					elseif adminTeleport then
 						local AdminCoords = GetEntityCoords(GetPlayerPed(-1), true)
@@ -455,8 +437,8 @@ end)
 
 Citizen.CreateThread(function() --Sets Current Settings on every Client, also on new joining Clients
 	while true do
-		Citizen.Wait(2500)
-		if IsAdmin and not IsDisabledControlJustPressed(1, 176) then
+		Citizen.Wait(3000)
+		if IsAdmin and not (IsDisabledControlJustPressed(1, 174) or IsDisabledControlJustPressed(1, 175) or IsDisabledControlJustPressed(1, 176)) then
 			TriggerServerEvent("ExtendableMap", ExtendableMap)
 			TriggerServerEvent("AdminOnlyBlipsNames", BlipsAndNamesNonAdmins)
 			TriggerServerEvent("PlayerBlips", playerBlips)
@@ -528,7 +510,7 @@ Citizen.CreateThread(function() --Enables/ Disables Stunt Jumps
 	end
 end)
 
-AddEventHandler("GotIt", function(Ping, IP, LID, SID) --Gets Informations About A Player
+AddEventHandler("GotIt", function(Ping, IP, LID, SID) --Got Informations About A Player
 	playerPing = tostring(Ping)
 	playerIP = tostring(IP)
 	LicenseID = splitByChunk(LID, 20)
@@ -543,7 +525,7 @@ AddEventHandler("GotUsernameClient", function(Name) --Got The Username Of A Play
 	PlayerUsername = Name
 end)
 
-AddEventHandler("GotHost", function(Host, Hostname) --Gets The Current Host
+AddEventHandler("GotHost", function(Host, Hostname) --Got The Current Host
 	HostID = Host
 	HostName = Hostname
 	for i = 0, 31 do
