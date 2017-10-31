@@ -30,7 +30,7 @@ end)
 			   
 AddEventHandler("ID", function() --Grants Access To The Menu
 	local IDs = GetPlayerIdentifiers(source)
-	local Admins = LoadResourceFile(GetCurrentResourceName(), 'server' .. GetOSSep() .. 'Admins.txt')
+	local Admins = LoadResourceFile(GetCurrentResourceName(), 'Admins.txt')
 	local AdminsSplitted = stringsplit(Admins, "\n")
 	local done
 	for k, AdminID in pairs(AdminsSplitted) do
