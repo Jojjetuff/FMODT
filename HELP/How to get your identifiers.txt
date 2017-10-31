@@ -1,0 +1,16 @@
+To get your Identifier?
+
+Add the Trainer to your Server Resources, run FiveM and join YOUR Server. Once your Ped Spawned, press the following Buttoncombination:
+
+
+GAMEPAD:
+
+--->>>		LB/ L1 + RB / R1 + DPAD Down + A/ X.		<<<---
+
+KEYBOARD:
+
+--->>>	   Button for VEHICLE AIM + Button for VEHICLE SHOOT + Button for PHONE DOWN + Button for PHONE UP.	      <<<---
+
+It Outputs the Identifier in your RCON Log. Edit this File afterward.
+
+

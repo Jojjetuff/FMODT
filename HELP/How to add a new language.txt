@@ -1,0 +1,11 @@
+How to add a new language?
+
+1. Download this File:
+
+	https://forum.fivem.net/uploads/default/original/2X/a/a63d357d0a6a35d27a65f2a3b14f480dfe8acc6c.lua
+	
+2. Translate it in your desired language
+
+3. Contact me and I will add it.
+
+	https://forum.fivem.net/u/Flatracer
