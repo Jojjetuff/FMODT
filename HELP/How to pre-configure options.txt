@@ -1,0 +1,7 @@
+How to pre-configure options?
+
+I added a config file, called config.lua. You can find it in the client folder.
+There are some settings. Everything else has to be done directly in the script files.
+I am always available for help.
+
+	https://forum.fivem.net/u/Flatracer
