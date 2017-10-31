@@ -99,6 +99,40 @@ Citizen.CreateThread(function() --Menu Closing
 			femalePedSkinMenu = false
 			malePedSkinMenu = false
 			playerPedSkinMenu = false
+			everyPedSkinMenu1 = false
+			everyPedSkinMenu2 = false
+			everyPedSkinMenu3 = false
+			everyPedSkinMenu4 = false
+			everyPedSkinMenu5 = false
+			everyPedSkinMenu6 = false
+			everyPedSkinMenu7 = false
+			everyPedSkinMenu8 = false
+			everyPedSkinMenu9 = false
+			everyPedSkinMenu10 = false
+			everyPedSkinMenu11 = false
+			everyPedSkinMenu12 = false
+			everyPedSkinMenu13 = false
+			everyPedSkinMenu14 = false
+			everyPedSkinMenu15 = false
+			everyPedSkinMenu16 = false
+			everyPedSkinMenu17 = false
+			everyPedSkinMenu18 = false
+			everyPedSkinMenu19 = false
+			everyPedSkinMenu20 = false
+			everyPedSkinMenu21 = false
+			everyPedSkinMenu22 = false
+			everyPedSkinMenu23 = false
+			everyPedSkinMenu24 = false
+			everyPedSkinMenu25 = false
+			everyPedSkinMenu26 = false
+			everyPedSkinMenu27 = false
+			everyPedSkinMenu28 = false
+			everyPedSkinMenu29 = false
+			everyPedSkinMenu30 = false
+			everyPedSkinMenu31 = false
+			everyPedSkinMenu32 = false
+			everyPedSkinMenu33 = false
+			everyPedSkinMenu34 = false
 			scenarioMenu = false
 			maleScenarioMenu = false
 			wantedMenu = false
@@ -221,7 +255,8 @@ Citizen.CreateThread(function() --Menu Closing
 			vehicleLoadMenu = false
 			vehicleUnsaveMenu = false
 		end
-		if not MenuOpen then 
+		if not MenuOpen then
+			lasteveryPedSite = 1
 			lastSelectionloginMenu = 1
 			lastSelectionregisterMenu = 1
 			lastSelectionmainMenu = 1
@@ -241,6 +276,40 @@ Citizen.CreateThread(function() --Menu Closing
 			lastSelectionfemalePedSkinMenu = 1
 			lastSelectionmalePedSkinMenu = 1
 			lastSelectionplayerPedSkinMenu = 1
+			lastSelectioneveryPedSkinMenu1 = 1
+			lastSelectioneveryPedSkinMenu2 = 1
+			lastSelectioneveryPedSkinMenu3 = 1
+			lastSelectioneveryPedSkinMenu4 = 1
+			lastSelectioneveryPedSkinMenu5 = 1
+			lastSelectioneveryPedSkinMenu6 = 1
+			lastSelectioneveryPedSkinMenu7 = 1
+			lastSelectioneveryPedSkinMenu8 = 1
+			lastSelectioneveryPedSkinMenu9 = 1
+			lastSelectioneveryPedSkinMenu10 = 1
+			lastSelectioneveryPedSkinMenu11 = 1
+			lastSelectioneveryPedSkinMenu12 = 1
+			lastSelectioneveryPedSkinMenu13 = 1
+			lastSelectioneveryPedSkinMenu14 = 1
+			lastSelectioneveryPedSkinMenu15 = 1
+			lastSelectioneveryPedSkinMenu16 = 1
+			lastSelectioneveryPedSkinMenu17 = 1
+			lastSelectioneveryPedSkinMenu18 = 1
+			lastSelectioneveryPedSkinMenu19 = 1
+			lastSelectioneveryPedSkinMenu20 = 1
+			lastSelectioneveryPedSkinMenu21 = 1
+			lastSelectioneveryPedSkinMenu22 = 1
+			lastSelectioneveryPedSkinMenu23 = 1
+			lastSelectioneveryPedSkinMenu24 = 1
+			lastSelectioneveryPedSkinMenu25 = 1
+			lastSelectioneveryPedSkinMenu26 = 1
+			lastSelectioneveryPedSkinMenu27 = 1
+			lastSelectioneveryPedSkinMenu28 = 1
+			lastSelectioneveryPedSkinMenu29 = 1
+			lastSelectioneveryPedSkinMenu30 = 1
+			lastSelectioneveryPedSkinMenu31 = 1
+			lastSelectioneveryPedSkinMenu32 = 1
+			lastSelectioneveryPedSkinMenu33 = 1
+			lastSelectioneveryPedSkinMenu34 = 1
 			lastSelectionscenarioMenu = 1
 			lastSelectionmaleScenarioMenu = 1
 			lastSelectionwantedMenu = 1
@@ -441,7 +510,8 @@ Citizen.CreateThread(function() --Controls
 				adminPlayerList1 = false
 				adminPlayerList2 = false
 				adminSpectateMenu = true
-			elseif animationMenu or skinMenu or scenarioMenu or wantedMenu or componentChangerMenu or outfitMenu then
+			elseif animationMenu or skinMenu or scenarioMenu or wantedMenu or componentChangerMenu or
+			outfitMenu then
 				animationMenu = false
 				skinMenu = false
 				scenarioMenu = false
@@ -449,12 +519,55 @@ Citizen.CreateThread(function() --Controls
 				componentChangerMenu = false
 				outfitMenu = false
 				playerMenu = true
-			elseif animalSkinMenu1 or animalSkinMenu2 or femalePedSkinMenu or malePedSkinMenu or playerPedSkinMenu  then
+			elseif animalSkinMenu1 or animalSkinMenu2 or femalePedSkinMenu or malePedSkinMenu or
+			playerPedSkinMenu or everyPedSkinMenu1 or everyPedSkinMenu2 or everyPedSkinMenu3 or
+			everyPedSkinMenu4 or everyPedSkinMenu5 or everyPedSkinMenu6 or everyPedSkinMenu7 or
+			everyPedSkinMenu8 or everyPedSkinMenu9 or everyPedSkinMenu10 or everyPedSkinMenu11 or
+			everyPedSkinMenu12 or everyPedSkinMenu13 or everyPedSkinMenu14 or everyPedSkinMenu15 or
+			everyPedSkinMenu16 or everyPedSkinMenu17 or everyPedSkinMenu18 or everyPedSkinMenu19 or
+			everyPedSkinMenu20 or everyPedSkinMenu21 or everyPedSkinMenu22 or everyPedSkinMenu23 or
+			everyPedSkinMenu24 or everyPedSkinMenu25 or everyPedSkinMenu26 or everyPedSkinMenu27 or
+			everyPedSkinMenu28 or everyPedSkinMenu29 or everyPedSkinMenu30 or everyPedSkinMenu31 or
+			everyPedSkinMenu32 or everyPedSkinMenu33 or everyPedSkinMenu34 then
 				animalSkinMenu1 = false
 				animalSkinMenu2 = false
 				femalePedSkinMenu = false
 				malePedSkinMenu = false
 				playerPedSkinMenu = false
+				everyPedSkinMenu1 = false
+				everyPedSkinMenu2 = false
+				everyPedSkinMenu3 = false
+				everyPedSkinMenu4 = false
+				everyPedSkinMenu5 = false
+				everyPedSkinMenu6 = false
+				everyPedSkinMenu7 = false
+				everyPedSkinMenu8 = false
+				everyPedSkinMenu9 = false
+				everyPedSkinMenu10 = false
+				everyPedSkinMenu11 = false
+				everyPedSkinMenu12 = false
+				everyPedSkinMenu13 = false
+				everyPedSkinMenu14 = false
+				everyPedSkinMenu15 = false
+				everyPedSkinMenu16 = false
+				everyPedSkinMenu17 = false
+				everyPedSkinMenu18 = false
+				everyPedSkinMenu19 = false
+				everyPedSkinMenu20 = false
+				everyPedSkinMenu21 = false
+				everyPedSkinMenu22 = false
+				everyPedSkinMenu23 = false
+				everyPedSkinMenu24 = false
+				everyPedSkinMenu25 = false
+				everyPedSkinMenu26 = false
+				everyPedSkinMenu27 = false
+				everyPedSkinMenu28 = false
+				everyPedSkinMenu29 = false
+				everyPedSkinMenu30 = false
+				everyPedSkinMenu31 = false
+				everyPedSkinMenu32 = false
+				everyPedSkinMenu33 = false
+				everyPedSkinMenu34 = false
 				skinMenu = true
 			elseif sexactAnimationMenu or stripAnimationMenu or suicideAnimationMenu then
 				sexactAnimationMenu = false
@@ -464,7 +577,8 @@ Citizen.CreateThread(function() --Controls
 			elseif maleScenarioMenu then
 				maleScenarioMenu = false
 				scenarioMenu = true
-			elseif teleportMenuEntityRelative or OnlinePlayer1 or OnlinePlayer2 or OnlinePlayerToMe or interiorLocation or exteriorLocation or customLocation then
+			elseif teleportMenuEntityRelative or OnlinePlayer1 or OnlinePlayer2 or OnlinePlayerToMe or
+			interiorLocation or exteriorLocation or customLocation then
 				teleportMenuEntityRelative = false
 				OnlinePlayer1 = false
 				OnlinePlayer2 = false
@@ -587,7 +701,8 @@ Citizen.CreateThread(function() --Controls
 			elseif lscLightsNeonMenu then
 				lscLightsNeonMenu = false
 				lscLightMenu = true
-			elseif lscColorSelectionMenu or PearlescentColor or RimsColor or lscColorLiveryMenuN or lscColorLiveryMenuM then
+			elseif lscColorSelectionMenu or PearlescentColor or RimsColor or lscColorLiveryMenuN or
+			lscColorLiveryMenuM then
 				PrimaryColor = false
 				SecondaryColor = false
 				PearlescentColor = false
@@ -636,8 +751,9 @@ Citizen.CreateThread(function() --Controls
 				lscWheelAccessoriesMenu = false
 				lscWheelTypesMenu = false
 				lscWheelMenu = true
-			elseif lscWheelTypesHighEndMenu or lscWheelTypesLowriderMenu or lscWheelTypesMuscleMenu or lscWheelTypesOffroadMenu or
-			lscWheelTypesSportMenu1 or lscWheelTypesSportMenu2 or lscWheelTypesSUVMenu or lscWheelTypesTunerMenu1 or lscWheelTypesTunerMenu2 or
+			elseif lscWheelTypesHighEndMenu or lscWheelTypesLowriderMenu or lscWheelTypesMuscleMenu or
+			lscWheelTypesOffroadMenu or lscWheelTypesSportMenu1 or lscWheelTypesSportMenu2 or
+			lscWheelTypesSUVMenu or lscWheelTypesTunerMenu1 or lscWheelTypesTunerMenu2 or
 			lscWheelTypesBikeFrontMenu or lscWheelTypesBikeBackMenu then
 				lscWheelTypesHighEndMenu = false
 				lscWheelTypesLowriderMenu = false
@@ -651,7 +767,8 @@ Citizen.CreateThread(function() --Controls
 				lscWheelTypesBikeFrontMenu = false
 				lscWheelTypesBikeBackMenu = false
 				lscWheelTypesMenu = true
-			elseif componentChangerSkinMenu or componentChangerHeadDataMenu or componentChangerPropMenu or componentChangerComponentMenu then
+			elseif componentChangerSkinMenu or componentChangerHeadDataMenu or componentChangerPropMenu or
+			componentChangerComponentMenu then
 				componentChangerSkinMenu = false
 				componentChangerHeadDataMenu = false
 				componentChangerPropMenu = false
@@ -723,7 +840,7 @@ Citizen.CreateThread(function() --Disables Controls Used In The Trainer, When Tr
 			DisableControlAction(1, 177, true)
 			DisableControlAction(1, 178, true)
 			DisableControlAction(1, 179, true)
-			if InstructionsDraw then --Draws Instructions Messages When Trainer Is On
+			if InstructionsDraw and UpdateOnscreenKeyboard() ~= 0 then --Draws Instructions Messages When Trainer Is On
 				if GetLastInputMethod(2) then
 					Browse = 47
 				else
@@ -770,7 +887,7 @@ Citizen.CreateThread(function() --Disables Controls Used In The Trainer, When Tr
 				PushScaleformMovieFunctionParameterInt(0)
 				PushScaleformMovieFunctionParameterInt(0)
 				PushScaleformMovieFunctionParameterInt(0)
-				PushScaleformMovieFunctionParameterInt(80)
+				PushScaleformMovieFunctionParameterInt(60)
 				PopScaleformMovieFunctionVoid()
 			end
 		end

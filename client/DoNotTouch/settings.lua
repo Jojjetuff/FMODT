@@ -83,6 +83,7 @@ Citizen.CreateThread(function() --Settings Menu
 			TriggerEvent("FMODT:Option", LogOutTitle, function(cb)
 				if (cb) then
 					SaveSettings()
+					lasteveryPedSite = 1
 					godmode = false
 					godmodeCount = 0
 					playerVisible = true

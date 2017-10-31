@@ -120,7 +120,6 @@ Citizen.CreateThread(function() --Language Changing
 				PistolSuicideTitle = "Pistol Suicide"
 
 				ChangePedTitle = "Change Ped"
-				ChangePedMessage = "Changed Your Ped"
 				PedNotExistingMessage = "Ped Not Existing"
 				ChangingByNameAbortedMessage = "Changing By Name Aborted"
 
@@ -198,6 +197,8 @@ Citizen.CreateThread(function() --Language Changing
 				MichaelTitle = "Michael"
 				TrevorTitle = "Trevor"
 
+				EveryPedTitle = "Every Ped"
+				
 				ComponentChangerTitle = "Component Changer"
 				SkinTitle = "Appearance" --NEW
 				MotherShapeTitle = "Mother Shape" --NEW
@@ -876,12 +877,11 @@ Citizen.CreateThread(function() --Language Changing
 				PillSuicideTitle = "Pillen Selbstmord"
 				PistolSuicideTitle = "Pistolen Selbstmord"
 
-				ChangePedTitle = "Ped ändern"
-				ChangePedMessage = "Ändere deinen Ped"
-				PedNotExistingMessage = "Ped existiert nicht"
-				ChangingByNameAbortedMessage = "Änderung des Peds anhand des Namen abgebrochen"
+				ChangePedTitle = "Charakter ändern"
+				PedNotExistingMessage = "Charakter existiert nicht"
+				ChangingByNameAbortedMessage = "Änderung des Charakters anhand des Namen abgebrochen"
 
-				ChangePedByNameTitle = "Änderung des Peds anhand des Namens"
+				ChangePedByNameTitle = "Änderung des Charakters anhand des Namens"
 				AnimalsTitle = "Tiere"
 				BoarTitle = "Wildschwein"
 				CatTitle = "Katze"
@@ -916,7 +916,7 @@ Citizen.CreateThread(function() --Language Changing
 				TigerSharkTitle = "Tigerhai"
 				WestyTitle = "Westie"
 
-				FemalePedsTitle = "Weibliche Peds"
+				FemalePedsTitle = "Weibliche Charaktere"
 				BusinessFemaleTitle = "Geschäftlich"
 				CopFemaleTitle = "Polizistin"
 				EpsilonFemaleTitle = "Epsilon"
@@ -932,7 +932,7 @@ Citizen.CreateThread(function() --Language Changing
 				Stripper1Title = "Stripperin 1"
 				Stripper2Title = "Stripperin 2"
 
-				MalePedsTitle = "Männliche Peds"
+				MalePedsTitle = "Männliche Charaktere"
 				BusinessMaleTitle = "Geschäftlich"
 				CopMaleTitle = "Polizist"
 				EpsilonMaleTitle = "Epsilon"
@@ -948,7 +948,10 @@ Citizen.CreateThread(function() --Language Changing
 				RangerMaleTitle = "Förster"
 				SheriffMaleTitle = "Sheriff"
 
-				PlayerPedsTitle = "Spieler Peds"
+				PlayerPedsTitle = "Spieler Charaktere"
+				
+				EveryPedsTitle = "Jeder Charakter"
+				
 				MPCharacterFemaleTitle = "MP Charakter (Weiblich)"
 				MPCharacterMaleTitle = "MP Charakter (Männlich)"
 				FranklinTitle = "Franklin"
@@ -1634,7 +1637,6 @@ Citizen.CreateThread(function() --Language Changing
 				PistolSuicideTitle = "Pistol Selvmord"
 
 				ChangePedTitle = "Endre Karakter"
-				ChangePedMessage = "Endret Karakter"
 				PedNotExistingMessage = "Karakter Eksisterer Ikke"
 				ChangingByNameAbortedMessage = "Endring Via Navn Avbrutt"
 
@@ -1711,6 +1713,8 @@ Citizen.CreateThread(function() --Language Changing
 				FranklinTitle = "Franklin"
 				MichaelTitle = "Michael"
 				TrevorTitle = "Trevor"
+				
+				EveryPedsTitle = "Hver Karakterer"
 
 				ComponentChangerTitle = "Komponenter"
 				SkinTitle = "Utseende" --NEW
@@ -2391,7 +2395,6 @@ Citizen.CreateThread(function() --Language Changing
 				PistolSuicideTitle = "Savižudybė su pistoletu"
 
 				ChangePedTitle = "Keisti žaidėjo modelį"
-				ChangePedMessage = "Žaidėjo modelis pakeistas"
 				PedNotExistingMessage = "Žaidėjo modelis neegzistuoja"
 				ChangingByNameAbortedMessage = "Keitimas pagal vardą atšauktas"
 
@@ -2468,6 +2471,8 @@ Citizen.CreateThread(function() --Language Changing
 				FranklinTitle = "Franklin"
 				MichaelTitle = "Michael"
 				TrevorTitle = "Trevor"
+
+				EveryPedsTitle = "Kiekvienas modeliai"
 
 				ComponentChangerTitle = "Komponentų keitimas"
 				SkinTitle = "Išvaizda" --NEW

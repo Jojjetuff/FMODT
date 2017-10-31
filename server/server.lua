@@ -417,12 +417,16 @@ end)
 --Connect, Leave and Death Message
 
 AddEventHandler("playerConnecting", function() --Triggers The Join Message On All Clients
-	TriggerClientEvent("JoinMessageClients", -1, GetPlayerName(source))
+	if GetPlayerName(source) then
+		TriggerClientEvent("JoinMessageClients", -1, GetPlayerName(source))
+	end
 end)
 
 AddEventHandler("playerDropped", function(reason) --Triggers The Leave Message On All Clients
-	print("Left: " .. GetPlayerName(source))
-    TriggerClientEvent("LeftMessageClients", -1, GetPlayerName(source))
+	if GetPlayerName(source) then
+		print("Left: " .. GetPlayerName(source))
+		TriggerClientEvent("LeftMessageClients", -1, GetPlayerName(source))
+	end
 end)
 
 AddEventHandler("DeathMessage", function(Killer, Text, KilledPlayer) --Sends the Death Message To All Clients
@@ -627,7 +631,6 @@ RegisterServerEvent("GetUsername") --Just Don't Edit!
 RegisterServerEvent("GotUsername") --Just Don't Edit!
 
 PerformHttpRequest("https://raw.githubusercontent.com/Flatracer/FMODT_Resources/master/VERSION", function(Error, Body, Header)
-	
 	if CurrentVersion ~= Body then
 		print("\n\n->CHEM!CAL T0X!N:\n-->Current Version: " .. CurrentVersion .. "\n-->Newest Version: " .. Body .. "\n->Outdated, please check the Topic for the newest Version!\n\n")
 	else
