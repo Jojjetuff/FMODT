@@ -2,14 +2,15 @@ despawnable = true; autodelete = true; mapblip = true
 local SpawnModel, IsTrailer, AttachedVehicles, AtachVehicle1, AtachVehicle2
 local AtachVehicleName, AttachX, AttachY, AttachZ, acufo, damufo, fzufo
 local spawnVehicleByName
-local Object = 0
+local Object = 0; AddOnVehiclesTable = {}; AddOnVehicleSplitted = {}
 
 Citizen.CreateThread(function() --Spawn Menu							[Multiple Pages]
 	while true do
 	
 		local playerPed = GetPlayerPed(-1)
 		local playerVeh = GetVehiclePedIsIn(playerPed, false)
-		if (spawnMenu1) then
+		if spawnMenu1 then
+		
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionspawnMenu1
@@ -63,6 +64,15 @@ Citizen.CreateThread(function() --Spawn Menu							[Multiple Pages]
 					spawnVehicleByName = true
 				end
 			end)
+
+			if AddOnVehiclesTable[1] ~= nil then
+				TriggerEvent("FMODT:Option", "~y~>> ~s~" .. AddOnVehiclesTitle .. "", function(cb)
+					if (cb) then
+						spawnMenu1 = false
+						AddOnVehiclesSpawn1 = true
+					end
+				end)
+			end
 
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. FancyVehiclesTitle .. "", function(cb)
 				if (cb) then
@@ -162,13 +172,6 @@ Citizen.CreateThread(function() --Spawn Menu							[Multiple Pages]
 				end
 			end)
 
-			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. GetLabelText("VEH_CLASS_" .. GetVehicleClassFromName(GetHashKey("ASEA"))), function(cb)
-				if (cb) then
-					spawnMenu1 = false
-					sedanSpawn1 = true
-				end
-			end)
-
 			TriggerEvent("FMODT:Option", "~r~" .. PageIndicator .. " 1", function(cb)
 				if (cb) then
 					drawNotification("~r~" .. PageIndicator .. " 1")
@@ -177,7 +180,7 @@ Citizen.CreateThread(function() --Spawn Menu							[Multiple Pages]
 
 			TriggerEvent("FMODT:Update")
 		
-		elseif (spawnMenu2) then
+		elseif spawnMenu2 then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionspawnMenu2
@@ -196,6 +199,13 @@ Citizen.CreateThread(function() --Spawn Menu							[Multiple Pages]
 			end
 		
 			TriggerEvent("FMODT:Title", "~y~Spawn Menu")
+
+			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. GetLabelText("VEH_CLASS_" .. GetVehicleClassFromName(GetHashKey("ASEA"))), function(cb)
+				if (cb) then
+					spawnMenu1 = false
+					sedanSpawn1 = true
+				end
+			end)
 
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. GetLabelText("VEH_CLASS_" .. GetVehicleClassFromName(GetHashKey("AIRBUS"))), function(cb)
 				if (cb) then
@@ -335,6 +345,148 @@ Citizen.CreateThread(function() --Fancy Spawn Menu
 			end)
 
 			TriggerEvent("FMODT:Update")
+		end
+
+		Citizen.Wait(0)
+	end
+end)
+
+Citizen.CreateThread(function() --Add-On Vehicle Spawn Menu
+	while true do
+	
+		if AddOnVehiclesSpawn1 then
+			
+			TriggerServerEvent("GetAddOnVehicles")
+			
+			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
+				currentOption = lastSelectionAddOnVehiclesSpawn1
+			else
+				lastSelectionAddOnVehiclesSpawn1 = currentOption
+			end
+		
+			if not FloatIntArray and AddOnVehiclesTable[i] ~= nil then
+				if IsDisabledControlJustReleased(1, 174)then
+					if AddOnVehiclesTable[41] ~= nil then
+						AddOnVehiclesSpawn1 = false
+						AddOnVehiclesSpawn3 = true
+					else
+						AddOnVehiclesSpawn1 = false
+						AddOnVehiclesSpawn2 = true
+					end
+				elseif IsDisabledControlJustReleased(1, 175)then
+					AddOnVehiclesSpawn1 = false
+					AddOnVehiclesSpawn2 = true
+				end
+			end
+		
+			TriggerEvent("FMODT:Title", "~y~" .. AddOnVehiclesTitle .. "")
+			
+			for i = 1, 20 do
+				
+				if AddOnVehiclesTable[i] ~= nil then
+					TriggerEvent("FMODT:Option", AddOnVehiclesTable[i][2], function(cb)
+						if (cb) then
+							SpawnModel = GetHashKey(AddOnVehiclesTable[i][1])
+						end
+					end)
+				end
+			end
+
+			if AddOnVehiclesTable[21] ~= nil then
+				TriggerEvent("FMODT:Option", "~r~" .. PageIndicator .. " 1", function(cb)
+					if (cb) then
+						drawNotification("~r~" .. PageIndicator .. " 1")
+					end
+				end)
+			end
+
+			TriggerEvent("FMODT:Update")
+			
+		elseif AddOnVehiclesSpawn2 then
+			
+			TriggerServerEvent("GetAddOnVehicles")
+			
+			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
+				currentOption = lastSelectionAddOnVehiclesSpawn2
+			else
+				lastSelectionAddOnVehiclesSpawn2 = currentOption
+			end
+		
+			if not FloatIntArray then
+				if IsDisabledControlJustReleased(1, 174)then
+					AddOnVehiclesSpawn2 = false
+					AddOnVehiclesSpawn1 = true
+				elseif IsDisabledControlJustReleased(1, 175)then
+					if AddOnVehiclesTable[41] ~= nil then
+						AddOnVehiclesSpawn2 = false
+						AddOnVehiclesSpawn3 = true
+					else
+						AddOnVehiclesSpawn2 = false
+						AddOnVehiclesSpawn1 = true
+					end
+				end
+			end
+		
+			TriggerEvent("FMODT:Title", "~y~" .. AddOnVehiclesTitle .. "")
+
+			for i = 21, 40 do
+				if AddOnVehiclesTable[i] ~= nil then
+					TriggerEvent("FMODT:Option", AddOnVehiclesTable[i][2], function(cb)
+						if (cb) then
+							SpawnModel = GetHashKey(AddOnVehiclesTable[i][1])
+						end
+					end)
+				end
+			end
+
+			TriggerEvent("FMODT:Option", "~r~" .. PageIndicator .. " 2", function(cb)
+				if (cb) then
+					drawNotification("~r~" .. PageIndicator .. " 2")
+				end
+			end)
+
+			TriggerEvent("FMODT:Update")
+			
+		elseif AddOnVehiclesSpawn3 then
+			
+			TriggerServerEvent("GetAddOnVehicles")
+			
+			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
+				currentOption = lastSelectionAddOnVehiclesSpawn3
+			else
+				lastSelectionAddOnVehiclesSpawn3 = currentOption
+			end
+		
+			if not FloatIntArray then
+				if IsDisabledControlJustReleased(1, 174)then
+					AddOnVehiclesSpawn3 = false
+					AddOnVehiclesSpawn2 = true
+				elseif IsDisabledControlJustReleased(1, 175)then
+					AddOnVehiclesSpawn3 = false
+					AddOnVehiclesSpawn1 = true
+				end
+			end
+		
+			TriggerEvent("FMODT:Title", "~y~" .. AddOnVehiclesTitle .. "")
+
+			for i = 41, 60 do
+				if AddOnVehiclesTable[i] ~= nil then
+					TriggerEvent("FMODT:Option", AddOnVehiclesTable[i][2], function(cb)
+						if (cb) then
+							SpawnModel = GetHashKey(AddOnVehiclesTable[i][1])
+						end
+					end)
+				end
+			end
+
+			TriggerEvent("FMODT:Option", "~r~" .. PageIndicator .. " 3", function(cb)
+				if (cb) then
+					drawNotification("~r~" .. PageIndicator .. " 3")
+				end
+			end)
+
+			TriggerEvent("FMODT:Update")
+			
 		end
 
 		Citizen.Wait(0)
@@ -1987,3 +2139,19 @@ Citizen.CreateThread(function() --Fancy Vehicle Spawning
 		end
 	end
 end)
+
+AddEventHandler("GotAddOnVehicles", function(AddOnVehicles)
+	for i = 1, 60 do
+		AddOnVehiclesTable[i] = nil
+	end
+	
+	local AddOnVehiclesSplitted = stringsplit(AddOnVehicles, "\n")
+	
+	for i = 1, tablelength(AddOnVehiclesSplitted) do
+		local Splitted = stringsplit(AddOnVehiclesSplitted[i], ",")
+		if Splitted[1] ~= "SpawnName" and Splitted[2] ~= "DisplayName" then
+			table.insert(AddOnVehiclesTable, {Splitted[1], Splitted[2]})
+		end
+	end
+end)
+

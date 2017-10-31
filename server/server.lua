@@ -20,9 +20,23 @@ local banHours = 1.0 --Ban Duration
 
 PerformHttpRequest("https://raw.githubusercontent.com/Flatracer/FMODT_Resources/master/VERSION", function(Error, Body, Header)
 	if CurrentVersion ~= Body then
-		print("\n\n->CHEM!CAL T0X!N:\n-->Current Version: " .. CurrentVersion .. "\n-->Newest Version: " .. Body .. "\n->Outdated, please check the Topic for the newest Version!\n\n")
+		print("####################################################################")
+		print("########################## CHEM!CAL T0X!N ##########################")
+		print("####################################################################")
+		print("#####                  Current Version: " .. CurrentVersion .. "                  #####")
+		print("#####                   Newest Version: " .. Body .. "                  #####")
+		print("####################################################################")
+		print("##### Outdated, please check the Topic for the newest Version! #####")
+		print("####################################################################")
 	else
-		print("\n\n->CHEM!CAL T0X!N:\n-->Current Version: " .. CurrentVersion .. "\n-->Newest Version: " .. Body .. "\n->Up to date!\n\n")
+		print("####################################################################")
+		print("########################## CHEM!CAL T0X!N ##########################")
+		print("####################################################################")
+		print("#####                  Current Version: " .. CurrentVersion .. "                  #####")
+		print("#####                   Newest Version: " .. Body .. "                  #####")
+		print("####################################################################")
+		print("#####                        Up to date!                       #####")
+		print("####################################################################")
 	end
 end)
 
@@ -515,6 +529,22 @@ AddEventHandler("ChangePassword", function(NewPassword) --Changes the Password
 	local UnusedBool = SaveResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'registeredplayer' .. GetOSSep() .. Username .. '.txt', GetPasswordHash(NewPassword) .. "\n" .. Splitted[2] .. "\n" .. Splitted[3], -1)
 end)
 
+--Add-On Vehicles/ Peds
+
+AddEventHandler("GetAddOnVehicles", function() --Gets the Add-On Vehicles
+	local fileContent = LoadResourceFile(GetCurrentResourceName(), 'Add-On Vehicles.txt')
+	if fileContent ~= nil or fileContent ~= "" then
+		TriggerClientEvent("GotAddOnVehicles", source, fileContent)
+	end
+end)
+
+AddEventHandler("GetAddOnPeds", function() --Gets the Add-On Peds
+	local fileContent = LoadResourceFile(GetCurrentResourceName(), 'Add-On Peds.txt')
+	if fileContent ~= nil or fileContent ~= "" then
+		TriggerClientEvent("GotAddOnPeds", source, fileContent)
+	end
+end)
+
 --Some Functions
 
 function tablelength(t)
@@ -607,4 +637,6 @@ RegisterServerEvent("ChangePassword") --Just Don't Edit!
 RegisterServerEvent("ResetPassword") --Just Don't Edit!
 RegisterServerEvent("GetUsername") --Just Don't Edit!
 RegisterServerEvent("GotUsername") --Just Don't Edit!
+RegisterServerEvent("GetAddOnVehicles") --Just Don't Edit!
+RegisterServerEvent("GetAddOnPeds") --Just Don't Edit!
 

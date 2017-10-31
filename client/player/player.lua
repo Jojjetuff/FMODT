@@ -1,6 +1,7 @@
 godmode = false; godmodeCount = 0; playerVisible = true; playerVisibleCount = 1; nowantedlevel = false; nowantedlevelCount = 0
 superjump = false; stamina = false; supermanmode = false; WantedLevel = 0; maxWantedLevel = 5; Run = 1.0; Swim = 1.0
 local animPlay, animDict, animName, pistol, changePedByName, mChar, fChar, skin
+local AddOnPedsTable = {}
 
 Citizen.CreateThread(function() --Player Menu
 	while true do
@@ -347,7 +348,9 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 		local skinModelName = { "csb_abigail", "ig_abigail", "u_m_y_abner", "a_m_m_afriamer_01", "csb_agent", "ig_agent", "csb_mp_agent14", "ig_mp_agent14", "s_f_y_airhostess_01", "s_m_y_airworker", "u_m_m_aldinapoli", "s_m_m_movalien_01", "a_m_m_acult_01", "a_m_o_acult_01", "a_m_o_acult_02", "a_m_y_acult_01", "a_m_y_acult_02", "cs_amandatownley", "ig_amandatownley", "s_m_y_ammucity_01", "s_m_m_ammucountry", "cs_andreas", "ig_andreas", "csb_anita", "csb_anton", "u_m_y_antonb", "g_m_m_armboss_01", "g_m_m_armgoon_01", "g_m_y_armgoon_02", "g_m_m_armlieut_01", "mp_s_m_armoured_01", "s_m_m_armoured_01", "s_m_m_armoured_02", "s_m_y_armymech_01", "cs_ashley", "ig_ashley", "s_m_y_autopsy_01", "s_m_m_autoshop_01", "s_m_m_autoshop_02", "g_m_y_azteca_01", "u_m_y_babyd", "g_m_y_ballaeast_01", "g_f_y_ballas_01", "csb_ballasog", "ig_ballasog", "g_m_y_ballaorig_01", "g_m_y_ballasout_01", "cs_bankman", "ig_bankman", "u_m_m_bankman", "s_f_m_fembarber", "s_m_y_barman_01", "cs_barry", "ig_barry", "s_f_y_bartender_01", "s_m_m_cntrybar_01", "s_f_y_baywatch_01", "s_m_y_baywatch_01", "a_f_m_beach_01", "a_m_m_beach_01", "a_m_m_beach_02", "a_m_y_musclbeac_01", "a_m_y_musclbeac_02", "a_m_o_beach_01", "a_f_m_trampbeac_01", "a_m_m_trampbeac_01", "a_f_y_beach_01", "a_m_y_beach_01", "a_m_y_beach_02", "a_m_y_beach_03", "ig_benny", "ig_bestmen", "cs_beverly", "ig_beverly", "a_f_m_bevhills_01", "a_f_m_bevhills_02", "a_m_m_bevhills_01", "a_m_m_bevhills_02", "a_f_y_bevhills_01", "a_f_y_bevhills_02", "a_f_y_bevhills_03", "a_f_y_bevhills_04", "a_m_y_bevhills_01", "a_m_y_bevhills_02", "cs_orleans", "ig_orleans", "u_m_m_bikehire_01", "u_f_y_bikerchic", "s_m_y_blackops_01", "s_m_y_blackops_02", "s_m_y_blackops_03", "a_m_y_stbla_01", "a_m_y_stbla_02", "a_f_m_bodybuild_01", "s_m_m_bouncer_01", "cs_brad", "ig_brad", "cs_bradcadaver", "a_m_y_breakdance_01", "csb_bride", "ig_bride", "csb_burgerdrug", "u_m_y_burgerdrug_01", "s_m_y_busboy_01", "a_m_y_busicas_01", "a_f_m_business_02", "a_m_m_business_01", "a_f_y_business_01", "a_f_y_business_02", "a_f_y_business_03", "a_f_y_business_04", "a_m_y_business_01", "a_m_y_business_02", "a_m_y_business_03", "s_m_o_busker_01", "csb_car3guy1", "ig_car3guy1", "csb_car3guy2", "ig_car3guy2", "cs_carbuyer", "cs_casey", "ig_casey", "s_m_y_chef_01", "csb_chef", "csb_chef2", "ig_chef", "ig_chef2", "s_m_m_chemsec_01", "g_m_m_chemwork_01", "g_m_m_chiboss_01", "g_m_m_chigoon_01", "csb_chin_goon", "g_m_m_chigoon_02", "g_m_m_chicold_01", "u_m_y_chip", "mp_m_claude_01", "ig_claypain", "cs_clay", "ig_clay", "csb_cletus", "ig_cletus", "s_m_y_clown_01", "s_m_y_construct_01", "s_m_y_construct_02", "csb_cop", "s_f_y_cop_01", "s_m_y_cop_01", "u_f_m_corpse_01", "u_f_y_corpse_01", "u_f_y_corpse_02", "s_m_m_ccrew_01", "cs_chrisformage", "ig_chrisformage", "csb_customer", "a_m_y_cyclist_01", "u_m_y_cyclist_01", "cs_dale", "ig_dale", "cs_davenorton", "ig_davenorton", "mp_f_deadhooker", "s_m_y_dealer_01", "cs_debra", "cs_denise", "ig_denise", "csb_denise_friend", "cs_devin", "ig_devin", "s_m_y_devinsec_01", "csb_popov", "ig_popov", "u_m_m_doa_01", "s_m_m_dockwork_01", "s_m_y_dockwork_01", "s_m_m_doctor_01", "cs_dom", "ig_dom", "s_m_y_doorman_01", "a_m_y_dhill_01", "a_f_m_downtown_01", "a_m_y_downtown_01", "cs_drfriedlander", "ig_drfriedlander", "a_f_y_scdressy_01", "s_m_y_dwservice_01", "s_m_y_dwservice_02", "a_f_m_eastsa_01", "a_f_m_eastsa_02", "a_m_m_eastsa_01", "a_m_m_eastsa_02", "a_f_y_eastsa_01", "a_f_y_eastsa_02", "a_f_y_eastsa_03", "a_m_y_eastsa_01", "a_m_y_eastsa_02", "u_m_m_edtoh", "a_f_y_epsilon_01", "a_m_y_epsilon_01", "a_m_y_epsilon_02", "cs_tomepsilon", "ig_tomepsilon", "mp_m_exarmy_01", "u_m_y_militarybum", "cs_fabien", "ig_fabien", "s_f_y_factory_01", "s_m_y_factory_01", "g_m_y_famca_01", "mp_m_famdd_01", "g_m_y_famdnf_01", "g_f_y_families_01", "g_m_y_famfor_01", "csb_ramp_gang", "ig_ramp_gang", "a_m_m_farmer_01", "a_f_m_fatbla_01", "a_f_m_fatcult_01", "a_m_m_fatlatin_01", "a_f_m_fatwhite_01", "a_f_y_femaleagent", "cs_mrk", "ig_mrk", "u_m_m_fibarchitect", "u_m_y_fibmugger_01", "s_m_m_fiboffice_01", "s_m_m_fiboffice_02", "mp_m_fibsec_01", "s_m_m_fibsec_01", "cs_fbisuit_01", "ig_fbisuit_01", "u_m_o_finguru_01", "s_m_y_fireman_01", "a_f_y_fitness_01", "a_f_y_fitness_02", "cs_floyd", "ig_floyd", "csb_fos_rep", "s_m_m_gaffer_01", "s_m_y_garbage", "s_m_m_gardener_01", "a_m_y_gay_01", "a_m_y_gay_02", "a_m_m_genfat_01", "a_m_m_genfat_02", "a_f_y_genhot_01", "a_f_o_genstreet_01", "a_m_o_genstreet_01", "a_m_y_genstreet_01", "a_m_y_genstreet_02", "csb_g", "u_m_m_glenstank_01", "a_m_m_golfer_01", "a_f_y_golfer_01", "a_m_y_golfer_01", "u_m_m_griff_01", "s_m_y_grip_01", "csb_groom", "ig_groom", "csb_grove_str_dlr", "cs_guadalope", "u_m_y_guido_01", "u_m_y_gunvend_01", "cs_gurk", "s_m_m_hairdress_01", "csb_hao", "ig_hao", "a_m_m_hasjew_01", "a_m_y_hasjew_01", "csb_ramp_hic", "ig_ramp_hic", "s_m_m_highsec_01", "s_m_m_highsec_02", "s_m_y_hwaycop_01", "a_f_y_hiker_01", "a_m_y_hiker_01", "a_m_m_hillbilly_01", "a_m_m_hillbilly_02", "a_f_y_hippie_01", "u_m_y_hippie_01", "a_m_y_hippy_01", "csb_ramp_hipster", "ig_ramp_hipster", "a_f_y_hipster_01", "a_f_y_hipster_02", "a_f_y_hipster_03", "a_f_y_hipster_04", "a_m_y_hipster_01", "a_m_y_hipster_02", "a_m_y_hipster_03", "s_f_y_hooker_01", "s_f_y_hooker_02", "s_f_y_hooker_03", "s_f_y_scrubs_01", "u_f_y_hotposh_01", "csb_hugh", "cs_hunter", "ig_hunter", "s_m_m_ciasec_01", "u_m_y_imporage", "csb_imran", "a_m_m_indian_01", "a_f_o_indian_01", "a_f_y_indian_01", "a_m_y_indian_01", "u_f_y_comjane", "cs_janet", "ig_janet", "csb_janitor", "s_m_m_janitor", "ig_jay_norris", "u_m_o_taphillbilly", "u_m_m_jesus_01", "a_m_y_jetski_01", "hc_driver", "hc_gunman", "hc_hacker", "u_m_m_jewelthief", "u_f_y_jewelass_01", "cs_jewelass", "ig_jewelass", "u_m_m_jewelsec_01", "cs_jimmyboston", "ig_jimmyboston", "cs_jimmydisanto", "ig_jimmydisanto", "a_f_y_runner_01", "a_m_y_runner_01", "a_m_y_runner_02", "mp_m_marston_01", "cs_johnnyklebitz", "ig_johnnyklebitz", "cs_josef", "ig_josef", "cs_josh", "ig_josh", "a_f_y_juggalo_01", "a_m_y_juggalo_01", "u_m_y_justin", "cs_karen_daniels", "ig_karen_daniels", "ig_kerrymcintosh", "u_m_y_baygor", "g_m_m_korboss_01", "a_f_m_ktown_01", "a_f_m_ktown_02", "g_m_y_korlieut_01", "a_m_m_ktown_01", "a_f_o_ktown_01", "a_m_o_ktown_01", "g_m_y_korean_01", "a_m_y_ktown_01", "g_m_y_korean_02", "a_m_y_ktown_02", "cs_lamardavis", "ig_lamardavis", "s_m_m_lathandy_01", "a_m_m_stlat_02", "a_m_y_stlat_01", "a_m_y_latino_01", "cs_lazlow", "ig_lazlow", "cs_lestercrest", "ig_lestercrest", "cs_lifeinvad_01", "ig_lifeinvad_01", "ig_lifeinvad_02", "s_m_m_lifeinvad_01", "s_m_m_linecook", "u_m_m_willyfist", "s_m_m_lsmetro_01", "cs_magenta", "ig_magenta", "s_f_m_maid_01", "a_m_m_malibu_01", "u_m_y_mani", "cs_manuel", "ig_manuel", "s_m_m_mariachi_01", "csb_ramp_marine", "s_m_m_marine_01", "s_m_m_marine_02", "s_m_y_marine_01", "s_m_y_marine_02", "s_m_y_marine_03", "u_m_m_markfost", "cs_marnie", "ig_marnie", "cs_martinmadrazo", "cs_maryann", "ig_maryann", "csb_maude", "ig_maude", "csb_rashcosvki", "ig_rashcosvki", "s_m_y_xmech_01", "s_m_y_xmech_02", "csb_mweather", "a_m_y_methhead_01", "csb_ramp_mex", "ig_ramp_mex", "g_m_m_mexboss_01", "g_m_m_mexboss_02", "g_m_y_mexgang_01", "g_m_y_mexgoon_01", "g_m_y_mexgoon_02", "g_m_y_mexgoon_03", "a_m_m_mexlabor_01", "a_m_m_mexcntry_01", "a_m_y_mexthug_01", "cs_michelle", "ig_michelle", "s_f_y_migrant_01", "s_m_m_migrant_01", "cs_milton", "ig_milton", "s_m_y_mime", "cs_joeminuteman", "ig_joeminuteman", "u_f_m_miranda", "u_f_y_mistress", "mp_f_misty_01", "cs_molly", "ig_molly", "csb_money", "ig_money", "a_m_y_motox_01", "a_m_y_motox_02", "s_m_m_movspace_01", "u_m_m_filmdirector", "s_f_y_movprem_01", "cs_movpremf_01", "s_m_m_movprem_01", "cs_movpremmale", "u_f_o_moviestar", "cs_mrsphillips", "ig_mrsphillips", "cs_mrs_thornhill", "ig_mrs_thornhill", "cs_natalia", "ig_natalia", "cs_nervousron", "ig_nervousron", "cs_nigel", "ig_nigel", "mp_m_niko_01", "a_m_m_og_boss_01", "cs_old_man1a", "ig_old_man1a", "cs_old_man2", "ig_old_man2", "cs_omega", "ig_omega", "ig_oneil", "csb_ortega", "ig_ortega", "csb_oscar", "csb_paige", "ig_paige", "a_m_m_paparazzi_01", "u_m_y_paparazzi", "s_m_m_paramedic_01", "u_m_m_partytarget", "u_m_y_party_01", "cs_patricia", "ig_patricia", "s_m_y_pestcont_01", "cs_dreyfuss", "ig_dreyfuss", "s_m_m_pilot_01", "s_m_y_pilot_01", "s_m_m_pilot_02", "u_m_y_pogo_01", "a_m_m_polynesian_01", "g_m_y_pologoon_01", "g_m_y_pologoon_02", "a_m_y_polynesian_01", "u_f_y_poppymich", "csb_porndudes", "s_m_m_postal_01", "s_m_m_postal_02", "cs_priest", "ig_priest", "u_f_y_princess", "s_m_m_prisguard_01", "s_m_y_prisoner_01", "u_m_y_prisoner_01", "s_m_y_prismuscl_01", "u_m_y_proldriver_01", "csb_prologuedriver", "a_f_m_prolhost_01", "a_m_m_prolhost_01", "u_f_o_prolhost_01", "u_f_m_promourn_01", "u_m_m_promourn_01", "csb_prolsec", "u_m_m_prolsec_01", "cs_prolsec_02", "ig_prolsec_02", "mp_g_m_pros_01", "s_f_y_ranger_01", "s_m_y_ranger_01", "csb_reporter", "u_m_y_rsranger_01", "u_m_m_rivalpap", "a_m_y_roadcyc_01", "s_m_y_robber_01", "csb_roccopelosi", "ig_roccopelosi", "a_f_y_rurmeth_01", "a_m_m_rurmeth_01", "cs_russiandrunk", "ig_russiandrunk", "s_f_m_shop_high", "s_f_y_shop_low", "s_m_y_shop_mask", "s_f_y_shop_mid", "a_f_m_salton_01", "a_m_m_salton_01", "a_m_m_salton_02", "a_m_m_salton_03", "a_m_m_salton_04", "a_f_o_salton_01", "a_m_o_salton_01", "a_m_y_salton_01", "g_m_y_salvaboss_01", "g_m_y_salvagoon_01", "g_m_y_salvagoon_02", "g_m_y_salvagoon_03", "s_m_m_scientist_01", "csb_screen_writer", "ig_screen_writer", "s_m_m_security_01", "s_f_y_sheriff_01", "s_m_y_sheriff_01", "mp_m_shopkeep_01", "cs_siemonyetarian", "ig_siemonyetarian", "a_f_y_skater_01", "a_m_m_skater_01", "a_m_y_skater_01", "a_m_y_skater_02", "a_f_m_skidrow_01", "a_m_m_skidrow_01", "s_m_m_snowcop_01", "cs_solomon", "ig_solomon", "a_f_m_soucent_01", "a_f_m_soucent_02", "a_m_m_socenlat_01", "a_m_m_soucent_01", "a_m_m_soucent_02", "a_m_m_soucent_03", "a_m_m_soucent_04", "a_f_m_soucentmc_01", "a_f_o_soucent_01", "a_f_o_soucent_02", "a_m_o_soucent_01", "a_m_o_soucent_02", "a_m_o_soucent_03", "a_f_y_soucent_01", "a_f_y_soucent_02", "a_f_y_soucent_03", "a_m_y_soucent_01", "a_m_y_soucent_02", "a_m_y_soucent_03", "a_m_y_soucent_04", "u_m_y_sbike", "u_m_m_spyactor", "u_f_y_spyactress", "u_m_y_staggrm_01", "cs_stevehains", "ig_stevehains", "s_m_m_strperf_01", "s_m_m_strpreach_01", "g_m_y_strpunk_01", "g_m_y_strpunk_02", "s_m_m_strvend_01", "s_m_y_strvend_01", "cs_stretch", "ig_stretch", "csb_stripper_01", "s_f_y_stripper_01", "csb_stripper_02", "s_f_y_stripper_02", "s_f_y_stripperlite", "mp_f_stripperlite", "a_m_y_sunbathe_01", "a_m_y_surfer_01", "s_m_y_swat_01", "s_f_m_sweatshop_01", "s_f_y_sweatshop_01", "ig_talina", "cs_tanisha", "ig_tanisha", "cs_taocheng", "ig_taocheng", "cs_taostranslator", "ig_taostranslator", "u_m_y_tattoo_01", "cs_tenniscoach", "ig_tenniscoach", "a_f_y_tennis_01", "a_m_m_tennis_01", "cs_terry", "ig_terry", "g_f_y_lost_01", "g_m_y_lost_01", "g_m_y_lost_02", "g_m_y_lost_03", "cs_tom", "csb_tonya", "ig_tonya", "a_f_y_topless_01", "a_f_m_tourist_01", "a_m_m_tourist_01", "a_f_y_tourist_01", "a_f_y_tourist_02", "cs_tracydisanto", "ig_tracydisanto", "csb_trafficwarden", "ig_trafficwarden", "a_f_m_tramp_01", "a_m_m_tramp_01", "u_m_o_tramp_01", "a_m_o_tramp_01", "s_m_m_gentransport", "a_m_m_tranvest_01", "a_m_m_tranvest_02", "s_m_m_trucker_01", "ig_tylerdix", "csb_undercover", "cs_paper", "ig_paper", "s_m_m_ups_01", "s_m_m_ups_02", "s_m_y_uscg_01", "g_f_y_vagos_01", "csb_vagspeak", "ig_vagspeak", "mp_m_g_vagfun_01", "s_m_y_valet_01", "a_m_y_beachvesp_01", "a_m_y_beachvesp_02", "a_m_y_vindouche_01", "a_f_y_vinewood_01", "a_f_y_vinewood_02", "a_f_y_vinewood_03", "a_f_y_vinewood_04", "a_m_y_vinewood_01", "a_m_y_vinewood_02", "a_m_y_vinewood_03", "a_m_y_vinewood_04", "cs_wade", "ig_wade", "s_m_y_waiter_01", "cs_chengsr", "ig_chengsr", "a_m_y_stwhi_01", "a_m_y_stwhi_02", "s_m_y_winclean_01", "a_f_y_yoga_01", "a_m_y_yoga_01", "cs_zimbor", "ig_zimbor", "u_m_y_zombie_01" }
 
 		if skinMenu then
-		
+			
+			TriggerServerEvent("GetAddOnPeds")
+			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionskinMenu
 			else
@@ -361,6 +364,15 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 					changePedByName = true
 				end
 			end)
+
+			if AddOnPedsTable[1] ~= nil then
+				TriggerEvent("FMODT:Option", "~y~>> ~s~" .. AddOnPedsTitle .. "", function(cb)
+					if (cb) then
+						skinMenu = false
+						AddOnPedsSpawn1 = true
+					end
+				end)
+			end
 
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. AnimalsTitle .. "", function(cb)
 				if (cb) then
@@ -467,6 +479,140 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 
 			TriggerEvent("FMODT:Update")
 			
+		elseif AddOnPedsSpawn1 then
+			
+			TriggerServerEvent("GetAddOnPeds")
+			
+			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
+				currentOption = lastSelectionAddOnPedsSpawn1
+			else
+				lastSelectionAddOnPedsSpawn1 = currentOption
+			end
+		
+			if not FloatIntArray and AddOnPedsTable[i] ~= nil then
+				if IsDisabledControlJustReleased(1, 174)then
+					if AddOnPedsTable[41] ~= nil then
+						AddOnPedsSpawn1 = false
+						AddOnPedsSpawn3 = true
+					else
+						AddOnPedsSpawn1 = false
+						AddOnPedsSpawn2 = true
+					end
+				elseif IsDisabledControlJustReleased(1, 175)then
+					AddOnPedsSpawn1 = false
+					AddOnPedsSpawn2 = true
+				end
+			end
+		
+			TriggerEvent("FMODT:Title", "~y~" .. AddOnPedsTitle .. "")
+			
+			for i = 1, 20 do
+				
+				if AddOnPedsTable[i] ~= nil then
+					TriggerEvent("FMODT:Option", AddOnPedsTable[i][2], function(cb)
+						if (cb) then
+							drawNotification(AddOnPedsTable[i][1])
+							skin = GetHashKey(AddOnPedsTable[i][1])
+						end
+					end)
+				end
+			end
+
+			if AddOnPedsTable[21] ~= nil then
+				TriggerEvent("FMODT:Option", "~r~" .. PageIndicator .. " 1", function(cb)
+					if (cb) then
+						drawNotification("~r~" .. PageIndicator .. " 1")
+					end
+				end)
+			end
+
+			TriggerEvent("FMODT:Update")
+			
+		elseif AddOnPedsSpawn2 then
+			
+			TriggerServerEvent("GetAddOnPeds")
+			
+			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
+				currentOption = lastSelectionAddOnPedsSpawn2
+			else
+				lastSelectionAddOnPedsSpawn2 = currentOption
+			end
+		
+			if not FloatIntArray then
+				if IsDisabledControlJustReleased(1, 174)then
+					AddOnPedsSpawn2 = false
+					AddOnPedsSpawn1 = true
+				elseif IsDisabledControlJustReleased(1, 175)then
+					if AddOnPedsTable[41] ~= nil then
+						AddOnPedsSpawn2 = false
+						AddOnPedsSpawn3 = true
+					else
+						AddOnPedsSpawn2 = false
+						AddOnPedsSpawn1 = true
+					end
+				end
+			end
+		
+			TriggerEvent("FMODT:Title", "~y~" .. AddOnPedsTitle .. "")
+
+			for i = 21, 40 do
+				if AddOnPedsTable[i] ~= nil then
+					TriggerEvent("FMODT:Option", AddOnPedsTable[i][2], function(cb)
+						if (cb) then
+							skin = GetHashKey(AddOnPedsTable[i][1])
+						end
+					end)
+				end
+			end
+
+			TriggerEvent("FMODT:Option", "~r~" .. PageIndicator .. " 2", function(cb)
+				if (cb) then
+					drawNotification("~r~" .. PageIndicator .. " 2")
+				end
+			end)
+
+			TriggerEvent("FMODT:Update")
+			
+		elseif AddOnPedsSpawn3 then
+			
+			TriggerServerEvent("GetAddOnPeds")
+			
+			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
+				currentOption = lastSelectionAddOnPedsSpawn3
+			else
+				lastSelectionAddOnPedsSpawn3 = currentOption
+			end
+		
+			if not FloatIntArray then
+				if IsDisabledControlJustReleased(1, 174)then
+					AddOnPedsSpawn3 = false
+					AddOnPedsSpawn2 = true
+				elseif IsDisabledControlJustReleased(1, 175)then
+					AddOnPedsSpawn3 = false
+					AddOnPedsSpawn1 = true
+				end
+			end
+		
+			TriggerEvent("FMODT:Title", "~y~" .. AddOnPedsTitle .. "")
+
+			for i = 41, 60 do
+				if AddOnPedsTable[i] ~= nil then
+					TriggerEvent("FMODT:Option", AddOnPedsTable[i][2], function(cb)
+						if (cb) then
+							skin = GetHashKey(AddOnPedsTable[i][1])
+						end
+					end)
+				end
+			end
+
+			TriggerEvent("FMODT:Option", "~r~" .. PageIndicator .. " 3", function(cb)
+				if (cb) then
+					drawNotification("~r~" .. PageIndicator .. " 3")
+				end
+			end)
+
+			TriggerEvent("FMODT:Update")
+			
 		elseif animalSkinMenu1 then
 		
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
@@ -490,140 +636,120 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 			TriggerEvent("FMODT:Option", BoarTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_boar")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", CatTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_cat_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", ChickenhawkTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_chickenhawk")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", ChimpTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_chimp")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", ChopTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_chop")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", CormorantTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_cormorant")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", CowTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_cow")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", CoyoteTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_coyote")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", CrowTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_crow")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", DeerTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_deer")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", DolphinTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_dolphin")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", FishTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_fish")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", HenTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_hen")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", HammerheadSharkTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_sharkhammer")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", HumpbackTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_humpback")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", HuskyTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_husky")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", KillerWhaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_killerwhale")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", MountainLionTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_mtlion")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", PigTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_pig")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", PigeonTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_pigeon")
-					skinChanging = true
 				end
 			end)
 
@@ -658,84 +784,72 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 			TriggerEvent("FMODT:Option", PoodleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_poodle")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", PugTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_pug")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", RabbitTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_rabbit_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", RatTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_rat")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", RetrieverTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_retriever")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", RhesusTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_rhesus")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", RottweilerTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_rottweiler")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", SeagullTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_seagull")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", ShepherdTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_shepherd")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", StingrayTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_stingray")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", TigerSharkTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_sharktiger")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", WestyTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_c_westy")
-					skinChanging = true
 				end
 			end)
 
@@ -760,98 +874,84 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 			TriggerEvent("FMODT:Option", BusinessFemaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_f_m_business_02")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", CopFemaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_f_y_cop_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", EpsilonFemaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_f_y_epsilon_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", FattyFemaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_f_m_fatwhite_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", GolferFemaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_f_y_golfer_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", HipsterFemaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_f_y_hipster_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", Hooker1Title, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_f_y_hooker_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", Hooker2Title, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_f_y_hooker_02")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", Hooker3Title, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_f_y_hooker_03")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", MaidTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_f_m_maid_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", RangerFemaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_f_y_ranger_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", SheriffFemaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_f_y_sheriff_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", Stripper1Title, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_f_y_stripper_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", Stripper2Title, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_f_y_stripper_02")
-					skinChanging = true
 				end
 			end)
 
@@ -870,98 +970,84 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 			TriggerEvent("FMODT:Option", BusinessMaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_m_m_business_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", CopMaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_m_y_cop_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", EpsilonMaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_m_y_epsilon_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", FattyMaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_m_m_fatlatin_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", FiremanTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_m_y_fireman_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", GolferMaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_m_m_golfer_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", HighwayCopTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_m_y_hwaycop_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", HipsterMaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("a_m_y_hipster_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", PrisonerTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_m_y_prisoner_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", Marine1Title, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_m_y_marine_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", Marine2Title, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_m_y_marine_02")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", Marine3Title, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_m_y_marine_03")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", RangerMaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_m_y_ranger_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", SheriffMaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("s_m_y_sheriff_01")
-					skinChanging = true
 				end
 			end)
 
@@ -980,35 +1066,30 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 			TriggerEvent("FMODT:Option", MPCharacterFemaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("mp_f_freemode_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", MPCharacterMaleTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("mp_m_freemode_01")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", FranklinTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("player_one")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", MichaelTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("player_zero")
-					skinChanging = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", TrevorTitle, function(cb)
 				if (cb) then
 					skin = GetHashKey("player_two")
-					skinChanging = true
 				end
 			end)
 
@@ -1040,8 +1121,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1079,8 +1159,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1118,8 +1197,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1157,8 +1235,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1196,8 +1273,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1235,8 +1311,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1274,8 +1349,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1313,8 +1387,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1352,8 +1425,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1391,8 +1463,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1430,8 +1501,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1469,8 +1539,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1508,8 +1577,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1547,8 +1615,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1586,8 +1653,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1625,8 +1691,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1664,8 +1729,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1703,8 +1767,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1742,8 +1805,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1781,8 +1843,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1820,8 +1881,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1859,8 +1919,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1898,8 +1957,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1937,8 +1995,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -1976,8 +2033,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -2015,8 +2071,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -2054,8 +2109,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -2093,8 +2147,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -2132,8 +2185,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -2171,8 +2223,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -2210,8 +2261,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -2249,8 +2299,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -2288,8 +2337,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -2327,8 +2375,7 @@ Citizen.CreateThread(function() --Skin Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", skinName[i], function(cb)
 					if (cb) then
 						skin = GetHashKey(skinModelName[i])
-						skinChanging = true
-					end
+						end
 				end)
 			end
 			
@@ -2685,6 +2732,7 @@ Citizen.CreateThread(function() --Skin Changing
 					Citizen.Wait(0)
 				end
 				SetPlayerModel(PlayerId(), skin)
+				SetPedDefaultComponentVariation(GetPlayerPed(-1))
 			else
 				drawNotification("~r~" .. PedNotExistingMessage .. "!")
 			end
@@ -2806,6 +2854,21 @@ Citizen.CreateThread(function() --Change Ped By Name
 				drawNotification("~r~" .. ChangingByNameAbortedMessage .. "!")
 			end
 			changePedByName = false
+		end
+	end
+end)
+
+AddEventHandler("GotAddOnPeds", function(AddOnPeds)
+	for i = 1, 60 do
+		AddOnPedsTable[i] = nil
+	end
+	
+	local AddOnPedsSplitted = stringsplit(AddOnPeds, "\n")
+	
+	for i = 1, tablelength(AddOnPedsSplitted) do
+		local Splitted = stringsplit(AddOnPedsSplitted[i], ",")
+		if Splitted[1] ~= "SpawnName" and Splitted[2] ~= "DisplayName" then
+			table.insert(AddOnPedsTable, {Splitted[1], Splitted[2]})
 		end
 	end
 end)

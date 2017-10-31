@@ -58,6 +58,9 @@
 	outfitSaveMenu = false 
 	outfitLoadMenu = false 
 	outfitDeleteMenu = false 
+	AddOnPedsSpawn1 = false
+	AddOnPedsSpawn2 = false
+	AddOnPedsSpawn3 = false
 	animalSkinMenu1 = false 
 	animalSkinMenu2 = false 
 	femalePedSkinMenu = false 
@@ -110,6 +113,9 @@
 	extraMenu = false
 	extraMenuTrailer = false
 	fancySpawn = false
+	AddOnVehiclesSpawn1 = false
+	AddOnVehiclesSpawn2 = false
+	AddOnVehiclesSpawn3 = false
 	bikeSpawn = false
 	boatSpawn = false
 	commercialSpawn = false
@@ -262,6 +268,9 @@
 	lastSelectionstripAnimationMenu = 1
 	lastSelectionsuicideAnimationMenu = 1
 	lastSelectionskinMenu = 1
+	lastSelectionAddOnPedsSpawn1 = 1
+	lastSelectionAddOnPedsSpawn2 = 1
+	lastSelectionAddOnPedsSpawn3 = 1
 	lastSelectionanimalSkinMenu1 = 1
 	lastSelectionanimalSkinMenu2 = 1
 	lastSelectionfemalePedSkinMenu = 1
@@ -319,6 +328,9 @@
 	lastSelectionspawnMenu1 = 1
 	lastSelectionspawnMenu2 = 1
 	lastSelectionfancySpawn = 1
+	lastSelectionAddOnVehiclesSpawn1 = 1
+	lastSelectionAddOnVehiclesSpawn2 = 1
+	lastSelectionAddOnVehiclesSpawn3 = 1
 	lastSelectionbikeSpawn = 1
 	lastSelectionboatSpawn = 1
 	lastSelectioncommercialSpawn = 1
@@ -784,4 +796,6 @@
 	RegisterNetEvent("ChangingPasswordClient")
 	RegisterNetEvent("GetUsernameClient")
 	RegisterNetEvent("GotUsernameClient")
+	RegisterNetEvent("GotAddOnVehicles")
+	RegisterNetEvent("GotAddOnPeds")
 	

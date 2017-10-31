@@ -94,6 +94,9 @@ Citizen.CreateThread(function() --Menu Closing
 			outfitSaveMenu = false 
 			outfitLoadMenu = false 
 			outfitDeleteMenu = false 
+			AddOnPedsSpawn1 = false
+			AddOnPedsSpawn2 = false
+			AddOnPedsSpawn3 = false
 			animalSkinMenu1 = false
 			animalSkinMenu2 = false
 			femalePedSkinMenu = false
@@ -155,6 +158,9 @@ Citizen.CreateThread(function() --Menu Closing
 			doorsMenu = false
 			tuningMenu = false
 			fancySpawn = false
+			AddOnVehiclesSpawn1 = false
+			AddOnVehiclesSpawn2 = false
+			AddOnVehiclesSpawn3 = false
 			bikeSpawn = false
 			boatSpawn = false
 			commercialSpawn = false
@@ -271,6 +277,9 @@ Citizen.CreateThread(function() --Menu Closing
 			lastSelectionstripAnimationMenu = 1
 			lastSelectionsuicideAnimationMenu = 1
 			lastSelectionskinMenu = 1
+			lastSelectionAddOnPedsSpawn1 = 1
+			lastSelectionAddOnPedsSpawn2 = 1
+			lastSelectionAddOnPedsSpawn3 = 1
 			lastSelectionanimalSkinMenu1 = 1
 			lastSelectionanimalSkinMenu2 = 1
 			lastSelectionfemalePedSkinMenu = 1
@@ -328,6 +337,9 @@ Citizen.CreateThread(function() --Menu Closing
 			lastSelectionspawnMenu1 = 1
 			lastSelectionspawnMenu2 = 1
 			lastSelectionfancySpawn = 1
+			lastSelectionAddOnVehiclesSpawn1 = 1
+			lastSelectionAddOnVehiclesSpawn2 = 1
+			lastSelectionAddOnVehiclesSpawn3 = 1
 			lastSelectionbikeSpawn = 1
 			lastSelectionboatSpawn = 1
 			lastSelectioncommercialSpawn = 1
@@ -519,16 +531,20 @@ Citizen.CreateThread(function() --Controls
 				componentChangerMenu = false
 				outfitMenu = false
 				playerMenu = true
-			elseif animalSkinMenu1 or animalSkinMenu2 or femalePedSkinMenu or malePedSkinMenu or
-			playerPedSkinMenu or everyPedSkinMenu1 or everyPedSkinMenu2 or everyPedSkinMenu3 or
-			everyPedSkinMenu4 or everyPedSkinMenu5 or everyPedSkinMenu6 or everyPedSkinMenu7 or
-			everyPedSkinMenu8 or everyPedSkinMenu9 or everyPedSkinMenu10 or everyPedSkinMenu11 or
-			everyPedSkinMenu12 or everyPedSkinMenu13 or everyPedSkinMenu14 or everyPedSkinMenu15 or
-			everyPedSkinMenu16 or everyPedSkinMenu17 or everyPedSkinMenu18 or everyPedSkinMenu19 or
-			everyPedSkinMenu20 or everyPedSkinMenu21 or everyPedSkinMenu22 or everyPedSkinMenu23 or
-			everyPedSkinMenu24 or everyPedSkinMenu25 or everyPedSkinMenu26 or everyPedSkinMenu27 or
-			everyPedSkinMenu28 or everyPedSkinMenu29 or everyPedSkinMenu30 or everyPedSkinMenu31 or
-			everyPedSkinMenu32 or everyPedSkinMenu33 or everyPedSkinMenu34 then
+			elseif 	AddOnPedsSpawn1 or AddOnPedsSpawn2 or AddOnPedsSpawn3 or animalSkinMenu1 or
+			animalSkinMenu2 or femalePedSkinMenu or malePedSkinMenu or playerPedSkinMenu or
+			everyPedSkinMenu1 or everyPedSkinMenu2 or everyPedSkinMenu3 or everyPedSkinMenu4 or
+			everyPedSkinMenu5 or everyPedSkinMenu6 or everyPedSkinMenu7 or everyPedSkinMenu8 or
+			everyPedSkinMenu9 or everyPedSkinMenu10 or everyPedSkinMenu11 or everyPedSkinMenu12 or
+			everyPedSkinMenu13 or everyPedSkinMenu14 or everyPedSkinMenu15 or everyPedSkinMenu16 or
+			everyPedSkinMenu17 or everyPedSkinMenu18 or everyPedSkinMenu19 or everyPedSkinMenu20 or
+			everyPedSkinMenu21 or everyPedSkinMenu22 or everyPedSkinMenu23 or everyPedSkinMenu24 or
+			everyPedSkinMenu25 or everyPedSkinMenu26 or everyPedSkinMenu27 or everyPedSkinMenu28 or
+			everyPedSkinMenu29 or everyPedSkinMenu30 or everyPedSkinMenu31 or everyPedSkinMenu32 or
+			everyPedSkinMenu33 or everyPedSkinMenu34 then
+				AddOnPedsSpawn1 = false
+				AddOnPedsSpawn2 = false
+				AddOnPedsSpawn3 = false
 				animalSkinMenu1 = false
 				animalSkinMenu2 = false
 				femalePedSkinMenu = false
@@ -594,13 +610,15 @@ Citizen.CreateThread(function() --Controls
 				tuningMenu = false
 				vehicleSavedMenu = false
 				vehicleMenu = true
-			elseif fancySpawn or bikeSpawn or boatSpawn or commercialSpawn or 
-			compactSpawn or coupeSpawn or emergencySpawn or helicopterSpawn1 or helicopterSpawn2 or
-			industrialSpawn or militarySpawn or motorcycleSpawn1 or motorcycleSpawn2 or
-			motorcycleSpawn3 or muscleSpawn1 or muscleSpawn2 or muscleSpawn3 or 
-			offroadSpawn1 or offroadSpawn2 or planeSpawn1 or planeSpawn2 or sedanSpawn1 or
-			sedanSpawn2	then
+			elseif fancySpawn or AddOnVehiclesSpawn1 or AddOnVehiclesSpawn2 or AddOnVehiclesSpawn3 or
+			bikeSpawn or boatSpawn or commercialSpawn or compactSpawn or coupeSpawn or emergencySpawn or
+			helicopterSpawn1 or helicopterSpawn2 or industrialSpawn or militarySpawn or motorcycleSpawn1 or
+			motorcycleSpawn2 or motorcycleSpawn3 or muscleSpawn1 or muscleSpawn2 or muscleSpawn3 or 
+			offroadSpawn1 or offroadSpawn2 or planeSpawn1 or planeSpawn2 or sedanSpawn1 or sedanSpawn2	then
 				fancySpawn = false
+				AddOnVehiclesSpawn1 = false
+				AddOnVehiclesSpawn2 = false
+				AddOnVehiclesSpawn3 = false
 				bikeSpawn = false
 				boatSpawn = false
 				commercialSpawn = false

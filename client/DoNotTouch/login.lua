@@ -184,6 +184,7 @@ AddEventHandler("LoginClient", function(LoggedIn)
 		TriggerServerEvent("GetOutfitNames")
 		TriggerServerEvent("GetVehicleNames")
 		TriggerServerEvent("LoadSettings")
+		TriggerServerEvent("GetAddOnVehicles")
 		drawNotification("~g~" .. LoginSuccessMessage .. "!")
 		loggedIn = true
 		loginMenu = false

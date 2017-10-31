@@ -128,6 +128,7 @@ Citizen.CreateThread(function() --Language Changing
 				ChangingByNameAbortedMessage = "Changing By Name Aborted"
 
 				ChangePedByNameTitle = "Change Ped By Name"
+				AddOnPedsTitle = "Add-On Peds"
 				AnimalsTitle = "Animals"
 				BoarTitle = "Boar"
 				CatTitle = "Cat"
@@ -330,6 +331,7 @@ Citizen.CreateThread(function() --Language Changing
 				MarkOnMapDisableMessage = "Mark Vehicle On Map Disabled"
 				SpawnVehicleByNameTitle = "Spawn Vehicle By Name"
 				FancyVehiclesTitle = "Fancy Vehicles"
+				AddOnVehiclesTitle = "Add-On Vehicles" --NEW
 				SpawningByNameAborted = "Spawning By Name Aborted"
 				InvalidModel = "Invalid Model"
 
@@ -888,6 +890,7 @@ Citizen.CreateThread(function() --Language Changing
 				ChangingByNameAbortedMessage = "Änderung des Charakters anhand des Namen abgebrochen"
 
 				ChangePedByNameTitle = "Änderung des Charakters anhand des Namens"
+				AddOnPedsTitle = "Add-On Charaktere"
 				AnimalsTitle = "Tiere"
 				BoarTitle = "Wildschwein"
 				CatTitle = "Katze"
@@ -1091,6 +1094,7 @@ Citizen.CreateThread(function() --Language Changing
 				MarkOnMapDisableMessage = "Auf der Karte markieren deaktiviert"
 				SpawnVehicleByNameTitle = "Fahrzeug anhand des Namens spawnen"
 				FancyVehiclesTitle = "Ausgefallene Fahrzeuge"
+				AddOnVehiclesTitle = "Add-On Fahrzeuge" --NEW
 				SpawningByNameAborted = "Fahrzeug anhand des Namens spawnen abgebrochen"
 				InvalidModel = "Ungültiges Modell"
 
@@ -1649,6 +1653,7 @@ Citizen.CreateThread(function() --Language Changing
 				ChangingByNameAbortedMessage = "Endring Via Navn Avbrutt"
 
 				ChangePedByNameTitle = "Endre Karakter Via Navn"
+				AddOnPedsTitle = "Tillegg Karakter"
 				AnimalsTitle = "Dyr"
 				BoarTitle = "Villsvin"
 				CatTitle = "Katt"
@@ -1851,6 +1856,7 @@ Citizen.CreateThread(function() --Language Changing
 				MarkOnMapDisableMessage = "Kartmarkering Av"
 				SpawnVehicleByNameTitle = "Opprett Kjøretøy Via Navn"
 				FancyVehiclesTitle = "Stilige Kjøretøy"
+				AddOnVehiclesTitle = "Tillegg Kjøretøy" --NEW
 				SpawningByNameAborted = "Opprettelse Via Navn Avbrutt"
 				InvalidModel = "Ugyldig Modellnavn"
 
@@ -2409,6 +2415,8 @@ Citizen.CreateThread(function() --Language Changing
 				ChangingByNameAbortedMessage = "Keitimas pagal vardą atšauktas"
 
 				ChangePedByNameTitle = "Keisti žaidėjo modelį pagal vardą"
+				AddOnPedsTitle = "Pridėti žaidėjo modelį"
+				
 				AnimalsTitle = "Gyvūnai"
 				BoarTitle = "Šernas"
 				CatTitle = "Katė"
@@ -2611,6 +2619,7 @@ Citizen.CreateThread(function() --Language Changing
 				MarkOnMapDisableMessage = "Transporto žymėjimas ant žemėlapio išjungtas"
 				SpawnVehicleByNameTitle = "Gauti transportą pagal pavadinimą"
 				FancyVehiclesTitle = "Prabangus transportas"
+				AddOnVehiclesTitle = "Pridėti transportą" --NEW
 				SpawningByNameAborted = "Išgavimas pagal pavadinimą atšauktas"
 				InvalidModel = "Negaliojantis modelis"
 
