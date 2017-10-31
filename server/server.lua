@@ -285,17 +285,13 @@ AddEventHandler("OutfitDelete", function(OutfitNumber) --Deletes An Outfit
 end)
 
 AddEventHandler("GetOutfitNames", function() --Gets The Outfit Names
-	local OutfitNames = {"Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"}
+	local OutfitNames = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil}
 	if Username ~= nil then
 		for i = 1, 20 do
 			local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'outfits' .. GetOSSep() .. Username .. '_' .. i .. '.txt')
 			if fileContent ~= nil and fileContent ~= "" then
 				local OutfitSplitted = stringsplit(fileContent, ',')
-				if OutfitSplitted[1] == nil then
-					OutfitNames[i] = "Empty"
-				else
-					OutfitNames[i] = OutfitSplitted[1]
-				end
+				OutfitNames[i] = OutfitSplitted[1]
 			end
 		end
 		TriggerClientEvent("GotOutfitNames", source, OutfitNames[1], OutfitNames[2], OutfitNames[3], OutfitNames[4], OutfitNames[5], OutfitNames[6], OutfitNames[7], OutfitNames[8], OutfitNames[9], OutfitNames[10], OutfitNames[11], OutfitNames[12], OutfitNames[13], OutfitNames[14], OutfitNames[15], OutfitNames[16], OutfitNames[17], OutfitNames[18], OutfitNames[19], OutfitNames[20])
@@ -345,17 +341,13 @@ AddEventHandler("VehicleUnsave", function(VehicleNumber) --Unsaves A Vehicle
 end)
 
 AddEventHandler("GetVehicleNames", function() --Gets The Vehicle Names
-	local VehicleNames = {"Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"}
+	local VehicleNames = {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil}
 	if Username ~= nil then
 		for i = 1, 20 do
 			local fileContent = LoadResourceFile(GetCurrentResourceName(), 'files' .. GetOSSep() .. 'vehicles' .. GetOSSep() .. Username .. '_' .. i .. '.txt')
 			if fileContent ~= nil and fileContent ~= "" then
 				local VehicleSplitted = stringsplit(fileContent, ',')
-				if VehicleSplitted[1] == nil then
-					VehicleNames[i] = "Empty"
-				else
-					VehicleNames[i] = VehicleSplitted[1]
-				end
+				VehicleNames[i] = VehicleSplitted[1]
 			end
 		end
 		TriggerClientEvent("GotVehicleNames", source, VehicleNames[1], VehicleNames[2], VehicleNames[3], VehicleNames[4], VehicleNames[5], VehicleNames[6], VehicleNames[7], VehicleNames[8], VehicleNames[9], VehicleNames[10], VehicleNames[11], VehicleNames[12], VehicleNames[13], VehicleNames[14], VehicleNames[15], VehicleNames[16], VehicleNames[17], VehicleNames[18], VehicleNames[19], VehicleNames[20])

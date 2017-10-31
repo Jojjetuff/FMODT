@@ -1,5 +1,5 @@
 local SaveVehicle, UnsaveVehicle
-local GetNamesAtFirst = true; CurrentLoadedVehicle = nil
+local CurrentLoadedVehicle = nil
 VehicleNames = {NoSavedVehiclesName, NoSavedVehiclesName, NoSavedVehiclesName, NoSavedVehiclesName, NoSavedVehiclesName,
 			    NoSavedVehiclesName, NoSavedVehiclesName, NoSavedVehiclesName, NoSavedVehiclesName, NoSavedVehiclesName,
 			    NoSavedVehiclesName, NoSavedVehiclesName, NoSavedVehiclesName, NoSavedVehiclesName, NoSavedVehiclesName,
@@ -299,16 +299,6 @@ CreateThread(function() --Vehicle Unsaving
 	end
 end)
 
-CreateThread(function() --Gets Vehicle Names Once
-	while true do
-		Citizen.Wait(0)
-		if GetNamesAtFirst then
-			TriggerServerEvent("GetVehicleNames")
-			GetNamesAtFirst = false
-		end
-	end
-end)		
-		
 CreateThread(function() --Change Current Loaded Vehicle Blip
 	while true do
 		Citizen.Wait(0)
@@ -544,26 +534,26 @@ end)
 
 AddEventHandler("GotVehicleNames", function(VehicleName1, VehicleName2, VehicleName3, VehicleName4, VehicleName5, VehicleName6, VehicleName7, VehicleName8, VehicleName9, VehicleName10, --Just Don't Edit!
 								            VehicleName11, VehicleName12, VehicleName13, VehicleName14, VehicleName15, VehicleName16, VehicleName17, VehicleName18, VehicleName19, VehicleName20)
-	VehicleNames[1] = VehicleName1
-	VehicleNames[2] = VehicleName2
-	VehicleNames[3] = VehicleName3
-	VehicleNames[4] = VehicleName4
-	VehicleNames[5] = VehicleName5
-	VehicleNames[6] = VehicleName6
-	VehicleNames[7] = VehicleName7
-	VehicleNames[8] = VehicleName8
-	VehicleNames[9] = VehicleName9
-	VehicleNames[10] = VehicleName10
-	VehicleNames[11] = VehicleName11
-	VehicleNames[12] = VehicleName12
-	VehicleNames[13] = VehicleName13
-	VehicleNames[14] = VehicleName14
-	VehicleNames[15] = VehicleName15
-	VehicleNames[16] = VehicleName16
-	VehicleNames[17] = VehicleName17
-	VehicleNames[18] = VehicleName18
-	VehicleNames[19] = VehicleName19
-	VehicleNames[20] = VehicleName20
+	if VehicleName1 == nil then VehicleNames[1] = NoOutfitName else VehicleNames[1] = VehicleName1 end
+	if VehicleName2 == nil then VehicleNames[2] = NoOutfitName else VehicleNames[2] = VehicleName2 end
+	if VehicleName3 == nil then VehicleNames[3] = NoOutfitName else VehicleNames[3] = VehicleName3 end
+	if VehicleName4 == nil then VehicleNames[4] = NoOutfitName else VehicleNames[4] = VehicleName4 end
+	if VehicleName5 == nil then VehicleNames[5] = NoOutfitName else VehicleNames[5] = VehicleName5 end
+	if VehicleName6 == nil then VehicleNames[6] = NoOutfitName else VehicleNames[6] = VehicleName6 end
+	if VehicleName7 == nil then VehicleNames[7] = NoOutfitName else VehicleNames[7] = VehicleName7 end
+	if VehicleName8 == nil then VehicleNames[8] = NoOutfitName else VehicleNames[8] = VehicleName8 end
+	if VehicleName9 == nil then VehicleNames[9] = NoOutfitName else VehicleNames[9] = VehicleName9 end
+	if VehicleName10 == nil then VehicleNames[10] = NoOutfitName else VehicleNames[10] = VehicleName10 end
+	if VehicleName11 == nil then VehicleNames[11] = NoOutfitName else VehicleNames[11] = VehicleName11 end
+	if VehicleName12 == nil then VehicleNames[12] = NoOutfitName else VehicleNames[12] = VehicleName12 end
+	if VehicleName13 == nil then VehicleNames[13] = NoOutfitName else VehicleNames[13] = VehicleName13 end
+	if VehicleName14 == nil then VehicleNames[14] = NoOutfitName else VehicleNames[14] = VehicleName14 end
+	if VehicleName15 == nil then VehicleNames[15] = NoOutfitName else VehicleNames[15] = VehicleName15 end
+	if VehicleName16 == nil then VehicleNames[16] = NoOutfitName else VehicleNames[16] = VehicleName16 end
+	if VehicleName17 == nil then VehicleNames[17] = NoOutfitName else VehicleNames[17] = VehicleName17 end
+	if VehicleName18 == nil then VehicleNames[18] = NoOutfitName else VehicleNames[18] = VehicleName18 end
+	if VehicleName19 == nil then VehicleNames[19] = NoOutfitName else VehicleNames[19] = VehicleName19 end
+	if VehicleName20 == nil then VehicleNames[20] = NoOutfitName else VehicleNames[20] = VehicleName20 end
 end)
 
 AddEventHandler("UnsaveSavedVehicle", function(VehicleModel)

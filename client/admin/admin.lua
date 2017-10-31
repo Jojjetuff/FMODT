@@ -1,3 +1,4 @@
+ShowTalkingPlayer = false
 local prevCoordx, prevCoordy, prevCoordz
 local player = nil; playerPing = "N/A"; playerIP = "N/A"; FirstIDOutput = {}; SecondIDOutput = {}; PlayerUsername = nil;
 	  LicenseID = {"N/A", ""}; SteamID = "N/A"; HostID = "N/A"; HostClientID = "N/A"; HostName = "N/A"; BanDuration = 1
@@ -306,6 +307,15 @@ Citizen.CreateThread(function() --Admin Menu
 				end
 			end)
 
+			TriggerEvent("FMODT:Bool", ShowTalkingPlayerTitle, ShowTalkingPlayer, function(cb)
+				ShowTalkingPlayer = cb
+				if ShowTalkingPlayer then
+					drawNotification("~g~" .. ShowTalkingPlayerEnableMessage .. "!")
+				else
+					drawNotification("~r~" .. ShowTalkingPlayerDisableMessage .. "!")
+				end
+			end)
+
 			TriggerEvent("FMODT:Update")
 
 		end
@@ -506,6 +516,24 @@ Citizen.CreateThread(function() --Enables/ Disables Stunt Jumps
 			StuntJumps[49] = AddStuntJumpAngled(1480.185302734375, -2218.53759765625, 77.75645446777344, 1478.2122802734375, -2215.5498046875, 80.62068176269531, 3.0, 1429.0216064453125, -2249.860107421875, 59.383785247802734, 1361.2681884765625, -2295.87939453125, 68.70474243164062, 34.75, 1457.0, -2255.0, 79.0, 150, 0)
 			StuntJumps[50] = AddStuntJumpAngled(367.1641540527344, -2522.2587890625, 6.246407985687256, 367.9480285644531, -2525.47021484375, 10.879891395568848, 6.0, 401.6762390136719, -2508.9697265625, 10.139721870422363, 433.92431640625, -2495.2685546875, 17.23941993713379, 25.75, 376.0, -2490.0, 18.0, 150, 0)
 			StuntJumpsBool = true
+		end
+	end
+end)
+
+Citizen.CreateThread(function() --Show Talking Player (Draws Talking Players)
+	while true do
+		Citizen.Wait(0)
+		if ShowTalkingPlayer and VoiceChat then
+			Draw("~bold~Talking Player:", 0, 0, 0, 255, 0.005, 0 * 0.0175 + 0.120, 0.35, 0.35, 7, false, GUI.optionText[5])
+			for i = 1, 32 do
+				if NetworkPlayerHasHeadset(i - 1) then
+					if NetworkIsPlayerTalking(i - 1) then
+						Draw(i .. ". " .. GetPlayerName(i - 1), 0, 255, 0, 255, 0.005, i * 0.0175 + 0.120, 0.35, 0.35, 7, false, GUI.optionText[5])
+					else
+						Draw(i .. ". " .. GetPlayerName(i - 1), 255, 0, 0, 255, 0.005, i * 0.0175 + 0.120, 0.35, 0.35, 7, false, GUI.optionText[5])
+					end
+				end
+			end
 		end
 	end
 end)

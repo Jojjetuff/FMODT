@@ -233,26 +233,26 @@ end)
 
 AddEventHandler("GotOutfitNames", function(OutfitName1, OutfitName2, OutfitName3, OutfitName4, OutfitName5, OutfitName6, OutfitName7, OutfitName8, OutfitName9, OutfitName10, --Just Don't Edit!
 								           OutfitName11, OutfitName12, OutfitName13, OutfitName14, OutfitName15, OutfitName16, OutfitName17, OutfitName18, OutfitName19, OutfitName20)
-	OutfitNames[1] = OutfitName1
-	OutfitNames[2] = OutfitName2
-	OutfitNames[3] = OutfitName3
-	OutfitNames[4] = OutfitName4
-	OutfitNames[5] = OutfitName5
-	OutfitNames[6] = OutfitName6
-	OutfitNames[7] = OutfitName7
-	OutfitNames[8] = OutfitName8
-	OutfitNames[9] = OutfitName9
-	OutfitNames[10] = OutfitName10
-	OutfitNames[11] = OutfitName11
-	OutfitNames[12] = OutfitName12
-	OutfitNames[13] = OutfitName13
-	OutfitNames[14] = OutfitName14
-	OutfitNames[15] = OutfitName15
-	OutfitNames[16] = OutfitName16
-	OutfitNames[17] = OutfitName17
-	OutfitNames[18] = OutfitName18
-	OutfitNames[19] = OutfitName19
-	OutfitNames[20] = OutfitName20
+	if OutfitName1 == nil then OutfitNames[1] = NoOutfitName else OutfitNames[1] = OutfitName1 end
+	if OutfitName2 == nil then OutfitNames[2] = NoOutfitName else OutfitNames[2] = OutfitName2 end
+	if OutfitName3 == nil then OutfitNames[3] = NoOutfitName else OutfitNames[3] = OutfitName3 end
+	if OutfitName4 == nil then OutfitNames[4] = NoOutfitName else OutfitNames[4] = OutfitName4 end
+	if OutfitName5 == nil then OutfitNames[5] = NoOutfitName else OutfitNames[5] = OutfitName5 end
+	if OutfitName6 == nil then OutfitNames[6] = NoOutfitName else OutfitNames[6] = OutfitName6 end
+	if OutfitName7 == nil then OutfitNames[7] = NoOutfitName else OutfitNames[7] = OutfitName7 end
+	if OutfitName8 == nil then OutfitNames[8] = NoOutfitName else OutfitNames[8] = OutfitName8 end
+	if OutfitName9 == nil then OutfitNames[9] = NoOutfitName else OutfitNames[9] = OutfitName9 end
+	if OutfitName10 == nil then OutfitNames[10] = NoOutfitName else OutfitNames[10] = OutfitName10 end
+	if OutfitName11 == nil then OutfitNames[11] = NoOutfitName else OutfitNames[11] = OutfitName11 end
+	if OutfitName12 == nil then OutfitNames[12] = NoOutfitName else OutfitNames[12] = OutfitName12 end
+	if OutfitName13 == nil then OutfitNames[13] = NoOutfitName else OutfitNames[13] = OutfitName13 end
+	if OutfitName14 == nil then OutfitNames[14] = NoOutfitName else OutfitNames[14] = OutfitName14 end
+	if OutfitName15 == nil then OutfitNames[15] = NoOutfitName else OutfitNames[15] = OutfitName15 end
+	if OutfitName16 == nil then OutfitNames[16] = NoOutfitName else OutfitNames[16] = OutfitName16 end
+	if OutfitName17 == nil then OutfitNames[17] = NoOutfitName else OutfitNames[17] = OutfitName17 end
+	if OutfitName18 == nil then OutfitNames[18] = NoOutfitName else OutfitNames[18] = OutfitName18 end
+	if OutfitName19 == nil then OutfitNames[19] = NoOutfitName else OutfitNames[19] = OutfitName19 end
+	if OutfitName20 == nil then OutfitNames[20] = NoOutfitName else OutfitNames[20] = OutfitName20 end
 end)
 
 AddEventHandler("ChangePlayerPed", function(ModelHash) --Just Don't Edit!

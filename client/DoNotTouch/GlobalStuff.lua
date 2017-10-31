@@ -726,7 +726,8 @@
 						 flyingvehicle, reducevehgrip, vehicleVisible, gravity, boosthorn, bunnyhop, DriveOnWater, seatbelt, despawnable, autodelete,
 						 mapblip, deletegun, vehiclegun, whalegun, teleportgun, fireammo, VehicleWeaponsPosition, setinfinite, oneshot, vehicleweapons,
 						 explosiveammo, ExplosiveBulletEnumPosition, speedoDefault, autoparachute, heatvision, nightvision, CoordsOverMap, HideHUD,
-						 HideRadar, HideHUDCount, freezeradio, nocinecam, mobileradio, dfps, simpleSpeedo, RadioFreezePosition, SelectedLanguage}
+						 HideRadar, HideHUDCount, freezeradio, nocinecam, mobileradio, dfps, simpleSpeedo, RadioFreezePosition, SelectedLanguage,
+						 ShowTalkingPlayer}
 		SettingsTable = table.tostring(SettingsTable)
 		SettingsTable = SettingsTable:gsub("{", "")
 		SettingsTable = SettingsTable:gsub("}", "")

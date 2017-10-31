@@ -4,10 +4,10 @@ local getWeapons = false; HasOutfits = false, ChangeName, ChangePassword
 Citizen.CreateThread(function() --Settings Menu
 	while true do
 
-		if (settingsMenu) then
+		if settingsMenu then
 		
 			for i = 1, 20 do
-				if OutfitNames[i] ~= NoOutfitName then
+				if OutfitNames[i] ~= "Empty" and OutfitNames[i] ~= "Leer" and OutfitNames[i] ~= "Tom" and OutfitNames[i] ~= "Tuščia" then
 					HasOutfits = true
 					break
 				else
@@ -151,6 +151,7 @@ Citizen.CreateThread(function() --Settings Menu
 					jumpmode = false
 					nonpcstraffic = false
 					SelectedLanguage = 1
+					ShowTalkingPlayer = false
 					Username = ""
 					Password = ""
 					loggedIn = false
@@ -260,7 +261,7 @@ AddEventHandler("MenuSettingsSet", function(Settings) --Restores Settings
 	local SettingsSplitted = stringsplit(Settings, ',')
 
 	for i = 1, 20 do
-		if OutfitNames[i] ~= NoOutfitName then
+		if OutfitNames[i] ~= "Empty" and OutfitNames[i] ~= "Leer" and OutfitNames[i] ~= "Tom" and OutfitNames[i] ~= "Tuščia" then
 			HasOutfits = true
 			break
 		else
@@ -330,6 +331,7 @@ AddEventHandler("MenuSettingsSet", function(Settings) --Restores Settings
 	if SettingsSplitted[52] then simpleSpeedo = tobool(SettingsSplitted[52]) end
 	if SettingsSplitted[53] then RadioFreezePosition = tonumber(SettingsSplitted[53]) end
 	if SettingsSplitted[54] then SelectedLanguage = tonumber(SettingsSplitted[54]) end
+	if SettingsSplitted[55] then ShowTalkingPlayer = tobool(SettingsSplitted[55]) end
 end)
 
 AddEventHandler("GiveWeaponsBack", function(weapons) --Gives The Player His Weapons

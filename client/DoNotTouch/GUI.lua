@@ -24,7 +24,7 @@ GUI.optionText = {255, 255, 255, 255}
 GUI.optionRect = {40, 40, 40, 190}
 GUI.scroller = {127, 140, 140, 240}
 GUI.titleTextSize = {0.8, 0.8}
-GUI.optionTextSize = {0.5, 0.5 }
+GUI.optionTextSize = {0.5, 0.5}
 
 menuX = 0.85
 local selectPressed = false

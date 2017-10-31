@@ -182,6 +182,7 @@ AddEventHandler("LoginClient", function(LoggedIn)
 	if LoggedIn then
 		TriggerServerEvent("RecoverOldSaves")
 		TriggerServerEvent("GetOutfitNames")
+		TriggerServerEvent("GetVehicleNames")
 		TriggerServerEvent("LoadSettings")
 		drawNotification("~g~" .. LoginSuccessMessage .. "!")
 		loggedIn = true

@@ -81,6 +81,10 @@ Citizen.CreateThread(function() --Language Changing
 				VoiceChatChannelTitle = "Voice Chat Channel"
 				VoiceChatChannelChangeToDefaultMessage = "Changed Voice Chat Channel To Default"
 
+				ShowTalkingPlayerTitle = "Show Talking Player"
+				ShowTalkingPlayerEnableMessage = "Show Talking Player Enable"
+				ShowTalkingPlayerDisableMessage = "Show Talking Player Disabled"
+
 				NameTitle = "Name" --NEW
 				MenuNameTitle = "Menu Name" --NEW
 				IPTitle = "IP" --NEW
@@ -838,6 +842,10 @@ Citizen.CreateThread(function() --Language Changing
 
 				VoiceChatChannelTitle = "Sprach Chat Kanal"
 				VoiceChatChannelChangeToDefaultMessage = "Sprach Chat Kanal zu Standard geändert"
+
+				ShowTalkingPlayerTitle = "Sprechende Spieler anzeigen"
+				ShowTalkingPlayerEnableMessage = "Sprechende Spieler anzeigen aktiviert"
+				ShowTalkingPlayerDisableMessage = "Sprechende Spieler anzeigen deaktiviert"
 
 				NameTitle = "Name" --NEW
 				MenuNameTitle = "Menü Name" --NEW
@@ -1598,6 +1606,10 @@ Citizen.CreateThread(function() --Language Changing
 				VoiceChatChannelTitle = "Voice Chat Kanaler"
 				VoiceChatChannelChangeToDefaultMessage = "Satt Voice Chat Kanal Til Standard"
 
+				ShowTalkingPlayerTitle = "Vis snakkespiller"
+				ShowTalkingPlayerEnableMessage = "Vis snakkespiller Aktivert"
+				ShowTalkingPlayerDisableMessage = "Vis snakkespiller Deaktivert"
+
 				NameTitle = "Navn" --NEW
 				MenuNameTitle = "Menynavn" --NEW
 				IPTitle = "IP" --NEW
@@ -2356,6 +2368,10 @@ Citizen.CreateThread(function() --Language Changing
 				VoiceChatChannelTitle = "Balso pokalbių kanalas"
 				VoiceChatChannelChangeToDefaultMessage = "Balso pokalbių kanalas pakeistas į standartinį"
 
+				ShowTalkingPlayerTitle = "Rodyti kalbėtoją"
+				ShowTalkingPlayerEnableMessage = "Rodyti kalbėtoją įjungti visiems klientams"
+				ShowTalkingPlayerDisableMessage = "Rodyti kalbėtoją išjungti visiems klientams"
+
 				NameTitle = "Vardas" --NEW
 				MenuNameTitle = "Meniu pavadinimas" --NEW
 				IPTitle = "IP" --NEW
@@ -3038,5 +3054,6 @@ Citizen.CreateThread(function() --Language Changing
 				LanguageCredits = "Virsenas"
 				LanguageCreditsLink = "forum.fivem.net/u/Virsenas"
 		end
+
 	end
 end)
