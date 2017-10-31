@@ -130,7 +130,7 @@ Citizen.CreateThread(function() --Enter Name / Password
 	while true do
 		Citizen.Wait(0)
 		if EnterName then
-			local result = KeyboardInput(NameKeyboardMessage, Username, 16, false)
+			local result = KeyboardInput(UsernameTitle, Username, 16, false)
 			if result ~= nil then
 				if result:len() >= 3 and not result:match("%W") then
 					Username = result
@@ -142,7 +142,7 @@ Citizen.CreateThread(function() --Enter Name / Password
 				EnterName = false
 			end
 		elseif EnterPassword then
-			local result = KeyboardInput(PasswordKeyboardMessage, Password, 30, false)
+			local result = KeyboardInput(PasswordTitle, Password, 30, false)
 			if result ~= nil then
 				if result:len() >= 6 then 
 					Password = result

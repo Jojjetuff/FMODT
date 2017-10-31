@@ -6,7 +6,7 @@ local player = nil; playerPing = "N/A"; playerIP = "N/A"; FirstIDOutput = {}; Se
 Citizen.CreateThread(function() --Admin Menu
 	local VoiceChatChannel = 0
 	while true do
-		if (adminMenu) then
+		if adminMenu then
 		
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionadminMenu
@@ -75,7 +75,7 @@ Citizen.CreateThread(function() --Admin Menu
 
 			TriggerEvent("FMODT:Update")
 			
-		elseif (adminSpectateMenu) then
+		elseif adminSpectateMenu then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionadminSpectateMenu
@@ -115,7 +115,7 @@ Citizen.CreateThread(function() --Admin Menu
 
 			TriggerEvent("FMODT:Update")
 			
-		elseif (adminPlayerList1) then
+		elseif adminPlayerList1 then
 		
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionadminPlayerList1
@@ -163,7 +163,7 @@ Citizen.CreateThread(function() --Admin Menu
 			
 			if adminInformations and currentOption ~= 17 then player = currentOption - 1 end
 			
-		elseif (adminPlayerList2) then
+		elseif adminPlayerList2 then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionadminPlayerList2
@@ -211,7 +211,7 @@ Citizen.CreateThread(function() --Admin Menu
 			
 			if adminInformations and currentOption ~= 17 then player = currentOption + 15 end
 			
-		elseif (adminMiscMenu) then
+		elseif adminMiscMenu then
 		
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionadminMiscMenu

@@ -750,8 +750,6 @@ Citizen.CreateThread(function() --Language Changing
 			-- KeyboardMessages
 				KickReasonKeyboardMessage = "Kick Reason" --NEW
 				BanReasonKeyboardMessage = "Ban Reason" --NEW
-				NameKeyboardMessage = "Name" --NEW
-				PasswordKeyboardMessage = "Password" --NEW
 				OutfitNameKeyboardMessage = "Outfit Name" --NEW
 				PedModelKeyboardMessage = "Ped Model" --NEW
 				CoordsKeyboardMessage = "Coords" --NEW
@@ -1513,8 +1511,6 @@ Citizen.CreateThread(function() --Language Changing
 			-- KeyboardMessages
 				KickReasonKeyboardMessage = "Kick Grund" --NEW
 				BanReasonKeyboardMessage = "Ban Grund" --NEW
-				NameKeyboardMessage = "Name" --NEW
-				PasswordKeyboardMessage = "Passwort" --NEW
 				OutfitNameKeyboardMessage = "Outfit Name" --NEW
 				PedModelKeyboardMessage = "Ped Modell" --NEW
 				CoordsKeyboardMessage = "Koordinaten" --NEW
@@ -2275,8 +2271,6 @@ Citizen.CreateThread(function() --Language Changing
 			-- KeyboardMessages
 				KickReasonKeyboardMessage = "Utkastelsesmelding" --NEW
 				BanReasonKeyboardMessage = "Utestengelsesmelding" --NEW
-				NameKeyboardMessage = "Navn" --NEW
-				PasswordKeyboardMessage = "Passord" --NEW
 				OutfitNameKeyboardMessage = "Utseendenavn" --NEW
 				PedModelKeyboardMessage = "Karaktermodell" --NEW
 				CoordsKeyboardMessage = "Koordinater" --NEW
@@ -3037,8 +3031,6 @@ Citizen.CreateThread(function() --Language Changing
 			-- KeyboardMessages
 				KickReasonKeyboardMessage = "Išmetimo priežastis" --NEW
 				BanReasonKeyboardMessage = "Užblokavimo priežastis" --NEW
-				NameKeyboardMessage = "Vardas" --NEW
-				PasswordKeyboardMessage = "Slaptažodis" --NEW
 				OutfitNameKeyboardMessage = "Aprangos pavadinimas" --NEW
 				PedModelKeyboardMessage = "Žaidėjo modelis" --NEW
 				CoordsKeyboardMessage = "Koordinatės" --NEW

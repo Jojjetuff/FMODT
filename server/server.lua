@@ -15,49 +15,35 @@ local banHours = 1.0 --Ban Duration
 	And so on...
 ]]
 
---[[	To get your Identifier:
 
-				Add the Trainer to your Server Resources, run FiveM and join YOUR Server. Once your Ped Spawned, press the following Buttoncombination:
+--Update Check
 
-				
-																		GAMEPAD:
-																		
-												--->>>		LB/ L1 + RB / R1 + DPAD Down + A/ X.		<<<---
-															
-																		KEYBOARD:
-															
-					  --->>>	   Button for VEHICLE AIM + Button for VEHICLE SHOOT + Button for PHONE DOWN + Button for PHONE UP.	      <<<---
-
-												It Outputs the Identifier in your RCON Log. Edit this File afterward.
-
-]]
-
-local Admins = { --Add Identifiers In The Given Format For Admins (You don't have to use every identifier, one is enough)
-
-				{"ip:000.000.000.000", "steam:110000114d96182", "license:5703b0535f4a14910d6e88c00d3443fca96c02d2", "FlatraceMOD/ Flatracer"}, --Remove this Line if you don't want me to be an Admin ^^
-				{"ip:000.000.000.000", "steam:000000000000000", "license:0000000000000000000000000000000000000000", "Admin Name"},
-				{"ip:000.000.000.000", "steam:000000000000000", "license:0000000000000000000000000000000000000000", "Admin Name"},
-				{"ip:000.000.000.000", "steam:000000000000000", "license:0000000000000000000000000000000000000000", "Admin Name"},
-				{"ip:000.000.000.000", "steam:000000000000000", "license:0000000000000000000000000000000000000000", "Admin Name"},
-				{"ip:000.000.000.000", "steam:000000000000000", "license:0000000000000000000000000000000000000000", "Admin Name"},
-				
-			   }
-
+PerformHttpRequest("https://raw.githubusercontent.com/Flatracer/FMODT_Resources/master/VERSION", function(Error, Body, Header)
+	if CurrentVersion ~= Body then
+		print("\n\n->CHEM!CAL T0X!N:\n-->Current Version: " .. CurrentVersion .. "\n-->Newest Version: " .. Body .. "\n->Outdated, please check the Topic for the newest Version!\n\n")
+	else
+		print("\n\n->CHEM!CAL T0X!N:\n-->Current Version: " .. CurrentVersion .. "\n-->Newest Version: " .. Body .. "\n->Up to date!\n\n")
+	end
+end)
 
 --General Stuff
 			   
 AddEventHandler("ID", function() --Grants Access To The Menu
 	local IDs = GetPlayerIdentifiers(source)
+	local Admins = LoadResourceFile(GetCurrentResourceName(), 'server' .. GetOSSep() .. 'Admins.txt')
+	local AdminsSplitted = stringsplit(Admins, "\n")
 	local done
-	for k, AdminID in pairs(Admins) do
+	for k, AdminID in pairs(AdminsSplitted) do
+		local AdminID = AdminID:gsub(" ", "")
+		local SingleAdminsSplitted = stringsplit(AdminID, ",")
 		for l, ID in pairs(IDs) do
-			if ID:lower() == AdminID[1]:lower() or ID == AdminID[2]:lower() or ID == AdminID[3]:lower() then
-				print(k .. ". Admin (" .. AdminID[4] .. ") joined.")
+			if ID:lower() == SingleAdminsSplitted[1]:lower() or ID:lower() == SingleAdminsSplitted[2]:lower() or ID:lower() == SingleAdminsSplitted[3]:lower() then
+				print(k .. ". Admin joined - " .. SingleAdminsSplitted[4])
 				TriggerClientEvent("AdminActivation", source, 1)
 				done = true
 				break
 			else
-				if k == tablelength(Admins) then
+				if k == tablelength(AdminsSplitted) then
 					TriggerClientEvent("AdminActivation", source, 0)
 				end
 			end
@@ -621,12 +607,4 @@ RegisterServerEvent("ChangePassword") --Just Don't Edit!
 RegisterServerEvent("ResetPassword") --Just Don't Edit!
 RegisterServerEvent("GetUsername") --Just Don't Edit!
 RegisterServerEvent("GotUsername") --Just Don't Edit!
-
-PerformHttpRequest("https://raw.githubusercontent.com/Flatracer/FMODT_Resources/master/VERSION", function(Error, Body, Header)
-	if CurrentVersion ~= Body then
-		print("\n\n->CHEM!CAL T0X!N:\n-->Current Version: " .. CurrentVersion .. "\n-->Newest Version: " .. Body .. "\n->Outdated, please check the Topic for the newest Version!\n\n")
-	else
-		print("\n\n->CHEM!CAL T0X!N:\n-->Current Version: " .. CurrentVersion .. "\n-->Newest Version: " .. Body .. "\n->Up to date!\n\n")
-	end
-end)
 
