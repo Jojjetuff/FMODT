@@ -19,7 +19,7 @@ Citizen.CreateThread(function() --Main Menu
 			if IsAdmin then
 				TriggerEvent("FMODT:Option", "~y~>> ~s~" .. AdminMenuTitle, function(cb)
 					if (cb) then
-						TriggerServerEvent("GetHost")
+						TriggerServerEvent("FMODT:GetHost")
 						mainMenu = false
 						adminMenu = true
 					end
@@ -44,7 +44,7 @@ Citizen.CreateThread(function() --Main Menu
 				TriggerEvent("FMODT:Option", "~y~>> ~s~" .. TeleportMenuTitle, function(cb)
 					if (cb) then
 						mainMenu = false
-						teleportMenu = true
+						TeleportMenu = true
 					end
 				end)
 			end

@@ -5,12 +5,12 @@ local player = -1; CustomX = 0.0; CustomY = 0.0; CustomZ = 0.0
 Citizen.CreateThread(function() --Teleport Menu							[Multiple Pages]
 	while true do
 		local X, Y, Z
-		if teleportMenu then
+		if TeleportMenu then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
-				currentOption = lastSelectionteleportMenu
+				currentOption = lastSelectionTeleportMenu
 			else
-				lastSelectionteleportMenu = currentOption
+				lastSelectionTeleportMenu = currentOption
 			end
 		
 			TriggerEvent("FMODT:Title", "~y~" .. TeleportMenuTitle .. "")
@@ -36,14 +36,14 @@ Citizen.CreateThread(function() --Teleport Menu							[Multiple Pages]
 
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. TeleportEntityRelativeTitle, function(cb)
 				if (cb) then
-					teleportMenu = false
-					teleportMenuEntityRelative = true
+					TeleportMenu = false
+					TeleportMenuEntityRelative = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. TeleportToOnlinePlayerTitle, function(cb)
 				if (cb) then
-					teleportMenu = false
+					TeleportMenu = false
 					teleportToPlayer = true
 					OnlinePlayer1 = true
 				end
@@ -51,33 +51,33 @@ Citizen.CreateThread(function() --Teleport Menu							[Multiple Pages]
 
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. InteriorLocationsTitle, function(cb)
 				if (cb) then
-					teleportMenu = false
+					TeleportMenu = false
 					interiorLocation = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. ExteriorLocationsTitle, function(cb)
 				if (cb) then
-					teleportMenu = false
+					TeleportMenu = false
 					exteriorLocation = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. CustomLocationTitle, function(cb)
 				if (cb) then
-					teleportMenu = false
+					TeleportMenu = false
 					customLocation = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Update")
 			
-		elseif teleportMenuEntityRelative then
+		elseif TeleportMenuEntityRelative then
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
-				currentOption = lastSelectionteleportMenuEntityRelative
+				currentOption = lastSelectionTeleportMenuEntityRelative
 			else
-				lastSelectionteleportMenuEntityRelative = currentOption
+				lastSelectionTeleportMenuEntityRelative = currentOption
 			end
 		
 			if IsPedInAnyVehicle(GetPlayerPed(-1), false) and (GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1), false), -1) == GetPlayerPed(-1)) then
@@ -560,7 +560,7 @@ Citizen.CreateThread(function() --Teleport Menu							[Multiple Pages]
 			end
 			entity = GetPlayerPed(-1)
 
-			TriggerServerEvent("EffectForAll", PlayerId())
+			TriggerServerEvent("FMODT:EffectForAll", PlayerId())
 			
 			X = nil
 			Y = nil
@@ -589,10 +589,10 @@ Citizen.CreateThread(function() --Teleport To Waypoint
 			if zHeigt == 0.0 then
 				height = height - 50.0
 				SetEntityCoords(entity, Pos.x, Pos.y, height)
-				TriggerServerEvent("EffectForAll", PlayerId())
+				TriggerServerEvent("FMODT:EffectForAll", PlayerId())
 				zHeigt = getGroundZ(Pos.x, Pos.y, Pos.z)
 			else
-				TriggerServerEvent("EffectForAll", PlayerId())
+				TriggerServerEvent("FMODT:EffectForAll", PlayerId())
 				SetEntityCoords(entity, Pos.x, Pos.y, zHeigt)
 				FreezeEntityPosition(entity, false)
 				wp = false
@@ -617,7 +617,7 @@ Citizen.CreateThread(function() --Teleport To Online Player - Step One
 						entity = GetPlayerPed(-1)
 					end
 					if IsEntityAVehicle(entity) then
-						TriggerServerEvent("GetCoords", GetPlayerServerId(player), GetPlayerServerId(PlayerId()))
+						TriggerServerEvent("FMODT:GetCoords", GetPlayerServerId(player), GetPlayerServerId(PlayerId()))
 						while PlayerX == nil and PlayerY == nil and PlayerZ == nil do
 							Citizen.Wait(0)
 						end
@@ -630,14 +630,14 @@ Citizen.CreateThread(function() --Teleport To Online Player - Step One
 							while seatindex <= seats and not IsVehicleSeatFree(playerVeh, seatindex) do
 								seatindex = seatindex + 1
 							end
-							TriggerServerEvent("GetCoords", GetPlayerServerId(player), GetPlayerServerId(PlayerId()))
+							TriggerServerEvent("FMODT:GetCoords", GetPlayerServerId(player), GetPlayerServerId(PlayerId()))
 							while PlayerX == nil and PlayerY == nil and PlayerZ == nil do
 								Citizen.Wait(0)
 							end
 							SetEntityCoords(entity, PlayerX, PlayerY, PlayerZ)
 							SetPedIntoVehicle(GetPlayerPed(-1), playerVeh, seatindex)
 						else
-							TriggerServerEvent("GetCoords", GetPlayerServerId(player), GetPlayerServerId(PlayerId()))
+							TriggerServerEvent("FMODT:GetCoords", GetPlayerServerId(player), GetPlayerServerId(PlayerId()))
 							while PlayerX == nil and PlayerY == nil and PlayerZ == nil do
 								Citizen.Wait(0)
 							end
@@ -990,7 +990,7 @@ Citizen.CreateThread(function() --Setting Custom Coords
 	end
 end)
 
-AddEventHandler("Effect", function(EffectPlayer) --Start The Teleport Effect For Everyone Around The Player
+AddEventHandler("FMODT:Effect", function(EffectPlayer) --Start The Teleport Effect For Everyone Around The Player
 	local Entity
 	local playerPedPos = GetEntityCoords(GetPlayerPed(-1), true)
 	local EffectPlayerPedPos = GetEntityCoords(GetPlayerPed(EffectPlayer), true)
@@ -1017,12 +1017,12 @@ AddEventHandler("Effect", function(EffectPlayer) --Start The Teleport Effect For
 	end
 end)
 
-AddEventHandler("GetCoordsClient", function(Sender)
+AddEventHandler("FMODT:GetCoordsClient", function(Sender)
 	local X, Y, Z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
-	TriggerServerEvent("GotCoords", Sender, X, Y, Z)
+	TriggerServerEvent("FMODT:GotCoords", Sender, X, Y, Z)
 end)
 
-AddEventHandler("GotCoordsClient", function(X, Y, Z)
+AddEventHandler("FMODT:GotCoordsClient", function(X, Y, Z)
 	PlayerX = X
 	PlayerY = Y
 	PlayerZ = Z

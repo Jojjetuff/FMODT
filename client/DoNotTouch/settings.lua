@@ -83,7 +83,9 @@ Citizen.CreateThread(function() --Settings Menu
 			TriggerEvent("FMODT:Option", LogOutTitle, function(cb)
 				if (cb) then
 					SaveSettings()
-					lasteveryPedSite = 1
+					lastSiteEveryPed = 1
+					lastSiteAddOnVehicles = 1
+					lastSiteAddOnPeds = 1
 					godmode = false
 					godmodeCount = 0
 					playerVisible = true
@@ -209,7 +211,7 @@ Citizen.CreateThread(function() --Gets Players Weapons
 			local weapons = table.tostring(gotWeap)
 				  weapons = weapons:gsub("{", "")
 				  weapons = weapons:gsub("}", "")
-			TriggerServerEvent("WeaponSaving", weapons)
+			TriggerServerEvent("FMODT:WeaponSaving", weapons)
 		end
 	end
 end)
@@ -223,7 +225,7 @@ Citizen.CreateThread(function() --Change Name / Password
 				if result:len() >= 3 and not result:match("%W") then
 					Username = result
 					ChangeName = false
-					TriggerServerEvent("ChangeUsername", Username)
+					TriggerServerEvent("FMODT:ChangeUsername", Username)
 				else
 					drawNotification("~r~" .. NameInvalidMessage .. "!")
 				end
@@ -237,7 +239,7 @@ Citizen.CreateThread(function() --Change Name / Password
 					Password = result
 					drawNotification("~g~" .. ChangePasswordSuccessMessage .. "!")
 					ChangePassword = false
-					TriggerServerEvent("ChangePassword", Password)
+					TriggerServerEvent("FMODT:ChangePassword", Password)
 				else
 					drawNotification("~r~" .. PasswordTooShortMessage .. "!")
 				end
@@ -248,7 +250,7 @@ Citizen.CreateThread(function() --Change Name / Password
 	end
 end)
 
-AddEventHandler("ChangeUsernameClient", function(Changed, Name)
+AddEventHandler("FMODT:ChangeUsernameClient", function(Changed, Name)
 	Username = Name
 	if Changed then
 		drawNotification("~g~" .. ChangeUsernameSuccessMessage .. "!")
@@ -257,7 +259,7 @@ AddEventHandler("ChangeUsernameClient", function(Changed, Name)
 	end
 end)
 
-AddEventHandler("MenuSettingsSet", function(Settings) --Restores Settings
+AddEventHandler("FMODT:MenuSettingsSet", function(Settings) --Restores Settings
 	local SettingsSplitted = stringsplit(Settings, ',')
 
 	for i = 1, 20 do
@@ -275,7 +277,7 @@ AddEventHandler("MenuSettingsSet", function(Settings) --Restores Settings
 		if SettingsSplitted[2] then outfitSpawn = tobool(SettingsSplitted[2]) end
 		if SettingsSplitted[3] then OutfitIndex = tonumber(SettingsSplitted[3]) end
 		if outfitSpawn and OutfitNames[OutfitIndex] ~= NoOutfitName then
-			TriggerServerEvent("OutfitLoad", OutfitIndex)
+			TriggerServerEvent("FMODT:OutfitLoad", OutfitIndex)
 		end
 	end
 	
@@ -334,7 +336,7 @@ AddEventHandler("MenuSettingsSet", function(Settings) --Restores Settings
 	if SettingsSplitted[55] then ShowTalkingPlayer = tobool(SettingsSplitted[55]) end
 end)
 
-AddEventHandler("GiveWeaponsBack", function(weapons) --Gives The Player His Weapons
+AddEventHandler("FMODT:GiveWeaponsBack", function(weapons) --Gives The Player His Weapons
 	local Weapons = stringsplit(weapons, ",")
 	
 	for i = 1, tablelength(Weapons), 3 do
@@ -350,7 +352,7 @@ AddEventHandler("playerSpawned", function(spawn) --Changes To Outfit & Gives Wea
 	if outfitSpawn then
 		if OutfitNames[OutfitIndex] ~= NoOutfitName then
 			playerVisible = false
-			TriggerServerEvent("OutfitLoad", OutfitIndex)
+			TriggerServerEvent("FMODT:OutfitLoad", OutfitIndex)
 			drawNotification("~g~" .. OutfitMessage .. " ~y~" .. OutfitNames[OutfitIndex] .. " ~g~" .. LoadedMessage .. "!")
 		else
 			drawNotification("~r~" .. OutfitMessage .. " " .. OutfitIndex .. " - " .. NotExisting .. "!")
@@ -365,7 +367,7 @@ AddEventHandler("playerSpawned", function(spawn) --Changes To Outfit & Gives Wea
 				Citizen.Wait(1000)
 			end
 		end
-		TriggerServerEvent("WeaponLoading")
+		TriggerServerEvent("FMODT:WeaponLoading")
 	end
 end)
 

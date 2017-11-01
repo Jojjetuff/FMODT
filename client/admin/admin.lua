@@ -346,8 +346,8 @@ Citizen.CreateThread(function() --Player Actions
 			if NetworkIsPlayerConnected(player) then
 				if adminInformations then
 					PlayerName = GetPlayerName(player)
-					TriggerServerEvent("GetIt", GetPlayerServerId(player))
-					TriggerServerEvent("GetUsername", GetPlayerServerId(player))
+					TriggerServerEvent("FMODT:GetIt", GetPlayerServerId(player))
+					TriggerServerEvent("FMODT:GetUsername", GetPlayerServerId(player))
 					if playerIP == nil then playerIP = "~r~N/A" end
 					if PlayerName == nil then PlayerName = "~r~N/A" end
 					if PlayerUsername == nil or PlayerUsername == "" then PlayerUsername = "~r~N/A" end
@@ -371,7 +371,7 @@ Citizen.CreateThread(function() --Player Actions
 							if Reason == "" then
 								Reason = AdminsDecisionMessage
 							end
-							TriggerServerEvent("KickPlayer", GetPlayerServerId(player), Reason)
+							TriggerServerEvent("FMODT:KickPlayer", GetPlayerServerId(player), Reason)
 							drawNotification("~y~" .. GetPlayerName(player) .. "~s~ - " .. KickedMessage .. "!")
 						else
 							drawNotification("~r~" .. PlayerKickAbortedMessage .. "!")
@@ -383,7 +383,7 @@ Citizen.CreateThread(function() --Player Actions
 							if Reason == "" then
 								Reason = AdminsDecisionMessage
 							end
-							TriggerServerEvent("BanPlayer", GetPlayerServerId(player), Reason, BanDuration)
+							TriggerServerEvent("FMODT:BanPlayer", GetPlayerServerId(player), Reason, BanDuration)
 							drawNotification("~y~" .. GetPlayerName(player) .. "~s~ - " .. BannedMessage .. "!")
 						else
 							drawNotification("~r~" .. PlayerBanAbortedMessage .. "!")
@@ -449,13 +449,13 @@ Citizen.CreateThread(function() --Sets Current Settings on every Client, also on
 	while true do
 		Citizen.Wait(3000)
 		if IsAdmin and not (IsDisabledControlJustPressed(1, 174) or IsDisabledControlJustPressed(1, 175) or IsDisabledControlJustPressed(1, 176)) then
-			TriggerServerEvent("ExtendableMap", ExtendableMap)
-			TriggerServerEvent("AdminOnlyBlipsNames", BlipsAndNamesNonAdmins)
-			TriggerServerEvent("PlayerBlips", playerBlips)
-			TriggerServerEvent("PvP", PvP)
-			TriggerServerEvent("Scoreboard", Scoreboard)
-			TriggerServerEvent("VoiceChat", VoiceChat)
-			TriggerServerEvent("VoiceChatProximity", VoiceChatProximity)
+			TriggerServerEvent("FMODT:ExtendableMap", ExtendableMap)
+			TriggerServerEvent("FMODT:AdminOnlyBlipsNames", BlipsAndNamesNonAdmins)
+			TriggerServerEvent("FMODT:PlayerBlips", playerBlips)
+			TriggerServerEvent("FMODT:PvP", PvP)
+			TriggerServerEvent("FMODT:Scoreboard", Scoreboard)
+			TriggerServerEvent("FMODT:VoiceChat", VoiceChat)
+			TriggerServerEvent("FMODT:VoiceChatProximity", VoiceChatProximity)
 		end
 	end
 end)
@@ -538,22 +538,22 @@ Citizen.CreateThread(function() --Show Talking Player (Draws Talking Players)
 	end
 end)
 
-AddEventHandler("GotIt", function(Ping, IP, LID, SID) --Got Informations About A Player
+AddEventHandler("FMODT:GotIt", function(Ping, IP, LID, SID) --Got Informations About A Player
 	playerPing = tostring(Ping)
 	playerIP = tostring(IP)
 	LicenseID = splitByChunk(LID, 20)
 	SteamID = SID
 end)
 
-AddEventHandler("GetUsernameClient", function(Sender) --Gets The Username Of A Player
-	TriggerServerEvent("GotUsername", Sender, Username)
+AddEventHandler("FMODT:GetUsernameClient", function(Sender) --Gets The Username Of A Player
+	TriggerServerEvent("FMODT:GotUsername", Sender, Username)
 end)
 
-AddEventHandler("GotUsernameClient", function(Name) --Got The Username Of A Player
+AddEventHandler("FMODT:GotUsernameClient", function(Name) --Got The Username Of A Player
 	PlayerUsername = Name
 end)
 
-AddEventHandler("GotHost", function(Host, Hostname) --Got The Current Host
+AddEventHandler("FMODT:GotHost", function(Host, Hostname) --Got The Current Host
 	HostID = Host
 	HostName = Hostname
 	for i = 0, 31 do
@@ -566,35 +566,35 @@ AddEventHandler("GotHost", function(Host, Hostname) --Got The Current Host
 	end
 end)
 
-AddEventHandler("TeleportMe", function(AdminCoordX, AdminCoordY, AdminCoordZ) --Teleports A Player To An Admin
+AddEventHandler("FMODT:TeleportMe", function(AdminCoordX, AdminCoordY, AdminCoordZ) --Teleports A Player To An Admin
 	SetEntityCoords(GetPlayerPed(-1), AdminCoordX, AdminCoordY, AdminCoordZ)
 end)
 
-AddEventHandler("ExtendableMapClient", function(State) --Enables/ Disables the Extendable Map
+AddEventHandler("FMODT:ExtendableMapClient", function(State) --Enables/ Disables the Extendable Map
 	ExtendableMap = State
 end)
 
-AddEventHandler("PlayerBlipsClient", function(State) --Enables/ Disables the Player Blips
+AddEventHandler("FMODT:PlayerBlipsClient", function(State) --Enables/ Disables the Player Blips
 	playerBlips = State
 end)
 
-AddEventHandler("PvPClient", function(State) --Enables/ Disables PvP
+AddEventHandler("FMODT:PvPClient", function(State) --Enables/ Disables PvP
 	PvP = State
 end)
 
-AddEventHandler("ScoreboardClient", function(State) --Enables/ Disables the Scoreboard
+AddEventHandler("FMODT:ScoreboardClient", function(State) --Enables/ Disables the Scoreboard
 	Scoreboard = State
 end)
 
-AddEventHandler("AdminOnlyBlipsNamesClient", function(State) --Enables/ Disables the Player Blips & Names For Non-Admins
+AddEventHandler("FMODT:AdminOnlyBlipsNamesClient", function(State) --Enables/ Disables the Player Blips & Names For Non-Admins
 	BlipsAndNamesNonAdmins = State
 end)
 
-AddEventHandler("VoiceChatClient", function(State) --Enables/ Disables the Voice Chat
+AddEventHandler("FMODT:VoiceChatClient", function(State) --Enables/ Disables the Voice Chat
 	VoiceChat = State
 end)
 
-AddEventHandler("VoiceChatProximityClient", function(Proximity) --Changes the Voice Chat Proximity
+AddEventHandler("FMODT:VoiceChatProximityClient", function(Proximity) --Changes the Voice Chat Proximity
 	VoiceChatProximity = Proximity
 end)
 

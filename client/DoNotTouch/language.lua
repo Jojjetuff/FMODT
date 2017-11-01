@@ -1544,7 +1544,7 @@ Citizen.CreateThread(function() --Language Changing
 				AdminMenuTitle = "Administrator"
 				PlayerMenuTitle = "Karakter"
 				VehicleMenuTitle = "Kjøretøy"
-				TeleportMenuTitle = "Teleportmeny"
+				TeleportMenuTitle = "TeleportMeny"
 				WeaponMenuTitle = "Våpen"
 				WorldMenuTitle = "Verden"
 				MiscMenuTitle = "Annet"

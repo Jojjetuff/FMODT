@@ -897,7 +897,7 @@ Citizen.CreateThread(function() --Death Message
 				text = "killed"
 			end
 			
-			TriggerServerEvent("DeathMessage", Killer, text, KilledPlayer)
+			TriggerServerEvent("FMODT:DeathMessage", Killer, text, KilledPlayer)
 		end
 	end
 end)
@@ -916,19 +916,19 @@ Citizen.CreateThread(function() --Voice Chat Proximity
 	end
 end)
 
-AddEventHandler("JoinMessageClients", function(name) --Join Message Event
+AddEventHandler("FMODT:JoinMessageClients", function(name) --Join Message Event
 	if JoinMessage then
 		drawNotification("~bold~~d~" .. name .. "~bold~ ~s~" .. JoinedMessage)
 	end
 end)
 
-AddEventHandler("LeftMessageClients", function(name) --Left Message Event
+AddEventHandler("FMODT:LeftMessageClients", function(name) --Left Message Event
 	if LeftMessage then
 		drawNotification("~bold~~d~" .. name .. "~bold~ ~s~" .. LeftMessage)
 	end
 end)
 
-AddEventHandler("DeathMessageClients", function(Killer, text, KilledPlayer) --Death Message Event
+AddEventHandler("FMODT:DeathMessageClients", function(Killer, text, KilledPlayer) --Death Message Event
 	if DeathMessage then
 		if KilledPlayer == PlayerId() then
 			if Killer == PlayerId() or Killer == 999 then

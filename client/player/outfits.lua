@@ -11,7 +11,7 @@ CreateThread(function() --Outfits Menu								[Multiple Pages]
 		
 		if (outfitMenu) then
 		
-			TriggerServerEvent("GetOutfitNames")
+			TriggerServerEvent("FMODT:GetOutfitNames")
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionoutfitMenu
@@ -24,34 +24,34 @@ CreateThread(function() --Outfits Menu								[Multiple Pages]
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. SaveOutfitsTitle .. "", function(cb)
 				if (cb) then
 					outfitMenu = false
-					outfitSaveMenu = true
+					OutfitSaveMenu = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. LoadOutfitsTitle .. "", function(cb)
 				if (cb) then
 					outfitMenu = false
-					outfitLoadMenu = true
+					OutfitLoadMenu = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Option", "~y~>> ~s~" .. DeleteOutfitsTitle .. "", function(cb)
 				if (cb) then
 					outfitMenu = false
-					outfitDeleteMenu = true
+					OutfitDeleteMenu = true
 				end
 			end)
 
 			TriggerEvent("FMODT:Update")
 			
-		elseif (outfitSaveMenu) then
+		elseif (OutfitSaveMenu) then
 	
-			TriggerServerEvent("GetOutfitNames")
+			TriggerServerEvent("FMODT:GetOutfitNames")
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
-				currentOption = lastSelectionoutfitSaveMenu
+				currentOption = lastSelectionOutfitSaveMenu
 			else
-				lastSelectionoutfitSaveMenu = currentOption
+				lastSelectionOutfitSaveMenu = currentOption
 			end
 		
 			TriggerEvent("FMODT:Title", "~y~" .. SaveOutfitsTitle .. "")
@@ -66,14 +66,14 @@ CreateThread(function() --Outfits Menu								[Multiple Pages]
 
 			TriggerEvent("FMODT:Update")
 			
-		elseif (outfitLoadMenu) then
+		elseif (OutfitLoadMenu) then
 	
-			TriggerServerEvent("GetOutfitNames")
+			TriggerServerEvent("FMODT:GetOutfitNames")
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
-				currentOption = lastSelectionoutfitLoadMenu
+				currentOption = lastSelectionOutfitLoadMenu
 			else
-				lastSelectionoutfitLoadMenu = currentOption
+				lastSelectionOutfitLoadMenu = currentOption
 			end
 		
 			TriggerEvent("FMODT:Title", "~y~" .. LoadOutfitsTitle .. "")
@@ -82,7 +82,7 @@ CreateThread(function() --Outfits Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", i .. ". " .. OutfitNames[i], function(cb)
 					if (cb) then
 						if OutfitNames[currentOption] ~= NoOutfitName then
-							TriggerServerEvent("OutfitLoad", currentOption)
+							TriggerServerEvent("FMODT:OutfitLoad", currentOption)
 							drawNotification("~g~Outfit ~y~" .. OutfitNames[currentOption] .. " ~g~Loaded!")
 						else
 							drawNotification("~r~Outfit " .. currentOption .. " Not Existing!")
@@ -93,14 +93,14 @@ CreateThread(function() --Outfits Menu								[Multiple Pages]
 
 			TriggerEvent("FMODT:Update")
 			
-		elseif (outfitDeleteMenu) then
+		elseif (OutfitDeleteMenu) then
 	
-			TriggerServerEvent("GetOutfitNames")
+			TriggerServerEvent("FMODT:GetOutfitNames")
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
-				currentOption = lastSelectionoutfitDeleteMenu
+				currentOption = lastSelectionOutfitDeleteMenu
 			else
-				lastSelectionoutfitDeleteMenu = currentOption
+				lastSelectionOutfitDeleteMenu = currentOption
 			end
 		
 			TriggerEvent("FMODT:Title", "~y~" .. DeleteOutfitsTitle .. "")
@@ -198,7 +198,7 @@ CreateThread(function() --Outfit Saving
 					OutfitTable = table.tostring(OutfitTable)
 					OutfitTable = OutfitTable:gsub("{", "")
 					OutfitTable = OutfitTable:gsub("}", "")
-					TriggerServerEvent("OutfitSave", currentOption, OutfitTable)
+					TriggerServerEvent("FMODT:OutfitSave", currentOption, OutfitTable)
 				end
 			else
 				drawNotification("~r~" .. OutfitSavingAbortion .. "!")
@@ -231,7 +231,7 @@ CreateThread(function() --Outfit Deleting
 	end
 end)
 
-AddEventHandler("GotOutfitNames", function(OutfitName1, OutfitName2, OutfitName3, OutfitName4, OutfitName5, OutfitName6, OutfitName7, OutfitName8, OutfitName9, OutfitName10, --Just Don't Edit!
+AddEventHandler("FMODT:GotOutfitNames", function(OutfitName1, OutfitName2, OutfitName3, OutfitName4, OutfitName5, OutfitName6, OutfitName7, OutfitName8, OutfitName9, OutfitName10, --Just Don't Edit!
 								           OutfitName11, OutfitName12, OutfitName13, OutfitName14, OutfitName15, OutfitName16, OutfitName17, OutfitName18, OutfitName19, OutfitName20)
 	if OutfitName1 == nil then OutfitNames[1] = NoOutfitName else OutfitNames[1] = OutfitName1 end
 	if OutfitName2 == nil then OutfitNames[2] = NoOutfitName else OutfitNames[2] = OutfitName2 end
@@ -255,7 +255,7 @@ AddEventHandler("GotOutfitNames", function(OutfitName1, OutfitName2, OutfitName3
 	if OutfitName20 == nil then OutfitNames[20] = NoOutfitName else OutfitNames[20] = OutfitName20 end
 end)
 
-AddEventHandler("ChangePlayerPed", function(ModelHash) --Just Don't Edit!
+AddEventHandler("FMODT:ChangePlayerPed", function(ModelHash) --Just Don't Edit!
 	if tonumber(ModelHash) ~= nil then
 		blockinput = true
 		Model = tonumber(ModelHash)
@@ -270,7 +270,7 @@ AddEventHandler("ChangePlayerPed", function(ModelHash) --Just Don't Edit!
 	end
 end)
 
-AddEventHandler("ApplyOutfitProps", function(Hat, HatTexture, Glasses, GlassesTexture, EarPiece, EarPieceTexture, Watch, WatchTexture) --Just Don't Edit!
+AddEventHandler("FMODT:ApplyOutfitProps", function(Hat, HatTexture, Glasses, GlassesTexture, EarPiece, EarPieceTexture, Watch, WatchTexture) --Just Don't Edit!
 	if not HasModelLoaded(Model) then
 		while not HasModelLoaded(Model) do
 			Citizen.Wait(0)
@@ -291,7 +291,7 @@ AddEventHandler("ApplyOutfitProps", function(Hat, HatTexture, Glasses, GlassesTe
 	end
 end)
 
-AddEventHandler("ApplyOutfitVariations1", function(Face, FaceTexture, Mask, MaskTexture, Hair, HairTexture, HairColor, UpperBody, UpperBodyTexture) --Just Don't Edit!
+AddEventHandler("FMODT:ApplyOutfitVariations1", function(Face, FaceTexture, Mask, MaskTexture, Hair, HairTexture, HairColor, UpperBody, UpperBodyTexture) --Just Don't Edit!
 	if not HasModelLoaded(Model) then
 		while not HasModelLoaded(Model) do
 			Citizen.Wait(0)
@@ -315,7 +315,7 @@ AddEventHandler("ApplyOutfitVariations1", function(Face, FaceTexture, Mask, Mask
 	end
 end)
 
-AddEventHandler("ApplyOutfitVariations2", function(Legs, LegsTexture, Parachute, ParachuteTexture, Shoes, ShoesTexture, TiesScarfsetc, TiesScarfsetcTexture) --Just Don't Edit!
+AddEventHandler("FMODT:ApplyOutfitVariations2", function(Legs, LegsTexture, Parachute, ParachuteTexture, Shoes, ShoesTexture, TiesScarfsetc, TiesScarfsetcTexture) --Just Don't Edit!
 	if not HasModelLoaded(Model) then
 		while not HasModelLoaded(Model) do
 			Citizen.Wait(0)
@@ -336,7 +336,7 @@ AddEventHandler("ApplyOutfitVariations2", function(Legs, LegsTexture, Parachute,
 	end
 end)
 
-AddEventHandler("ApplyOutfitVariations3", function(Undershirt, UndershirtTexture, Armor, ArmorTexture, Embleme, EmblemeTexture, Top, TopTexture) --Just Don't Edit!
+AddEventHandler("FMODT:ApplyOutfitVariations3", function(Undershirt, UndershirtTexture, Armor, ArmorTexture, Embleme, EmblemeTexture, Top, TopTexture) --Just Don't Edit!
 	if not HasModelLoaded(Model) then
 		while not HasModelLoaded(Model) do
 			Citizen.Wait(0)
@@ -358,7 +358,7 @@ AddEventHandler("ApplyOutfitVariations3", function(Undershirt, UndershirtTexture
 	blockinput = false
 end)
 
-AddEventHandler("ApplyOutfitHeadData", function(shapeMotherID, shapeFatherID, shapeExtraID, skinMotherID, skinFatherID, skinExtraID, shapeMix, skinMix, thirdMix) --Just Don't Edit!
+AddEventHandler("FMODT:ApplyOutfitHeadData", function(shapeMotherID, shapeFatherID, shapeExtraID, skinMotherID, skinFatherID, skinExtraID, shapeMix, skinMix, thirdMix) --Just Don't Edit!
 	if not HasModelLoaded(Model) then
 		while not HasModelLoaded(Model) do
 			Citizen.Wait(0)
@@ -386,7 +386,7 @@ AddEventHandler("ApplyOutfitHeadData", function(shapeMotherID, shapeFatherID, sh
 	SetPedHeadBlendData(GetPlayerPed(-1), tonumber(shapeMotherID), tonumber(shapeFatherID), tonumber(shapeExtraID), tonumber(skinMotherID), tonumber(skinFatherID), tonumber(skinExtraID), newshapeMix, newskinMix, newthirdMix, false)
 end)
 
-AddEventHandler("ApplyOutfitHeadOverlay", function(Blemishes, FacialHair, FacialHairColor, Eyebrows, EyebrowsColor, Ageing, Makeup, Blush, BlushColor, Complexion, --Just Don't Edit!
+AddEventHandler("FMODT:ApplyOutfitHeadOverlay", function(Blemishes, FacialHair, FacialHairColor, Eyebrows, EyebrowsColor, Ageing, Makeup, Blush, BlushColor, Complexion, --Just Don't Edit!
 												   SunDamage, Lipstick, LipstickColor, MolesFreckles, ChestHair, ChestHairColor, BodyBlemishes, AddBodyBlemishes)
 	if not HasModelLoaded(Model) then
 		while not HasModelLoaded(Model) do

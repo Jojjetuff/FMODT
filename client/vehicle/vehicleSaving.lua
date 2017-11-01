@@ -11,7 +11,7 @@ CreateThread(function() --Vehicles Menu								[Multiple Pages]
 		
 		if (vehicleSavedMenu) then
 		
-			TriggerServerEvent("GetVehicleNames")
+			TriggerServerEvent("FMODT:GetVehicleNames")
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionVehicleSavedMenu
@@ -46,7 +46,7 @@ CreateThread(function() --Vehicles Menu								[Multiple Pages]
 			
 		elseif (vehicleSaveMenu) then
 	
-			TriggerServerEvent("GetVehicleNames")
+			TriggerServerEvent("FMODT:GetVehicleNames")
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionVehicleSaveMenu
@@ -69,7 +69,7 @@ CreateThread(function() --Vehicles Menu								[Multiple Pages]
 			
 		elseif (vehicleLoadMenu) then
 	
-			TriggerServerEvent("GetVehicleNames")
+			TriggerServerEvent("FMODT:GetVehicleNames")
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionVehicleLoadMenu
@@ -83,7 +83,7 @@ CreateThread(function() --Vehicles Menu								[Multiple Pages]
 				TriggerEvent("FMODT:Option", i .. ". " .. VehicleNames[i], function(cb)
 					if (cb) then
 						if VehicleNames[currentOption] ~= NoSavedVehiclesName then
-							TriggerServerEvent("VehicleLoad", currentOption)
+							TriggerServerEvent("FMODT:VehicleLoad", currentOption)
 							drawNotification("~y~" .. VehicleNames[currentOption] .. " - ~g~" .. VehicleLoadedMessage .. "!")
 						else
 							drawNotification("~r~" .. VehicleMessage .. " " .. currentOption .. " - " .. NotExisting .. "!")
@@ -96,7 +96,7 @@ CreateThread(function() --Vehicles Menu								[Multiple Pages]
 			
 		elseif (vehicleUnsaveMenu) then
 	
-			TriggerServerEvent("GetVehicleNames")
+			TriggerServerEvent("FMODT:GetVehicleNames")
 			
 			if not IsDisabledControlPressed(1, 173) and not IsDisabledControlPressed(1, 172) then
 				currentOption = lastSelectionvehicleUnsaveMenu
@@ -246,7 +246,7 @@ CreateThread(function() --Vehicle Saving
 					VehicleTable = table.tostring(VehicleTable)
 					VehicleTable = VehicleTable:gsub("{", "")
 					VehicleTable = VehicleTable:gsub("}", "")
-					TriggerServerEvent("VehicleSave", currentOption, VehicleTable)
+					TriggerServerEvent("FMODT:VehicleSave", currentOption, VehicleTable)
 					drawNotification("~y~" .. VehicleName .. " - ~g~" .. VehicleSavedMessage .. "!")
 				end
 			else
@@ -284,7 +284,7 @@ CreateThread(function() --Vehicle Unsaving
 				if result ~= nil then
 					if result:lower() == (VehicleUnsaveWord or "'" .. VehicleUnsaveWord .. "'") then
 						drawNotification("~y~" .. VehicleNames[currentOption] .. " ~g~" .. VehicleUnsavedMessage .. "!")
-						TriggerServerEvent("VehicleUnsave", currentOption)
+						TriggerServerEvent("FMODT:VehicleUnsave", currentOption)
 					else
 						drawNotification("~r~" .. VehicleUnsavingAbortion .. "!")
 					end
@@ -363,7 +363,7 @@ CreateThread(function() --Change Current Loaded Vehicle Blip
 	end
 end)		
 
-AddEventHandler("SpawnSavedVehicle", function(VehicleModel, primaryType, primaryColor, secondaryType, secondaryColor, --Just Don't Edit!
+AddEventHandler("FMODT:SpawnSavedVehicle", function(VehicleModel, primaryType, primaryColor, secondaryType, secondaryColor, --Just Don't Edit!
 											  pearlescentColor, wheelColor, tyreSmokeR, tyreSmokeG, tyreSmokeB, wheelType,
 											  frontTyre, backTyre, bulletProof, tyreSmoke, turbo, xenon, windowTint, armor,
 											  brakes, engine, suspension, transmission, frontBumper, rearBumper, chassis,
@@ -532,7 +532,7 @@ AddEventHandler("SpawnSavedVehicle", function(VehicleModel, primaryType, primary
 	blockinput = false
 end)
 
-AddEventHandler("GotVehicleNames", function(VehicleName1, VehicleName2, VehicleName3, VehicleName4, VehicleName5, VehicleName6, VehicleName7, VehicleName8, VehicleName9, VehicleName10, --Just Don't Edit!
+AddEventHandler("FMODT:GotVehicleNames", function(VehicleName1, VehicleName2, VehicleName3, VehicleName4, VehicleName5, VehicleName6, VehicleName7, VehicleName8, VehicleName9, VehicleName10, --Just Don't Edit!
 								            VehicleName11, VehicleName12, VehicleName13, VehicleName14, VehicleName15, VehicleName16, VehicleName17, VehicleName18, VehicleName19, VehicleName20)
 	if VehicleName1 == nil then VehicleNames[1] = NoOutfitName else VehicleNames[1] = VehicleName1 end
 	if VehicleName2 == nil then VehicleNames[2] = NoOutfitName else VehicleNames[2] = VehicleName2 end
@@ -556,7 +556,7 @@ AddEventHandler("GotVehicleNames", function(VehicleName1, VehicleName2, VehicleN
 	if VehicleName20 == nil then VehicleNames[20] = NoOutfitName else VehicleNames[20] = VehicleName20 end
 end)
 
-AddEventHandler("UnsaveSavedVehicle", function(VehicleModel)
+AddEventHandler("FMODT:UnsaveSavedVehicle", function(VehicleModel)
 	if GetEntityModel(CurrentLoadedVehicle) == tonumber(VehicleModel) then
 		SetVehicleHasBeenOwnedByPlayer(CurrentLoadedVehicle, false)
 		SetEntityAsNoLongerNeeded(CurrentLoadedVehicle)

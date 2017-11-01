@@ -480,12 +480,12 @@ Citizen.CreateThread(function() --Vehicle Weapons
 				if IsControlPressed(1, 68) then
 					SetCurrentPedWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_UNARMED"), true)
 					local playerVeh = GetVehiclePedIsIn(GetPlayerPed(-1), true)
-					local getcoords1 = GetOffsetFromEntityInWorldCoords(playerVeh, 0.6, 0.671, 0.35)
-					local getcoords2 = GetOffsetFromEntityInWorldCoords(playerVeh, -0.6, 0.671, 0.35)
-					local getcoords3 = GetOffsetFromEntityInWorldCoords(playerVeh, 0.6, 5.071, 0.35)
-					local getcoords4 = GetOffsetFromEntityInWorldCoords(playerVeh, -0.6, 5.071, 0.35)
-					ShootSingleBulletBetweenCoords(getcoords1.x, getcoords1.y, getcoords1.z, getcoords3.x, getcoords3.y, getcoords3.z, 500, 0, VehicleWeaponHash, GetPlayerPed(-1), true, false, 500.0)
-					ShootSingleBulletBetweenCoords(getcoords2.x, getcoords2.y, getcoords2.z, getcoords4.x, getcoords4.y, getcoords4.z, 500, 0, VehicleWeaponHash, GetPlayerPed(-1), true, false, 500.0)
+					local GetCoords1 = GetOffsetFromEntityInWorldCoords(playerVeh, 0.6, 0.671, 0.35)
+					local GetCoords2 = GetOffsetFromEntityInWorldCoords(playerVeh, -0.6, 0.671, 0.35)
+					local GetCoords3 = GetOffsetFromEntityInWorldCoords(playerVeh, 0.6, 5.071, 0.35)
+					local GetCoords4 = GetOffsetFromEntityInWorldCoords(playerVeh, -0.6, 5.071, 0.35)
+					ShootSingleBulletBetweenCoords(GetCoords1.x, GetCoords1.y, GetCoords1.z, GetCoords3.x, GetCoords3.y, GetCoords3.z, 500, 0, VehicleWeaponHash, GetPlayerPed(-1), true, false, 500.0)
+					ShootSingleBulletBetweenCoords(GetCoords2.x, GetCoords2.y, GetCoords2.z, GetCoords4.x, GetCoords4.y, GetCoords4.z, 500, 0, VehicleWeaponHash, GetPlayerPed(-1), true, false, 500.0)
 				end
 			end
 		end

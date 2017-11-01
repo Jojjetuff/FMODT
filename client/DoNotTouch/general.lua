@@ -43,7 +43,7 @@ AddEventHandler("playerSpawned", function(spawn)
 	DrawNotification(false, true)
 end)
 
-AddEventHandler("AdminActivation", function(state) --Just Don't Edit!
+AddEventHandler("FMODT:AdminActivation", function(state) --Just Don't Edit!
 	if state == 0 then
 		Citizen.Trace("Your Status: No Admin")
 	elseif state == 1 then
@@ -63,7 +63,7 @@ Citizen.CreateThread(function() --Menu Closing
 			adminMenu = false
 			playerMenu = false
 			vehicleMenu = false
-			teleportMenu = false
+			TeleportMenu = false
 			weaponMenu = false
 			worldMenu = false
 			miscMenu = false
@@ -91,12 +91,14 @@ Citizen.CreateThread(function() --Menu Closing
 			componentChangerPropMenu = false 
 			componentChangerComponentMenu = false 
 			outfitMenu = false 
-			outfitSaveMenu = false 
-			outfitLoadMenu = false 
-			outfitDeleteMenu = false 
+			OutfitSaveMenu = false 
+			OutfitLoadMenu = false 
+			OutfitDeleteMenu = false 
 			AddOnPedsSpawn1 = false
 			AddOnPedsSpawn2 = false
 			AddOnPedsSpawn3 = false
+			AddOnPedsSpawn4 = false
+			AddOnPedsSpawn5 = false
 			animalSkinMenu1 = false
 			animalSkinMenu2 = false
 			femalePedSkinMenu = false
@@ -139,7 +141,7 @@ Citizen.CreateThread(function() --Menu Closing
 			scenarioMenu = false
 			maleScenarioMenu = false
 			wantedMenu = false
-			teleportMenuEntityRelative = false
+			TeleportMenuEntityRelative = false
 			OnlinePlayer1 = false
 			OnlinePlayer2 = false
 			OnlinePlayerToMe = false
@@ -161,6 +163,8 @@ Citizen.CreateThread(function() --Menu Closing
 			AddOnVehiclesSpawn1 = false
 			AddOnVehiclesSpawn2 = false
 			AddOnVehiclesSpawn3 = false
+			AddOnVehiclesSpawn4 = false
+			AddOnVehiclesSpawn5 = false
 			bikeSpawn = false
 			boatSpawn = false
 			commercialSpawn = false
@@ -262,7 +266,9 @@ Citizen.CreateThread(function() --Menu Closing
 			vehicleUnsaveMenu = false
 		end
 		if not MenuOpen then
-			lasteveryPedSite = 1
+			lastSiteEveryPed = 1
+			lastSiteAddOnVehicles = 1
+			lastSiteAddOnPeds = 1
 			lastSelectionloginMenu = 1
 			lastSelectionregisterMenu = 1
 			lastSelectionmainMenu = 1
@@ -280,6 +286,8 @@ Citizen.CreateThread(function() --Menu Closing
 			lastSelectionAddOnPedsSpawn1 = 1
 			lastSelectionAddOnPedsSpawn2 = 1
 			lastSelectionAddOnPedsSpawn3 = 1
+			lastSelectionAddOnPedsSpawn4 = 1
+			lastSelectionAddOnPedsSpawn5 = 1
 			lastSelectionanimalSkinMenu1 = 1
 			lastSelectionanimalSkinMenu2 = 1
 			lastSelectionfemalePedSkinMenu = 1
@@ -329,9 +337,9 @@ Citizen.CreateThread(function() --Menu Closing
 			lastSelectioncomponentChangerPropMenu = 1
 			lastSelectioncomponentChangerComponentMenu = 1
 			lastSelectionoutfitMenu = 1 
-			lastSelectionoutfitSaveMenu = 1 
-			lastSelectionoutfitLoadMenu = 1 
-			lastSelectionoutfitDeleteMenu = 1 
+			lastSelectionOutfitSaveMenu = 1 
+			lastSelectionOutfitLoadMenu = 1 
+			lastSelectionOutfitDeleteMenu = 1 
 			lastSelectionvehicleMenu = 1
 			lastSelectiondoorsMenu = 1
 			lastSelectionspawnMenu1 = 1
@@ -340,6 +348,8 @@ Citizen.CreateThread(function() --Menu Closing
 			lastSelectionAddOnVehiclesSpawn1 = 1
 			lastSelectionAddOnVehiclesSpawn2 = 1
 			lastSelectionAddOnVehiclesSpawn3 = 1
+			lastSelectionAddOnVehiclesSpawn4 = 1
+			lastSelectionAddOnVehiclesSpawn5 = 1
 			lastSelectionbikeSpawn = 1
 			lastSelectionboatSpawn = 1
 			lastSelectioncommercialSpawn = 1
@@ -434,8 +444,8 @@ Citizen.CreateThread(function() --Menu Closing
 			lastSelectionvehicleUnsaveMenu = 1
 			lastSelectionextraMenu = 1
 			lastSelectionextraTrailerMenu = 1
-			lastSelectionteleportMenu = 1
-			lastSelectionteleportMenuEntityRelative = 1
+			lastSelectionTeleportMenu = 1
+			lastSelectionTeleportMenuEntityRelative = 1
 			lastSelectioninteriorLocation = 1
 			lastSelectionexteriorLocation = 1
 			lastSelectioncustomLocation = 1
@@ -496,11 +506,11 @@ Citizen.CreateThread(function() --Controls
 			if loginMenu or registerMenu or mainMenu then
 				MenuOpen = false
 				SaveSettings()
-			elseif adminMenu or playerMenu or vehicleMenu or teleportMenu or weaponMenu or worldMenu or miscMenu or settingsMenu or aboutMenu then
+			elseif adminMenu or playerMenu or vehicleMenu or TeleportMenu or weaponMenu or worldMenu or miscMenu or settingsMenu or aboutMenu then
 				adminMenu = false
 				playerMenu = false
 				vehicleMenu = false
-				teleportMenu = false
+				TeleportMenu = false
 				weaponMenu = false
 				worldMenu = false
 				miscMenu = false
@@ -531,8 +541,8 @@ Citizen.CreateThread(function() --Controls
 				componentChangerMenu = false
 				outfitMenu = false
 				playerMenu = true
-			elseif 	AddOnPedsSpawn1 or AddOnPedsSpawn2 or AddOnPedsSpawn3 or animalSkinMenu1 or
-			animalSkinMenu2 or femalePedSkinMenu or malePedSkinMenu or playerPedSkinMenu or
+			elseif 	AddOnPedsSpawn1 or AddOnPedsSpawn2 or AddOnPedsSpawn3 or AddOnPedsSpawn4 or AddOnPedsSpawn5 or
+			animalSkinMenu1 or animalSkinMenu2 or femalePedSkinMenu or malePedSkinMenu or playerPedSkinMenu or
 			everyPedSkinMenu1 or everyPedSkinMenu2 or everyPedSkinMenu3 or everyPedSkinMenu4 or
 			everyPedSkinMenu5 or everyPedSkinMenu6 or everyPedSkinMenu7 or everyPedSkinMenu8 or
 			everyPedSkinMenu9 or everyPedSkinMenu10 or everyPedSkinMenu11 or everyPedSkinMenu12 or
@@ -545,6 +555,8 @@ Citizen.CreateThread(function() --Controls
 				AddOnPedsSpawn1 = false
 				AddOnPedsSpawn2 = false
 				AddOnPedsSpawn3 = false
+				AddOnPedsSpawn4 = false
+				AddOnPedsSpawn5 = false
 				animalSkinMenu1 = false
 				animalSkinMenu2 = false
 				femalePedSkinMenu = false
@@ -593,16 +605,16 @@ Citizen.CreateThread(function() --Controls
 			elseif maleScenarioMenu then
 				maleScenarioMenu = false
 				scenarioMenu = true
-			elseif teleportMenuEntityRelative or OnlinePlayer1 or OnlinePlayer2 or OnlinePlayerToMe or
+			elseif TeleportMenuEntityRelative or OnlinePlayer1 or OnlinePlayer2 or OnlinePlayerToMe or
 			interiorLocation or exteriorLocation or customLocation then
-				teleportMenuEntityRelative = false
+				TeleportMenuEntityRelative = false
 				OnlinePlayer1 = false
 				OnlinePlayer2 = false
 				OnlinePlayerToMe = false
 				interiorLocation = false
 				exteriorLocation = false
 				customLocation = false
-				teleportMenu = true
+				TeleportMenu = true
 			elseif spawnMenu1 or spawnMenu2 or doorsMenu or tuningMenu or vehicleSavedMenu then
 				spawnMenu1 = false
 				spawnMenu2 = false
@@ -611,14 +623,17 @@ Citizen.CreateThread(function() --Controls
 				vehicleSavedMenu = false
 				vehicleMenu = true
 			elseif fancySpawn or AddOnVehiclesSpawn1 or AddOnVehiclesSpawn2 or AddOnVehiclesSpawn3 or
-			bikeSpawn or boatSpawn or commercialSpawn or compactSpawn or coupeSpawn or emergencySpawn or
-			helicopterSpawn1 or helicopterSpawn2 or industrialSpawn or militarySpawn or motorcycleSpawn1 or
-			motorcycleSpawn2 or motorcycleSpawn3 or muscleSpawn1 or muscleSpawn2 or muscleSpawn3 or 
-			offroadSpawn1 or offroadSpawn2 or planeSpawn1 or planeSpawn2 or sedanSpawn1 or sedanSpawn2	then
+			AddOnVehiclesSpawn4 or AddOnVehiclesSpawn5 or bikeSpawn or boatSpawn or commercialSpawn or
+			compactSpawn or coupeSpawn or emergencySpawn or helicopterSpawn1 or helicopterSpawn2 or
+			industrialSpawn or militarySpawn or motorcycleSpawn1 or motorcycleSpawn2 or
+			motorcycleSpawn3 or muscleSpawn1 or muscleSpawn2 or muscleSpawn3 or offroadSpawn1 or
+			offroadSpawn2 or planeSpawn1 or planeSpawn2 or sedanSpawn1 or sedanSpawn2 then
 				fancySpawn = false
 				AddOnVehiclesSpawn1 = false
 				AddOnVehiclesSpawn2 = false
 				AddOnVehiclesSpawn3 = false
+				AddOnVehiclesSpawn4 = false
+				AddOnVehiclesSpawn5 = false
 				bikeSpawn = false
 				boatSpawn = false
 				commercialSpawn = false
@@ -795,10 +810,10 @@ Citizen.CreateThread(function() --Controls
 			elseif componentChangerHeadDataSubMenu then
 				componentChangerHeadDataSubMenu = false
 				componentChangerHeadDataMenu = true
-			elseif outfitSaveMenu or outfitLoadMenu or outfitDeleteMenu then
-				outfitSaveMenu = false
-				outfitLoadMenu = false
-				outfitDeleteMenu = false
+			elseif OutfitSaveMenu or OutfitLoadMenu or OutfitDeleteMenu then
+				OutfitSaveMenu = false
+				OutfitLoadMenu = false
+				OutfitDeleteMenu = false
 				outfitMenu = true
 			elseif vehicleSaveMenu or vehicleLoadMenu or vehicleUnsaveMenu then
 				vehicleSaveMenu = false
@@ -814,10 +829,10 @@ Citizen.CreateThread(function() --Controls
 end)
 
 Citizen.CreateThread(function() --Various Checks
-	TriggerServerEvent("ID")
-	TriggerServerEvent("IsUsingSteam")
-	TriggerServerEvent("GetHost")
-	TriggerServerEvent("GetVehicleNames")
+	TriggerServerEvent("FMODT:ID")
+	TriggerServerEvent("FMODT:IsUsingSteam")
+	TriggerServerEvent("FMODT:GetHost")
+	TriggerServerEvent("FMODT:GetVehicleNames")
 end)
 
 Citizen.CreateThread(function() --Enabling Menu Use

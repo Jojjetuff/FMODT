@@ -30,7 +30,7 @@ Citizen.CreateThread(function() --Login Menu
 			TriggerEvent("FMODT:Option", LoginMenuTitle, function(cb)
 				if (cb) then
 					if Username ~= "" and Password ~= "" then
-						TriggerServerEvent("Login", Username, Password)
+						TriggerServerEvent("FMODT:Login", Username, Password)
 					else
 						drawNotification("~r~" .. LoginErrorMessage .. "!")
 					end
@@ -40,7 +40,7 @@ Citizen.CreateThread(function() --Login Menu
 			TriggerEvent("FMODT:Option", "~r~" .. ResetPasswordTitle, function(cb)
 				if (cb) then
 					if Username ~= "" then
-						TriggerServerEvent("ResetPassword", false, Username, "")
+						TriggerServerEvent("FMODT:ResetPassword", false, Username, "")
 					else
 						drawNotification("~r~" .. ResetPasswordErrorMessage .. "!")
 					end
@@ -97,7 +97,7 @@ Citizen.CreateThread(function() --Login Menu
 			TriggerEvent("FMODT:Option", RegisterMenuTitle, function(cb)
 				if (cb) then
 					if Username ~= "" and Password ~= "" and SecurityQuestionAnswer ~= "" then
-						TriggerServerEvent("Register", Username, Password, SecurityQuestions[SelectedSecurityQuestion], SecurityQuestionAnswer)
+						TriggerServerEvent("FMODT:Register", Username, Password, SecurityQuestions[SelectedSecurityQuestion], SecurityQuestionAnswer)
 					else
 						drawNotification("~r~" .. LoginRegisterErrorMessage .. "!")
 					end
@@ -167,7 +167,7 @@ Citizen.CreateThread(function() --Enter Name / Password
 	end
 end)
 
-AddEventHandler("RegisterClient", function(Registered)
+AddEventHandler("FMODT:RegisterClient", function(Registered)
 	if Registered then
 		drawNotification("~g~" .. RegisterSuccessMessage .. "!")
 		registerMenu = false
@@ -178,13 +178,13 @@ AddEventHandler("RegisterClient", function(Registered)
 	end
 end)
 
-AddEventHandler("LoginClient", function(LoggedIn)
+AddEventHandler("FMODT:LoginClient", function(LoggedIn)
 	if LoggedIn then
-		TriggerServerEvent("RecoverOldSaves")
-		TriggerServerEvent("GetOutfitNames")
-		TriggerServerEvent("GetVehicleNames")
-		TriggerServerEvent("LoadSettings")
-		TriggerServerEvent("GetAddOnVehicles")
+		TriggerServerEvent("FMODT:RecoverOldSaves")
+		TriggerServerEvent("FMODT:GetOutfitNames")
+		TriggerServerEvent("FMODT:GetVehicleNames")
+		TriggerServerEvent("FMODT:LoadSettings")
+		TriggerServerEvent("FMODT:GetAddOnVehicles")
 		drawNotification("~g~" .. LoginSuccessMessage .. "!")
 		loggedIn = true
 		loginMenu = false
@@ -194,13 +194,13 @@ AddEventHandler("LoginClient", function(LoggedIn)
 	end
 end)
 
-AddEventHandler("GotSecurityQuestion", function(SecurityQuestion)
+AddEventHandler("FMODT:GotSecurityQuestion", function(SecurityQuestion)
 	local SecurityQuestionAnswer = ""
 	local result = KeyboardInput(SecurityQuestion, SecurityQuestionAnswer, 16, false)
 	if result ~= nil then
 		if not result:match("%W") then
 			SecurityQuestionAnswer = result
-			TriggerServerEvent("ResetPassword", true, Username, SecurityQuestionAnswer)
+			TriggerServerEvent("FMODT:ResetPassword", true, Username, SecurityQuestionAnswer)
 			EnterSecurityQuestionAnswer = false
 		end
 	else
@@ -208,7 +208,7 @@ AddEventHandler("GotSecurityQuestion", function(SecurityQuestion)
 	end
 end)
 
-AddEventHandler("ChangingPasswordClient", function(State)
+AddEventHandler("FMODT:ChangingPasswordClient", function(State)
 	if State then
 		local Password = ""
 		local result = KeyboardInput(ChangePasswordKeyboardMessage, Password, 30, false)
@@ -217,7 +217,7 @@ AddEventHandler("ChangingPasswordClient", function(State)
 				Password = result
 				drawNotification("~g~" .. ChangePasswordSuccessMessage .. "!")
 				ChangePassword = false
-				TriggerServerEvent("ChangePassword", Password)
+				TriggerServerEvent("FMODT:ChangePassword", Password)
 			else
 				drawNotification("~r~" .. PasswordTooShortMessage .. "!")
 			end

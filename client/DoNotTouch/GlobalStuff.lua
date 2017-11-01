@@ -25,7 +25,7 @@
 	adminMenu = false
 	playerMenu = false 
 	vehicleMenu = false 
-	teleportMenu = false 
+	TeleportMenu = false 
 	weaponMenu = false 
 	worldMenu = false 
 	miscMenu = false 
@@ -55,12 +55,14 @@
 	componentChangerPropMenu = false 
 	componentChangerComponentMenu = false 
 	outfitMenu = false 
-	outfitSaveMenu = false 
-	outfitLoadMenu = false 
-	outfitDeleteMenu = false 
+	OutfitSaveMenu = false 
+	OutfitLoadMenu = false 
+	OutfitDeleteMenu = false 
 	AddOnPedsSpawn1 = false
 	AddOnPedsSpawn2 = false
 	AddOnPedsSpawn3 = false
+	AddOnPedsSpawn4 = false
+	AddOnPedsSpawn5 = false
 	animalSkinMenu1 = false 
 	animalSkinMenu2 = false 
 	femalePedSkinMenu = false 
@@ -116,6 +118,8 @@
 	AddOnVehiclesSpawn1 = false
 	AddOnVehiclesSpawn2 = false
 	AddOnVehiclesSpawn3 = false
+	AddOnVehiclesSpawn4 = false
+	AddOnVehiclesSpawn5 = false
 	bikeSpawn = false
 	boatSpawn = false
 	commercialSpawn = false
@@ -214,7 +218,7 @@
 	vehicleUnsaveMenu = false
 
 -- Teleport Menu
-	teleportMenuEntityRelative = false
+	TeleportMenuEntityRelative = false
 	OnlinePlayer1 = false
 	OnlinePlayer2 = false
 	OnlinePlayerToMe = false
@@ -244,7 +248,9 @@
 	loggedIn = false
 
 -- Others
-	lasteveryPedSite = 1
+	lastSiteEveryPed = 1
+	lastSiteAddOnVehicles = 1
+	lastSiteAddOnPeds = 1
 	lastFloat = {}
 	FloatIntArray = false
 	blockinput = false 
@@ -271,6 +277,8 @@
 	lastSelectionAddOnPedsSpawn1 = 1
 	lastSelectionAddOnPedsSpawn2 = 1
 	lastSelectionAddOnPedsSpawn3 = 1
+	lastSelectionAddOnPedsSpawn4 = 1
+	lastSelectionAddOnPedsSpawn5 = 1
 	lastSelectionanimalSkinMenu1 = 1
 	lastSelectionanimalSkinMenu2 = 1
 	lastSelectionfemalePedSkinMenu = 1
@@ -320,9 +328,9 @@
 	lastSelectioncomponentChangerPropMenu = 1
 	lastSelectioncomponentChangerComponentMenu = 1
 	lastSelectionoutfitMenu = 1
-	lastSelectionoutfitSaveMenu = 1
-	lastSelectionoutfitLoadMenu = 1
-	lastSelectionoutfitDeleteMenu = 1
+	lastSelectionOutfitSaveMenu = 1
+	lastSelectionOutfitLoadMenu = 1
+	lastSelectionOutfitDeleteMenu = 1
 	lastSelectionvehicleMenu = 1
 	lastSelectiondoorsMenu = 1
 	lastSelectionspawnMenu1 = 1
@@ -331,6 +339,8 @@
 	lastSelectionAddOnVehiclesSpawn1 = 1
 	lastSelectionAddOnVehiclesSpawn2 = 1
 	lastSelectionAddOnVehiclesSpawn3 = 1
+	lastSelectionAddOnVehiclesSpawn4 = 1
+	lastSelectionAddOnVehiclesSpawn5 = 1
 	lastSelectionbikeSpawn = 1
 	lastSelectionboatSpawn = 1
 	lastSelectioncommercialSpawn = 1
@@ -425,8 +435,8 @@
 	lastSelectionVehicleSaveMenu = 1
 	lastSelectionVehicleLoadMenu = 1
 	lastSelectionvehicleUnsaveMenu = 1
-	lastSelectionteleportMenu = 1
-	lastSelectionteleportMenuEntityRelative = 1
+	lastSelectionTeleportMenu = 1
+	lastSelectionTeleportMenuEntityRelative = 1
 	lastSelectioninteriorLocation = 1
 	lastSelectionexteriorLocation = 1
 	lastSelectioncustomLocation = 1
@@ -743,7 +753,7 @@
 		SettingsTable = table.tostring(SettingsTable)
 		SettingsTable = SettingsTable:gsub("{", "")
 		SettingsTable = SettingsTable:gsub("}", "")
-		TriggerServerEvent("SaveSettings", SettingsTable)
+		TriggerServerEvent("FMODT:SaveSettings", SettingsTable)
 	end
 	
 	
@@ -755,47 +765,47 @@
 	RegisterNetEvent("FMODT:Float")
 	RegisterNetEvent("FMODT:StringArray")
 	RegisterNetEvent("FMODT:Update")
-	RegisterNetEvent("TeleportMe")
-	RegisterNetEvent("Effect")
-	RegisterNetEvent("DeathMessageClients")
-	RegisterNetEvent("JoinMessageClients")
-	RegisterNetEvent("LeftMessageClients")
-	RegisterNetEvent("AdminActivation")
-	RegisterNetEvent("GotIt")
-	RegisterNetEvent("GotHost")
-	RegisterNetEvent("GotOutfitNames")
-	RegisterNetEvent("ChangePlayerPed")
-	RegisterNetEvent("ApplyOutfitProps")
-	RegisterNetEvent("ApplyOutfitVariations1")
-	RegisterNetEvent("ApplyOutfitVariations2")
-	RegisterNetEvent("ApplyOutfitVariations3")
-	RegisterNetEvent("ApplyOutfitHeadData")
-	RegisterNetEvent("ApplyOutfitHeadOverlay")
-	RegisterNetEvent("MenuSettingsSet")
-	RegisterNetEvent("GiveWeaponsBack")
-	RegisterNetEvent("GetCoordsClient")
-	RegisterNetEvent("GotCoordsClient")
-	RegisterNetEvent("SetWeather")
-	RegisterNetEvent("SetTime")
-	RegisterNetEvent("SetBlackout")
-	RegisterNetEvent("SetNoNPCsTraffic")
-	RegisterNetEvent("ExtendableMapClient")
-	RegisterNetEvent("PlayerBlipsClient")
-	RegisterNetEvent("PvPClient")
-	RegisterNetEvent("ScoreboardClient")
-	RegisterNetEvent("AdminOnlyBlipsNamesClient")
-	RegisterNetEvent("VoiceChatClient")
-	RegisterNetEvent("VoiceChatProximityClient")
-	RegisterNetEvent("SpawnSavedVehicle")
-	RegisterNetEvent("UnsaveSavedVehicle")
-	RegisterNetEvent("GotVehicleNames")
-	RegisterNetEvent("RegisterClient")
-	RegisterNetEvent("LoginClient")
-	RegisterNetEvent("ChangeUsernameClient")
-	RegisterNetEvent("GotSecurityQuestion")
-	RegisterNetEvent("ChangingPasswordClient")
-	RegisterNetEvent("GetUsernameClient")
-	RegisterNetEvent("GotUsernameClient")
-	RegisterNetEvent("GotAddOnVehicles")
-	RegisterNetEvent("GotAddOnPeds")
+	RegisterNetEvent("FMODT:TeleportMe")
+	RegisterNetEvent("FMODT:Effect")
+	RegisterNetEvent("FMODT:DeathMessageClients")
+	RegisterNetEvent("FMODT:JoinMessageClients")
+	RegisterNetEvent("FMODT:LeftMessageClients")
+	RegisterNetEvent("FMODT:AdminActivation")
+	RegisterNetEvent("FMODT:GotIt")
+	RegisterNetEvent("FMODT:GotHost")
+	RegisterNetEvent("FMODT:GotOutfitNames")
+	RegisterNetEvent("FMODT:ChangePlayerPed")
+	RegisterNetEvent("FMODT:ApplyOutfitProps")
+	RegisterNetEvent("FMODT:ApplyOutfitVariations1")
+	RegisterNetEvent("FMODT:ApplyOutfitVariations2")
+	RegisterNetEvent("FMODT:ApplyOutfitVariations3")
+	RegisterNetEvent("FMODT:ApplyOutfitHeadData")
+	RegisterNetEvent("FMODT:ApplyOutfitHeadOverlay")
+	RegisterNetEvent("FMODT:MenuSettingsSet")
+	RegisterNetEvent("FMODT:GiveWeaponsBack")
+	RegisterNetEvent("FMODT:GetCoordsClient")
+	RegisterNetEvent("FMODT:GotCoordsClient")
+	RegisterNetEvent("FMODT:SetWeather")
+	RegisterNetEvent("FMODT:SetTime")
+	RegisterNetEvent("FMODT:SetBlackout")
+	RegisterNetEvent("FMODT:SetNoNPCsTraffic")
+	RegisterNetEvent("FMODT:ExtendableMapClient")
+	RegisterNetEvent("FMODT:PlayerBlipsClient")
+	RegisterNetEvent("FMODT:PvPClient")
+	RegisterNetEvent("FMODT:ScoreboardClient")
+	RegisterNetEvent("FMODT:AdminOnlyBlipsNamesClient")
+	RegisterNetEvent("FMODT:VoiceChatClient")
+	RegisterNetEvent("FMODT:VoiceChatProximityClient")
+	RegisterNetEvent("FMODT:SpawnSavedVehicle")
+	RegisterNetEvent("FMODT:UnsaveSavedVehicle")
+	RegisterNetEvent("FMODT:GotVehicleNames")
+	RegisterNetEvent("FMODT:RegisterClient")
+	RegisterNetEvent("FMODT:LoginClient")
+	RegisterNetEvent("FMODT:ChangeUsernameClient")
+	RegisterNetEvent("FMODT:GotSecurityQuestion")
+	RegisterNetEvent("FMODT:ChangingPasswordClient")
+	RegisterNetEvent("FMODT:GetUsernameClient")
+	RegisterNetEvent("FMODT:GotUsernameClient")
+	RegisterNetEvent("FMODT:GotAddOnVehicles")
+	RegisterNetEvent("FMODT:GotAddOnPeds")
 	

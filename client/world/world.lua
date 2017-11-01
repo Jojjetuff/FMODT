@@ -15,7 +15,7 @@ Citizen.CreateThread(function() --World Menu
 			TriggerEvent("FMODT:Bool", BlackoutTitle, blackout, function(cb)
 				blackout = cb
 				if WorldAndNoClipOnlyAdmins then
-					TriggerServerEvent("Blackout", blackout)
+					TriggerServerEvent("FMODT:Blackout", blackout)
 				end
 				if blackout then
 					drawNotification("~g~" .. BlackoutEnableMessage .. "!")
@@ -51,7 +51,7 @@ Citizen.CreateThread(function() --World Menu
 			TriggerEvent("FMODT:Bool", NoNPCsTrafficTitle, nonpcstraffic, function(cb)
 				nonpcstraffic = cb
 				if WorldAndNoClipOnlyAdmins then
-					TriggerServerEvent("NoNPCsTraffic", nonpcstraffic)
+					TriggerServerEvent("FMODT:NoNPCsTraffic", nonpcstraffic)
 				end
 				if nonpcstraffic then
 					nowantedlevel = true
@@ -104,7 +104,7 @@ Citizen.CreateThread(function() --Time Menu
 			TriggerEvent("FMODT:Bool", FreezeTimeTitle, freezetime, function(cb)
 				freezetime = cb
 				if WorldAndNoClipOnlyAdmins then
-					TriggerServerEvent("Time", 0, 0, 1, freezetime)
+					TriggerServerEvent("FMODT:Time", 0, 0, 1, freezetime)
 				end
 				if freezetime then
 					drawNotification("~g~" .. FreezeTimeEnableMessage .. "!")
@@ -116,7 +116,7 @@ Citizen.CreateThread(function() --Time Menu
 			TriggerEvent("FMODT:Int", HourTitle .. ":", hour, 0, 23, function(cb)
 				hour = cb
 				if WorldAndNoClipOnlyAdmins then
-					TriggerServerEvent("Time", hour, minute, 0)
+					TriggerServerEvent("FMODT:Time", hour, minute, 0)
 				else
 					NetworkOverrideClockTime(hour, minute, 0)
 				end
@@ -125,7 +125,7 @@ Citizen.CreateThread(function() --Time Menu
 			TriggerEvent("FMODT:Int", MinuteTitle .. ":", minute, 0, 59, function(cb)
 				minute = cb
 				if WorldAndNoClipOnlyAdmins then
-					TriggerServerEvent("Time", hour, minute, 0)
+					TriggerServerEvent("FMODT:Time", hour, minute, 0)
 				else
 					NetworkOverrideClockTime(hour, minute, 0)
 				end
@@ -134,7 +134,7 @@ Citizen.CreateThread(function() --Time Menu
 			TriggerEvent("FMODT:Option", MorningTitle, function(cb)
 				if (cb) then
 					if WorldAndNoClipOnlyAdmins then
-						TriggerServerEvent("Time", 6, 0, 0)
+						TriggerServerEvent("FMODT:Time", 6, 0, 0)
 					else
 						NetworkOverrideClockTime(6, 0, 0)
 					end
@@ -144,7 +144,7 @@ Citizen.CreateThread(function() --Time Menu
 			TriggerEvent("FMODT:Option", MiddayTitle, function(cb)
 				if (cb) then
 					if WorldAndNoClipOnlyAdmins then
-						TriggerServerEvent("Time", 12, 0, 0)
+						TriggerServerEvent("FMODT:Time", 12, 0, 0)
 					else
 						NetworkOverrideClockTime(12, 0, 0)
 					end
@@ -154,7 +154,7 @@ Citizen.CreateThread(function() --Time Menu
 			TriggerEvent("FMODT:Option", EveningTitle, function(cb)
 				if (cb) then
 					if WorldAndNoClipOnlyAdmins then
-						TriggerServerEvent("Time", 18, 0, 0)
+						TriggerServerEvent("FMODT:Time", 18, 0, 0)
 					else
 						NetworkOverrideClockTime(18, 0, 0)
 					end
@@ -164,7 +164,7 @@ Citizen.CreateThread(function() --Time Menu
 			TriggerEvent("FMODT:Option", MidnightTitle, function(cb)
 				if (cb) then
 					if WorldAndNoClipOnlyAdmins then
-						TriggerServerEvent("Time", 0, 0, 0)
+						TriggerServerEvent("FMODT:Time", 0, 0, 0)
 					else
 						NetworkOverrideClockTime(0, 0, 0)
 					end
@@ -221,7 +221,7 @@ Citizen.CreateThread(function() --Weather Menu
 				end
 				
 				if WorldAndNoClipOnlyAdmins then
-					TriggerServerEvent("Weather", weather)
+					TriggerServerEvent("FMODT:Weather", weather)
 				else
 					SetWeatherTypeNow(weather)
 					SetOverrideWeather(weather)
@@ -338,12 +338,12 @@ Citizen.CreateThread(function() --Jump Mode
 	end
 end)
 
-AddEventHandler("SetWeather", function(Type) --Sets the specific Weather
+AddEventHandler("FMODT:SetWeather", function(Type) --Sets the specific Weather
 	SetWeatherTypeNow(Type)
 	SetOverrideWeather(Type)
 end)
 
-AddEventHandler("SetTime", function(Hours, Minutes, freeze, State) --Sets the Time
+AddEventHandler("FMODT:SetTime", function(Hours, Minutes, freeze, State) --Sets the Time
 	if freeze == 1 then
 		NetworkOverrideClockTime(Hours, Minutes, 0)
 		freezetime = State
@@ -352,7 +352,7 @@ AddEventHandler("SetTime", function(Hours, Minutes, freeze, State) --Sets the Ti
 	end
 end)
 
-AddEventHandler("SetBlackout", function(State) --Activates/ Deactivates Blackout Mode
+AddEventHandler("FMODT:SetBlackout", function(State) --Activates/ Deactivates Blackout Mode
 	blackout = State
 	if State then
 		drawNotification("~g~" .. BlackoutEnableMessage .. "!")
@@ -361,7 +361,7 @@ AddEventHandler("SetBlackout", function(State) --Activates/ Deactivates Blackout
 	end
 end)
 
-AddEventHandler("SetNoNPCsTraffic", function(State) --Activates/ Deactivates NPCs & Traffic
+AddEventHandler("FMODT:SetNoNPCsTraffic", function(State) --Activates/ Deactivates NPCs & Traffic
 	nonpcstraffic = State
 	if State then
 		nowantedlevel = true
